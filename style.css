@@ -51,3 +51,42 @@ body.dark footer {
 body.dark nav a {
     color: #eee;
 }
+
+/* Projects Section */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background: #4B0082;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.project-link:hover {
+    background: #8A2BE2;
+}
+
+body.dark .project-card {
+    background: #333;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
