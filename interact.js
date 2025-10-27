@@ -1,4 +1,4 @@
-const words = ['PhD Researcher', 'AI Enthusiast', 'Machine Learning Expert', 'Safety Advocate'];
+const words = ['PhD Researcher', 'Safe AI Specialist', 'AV Safety Researcher', 'RL Expert', 'EUCAD 2025 Speaker', 'Siemens Collaborator'];
 let wordIndex = 0;
 let charIndex = 0;
 let deleting = false;
