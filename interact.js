@@ -1,4 +1,4 @@
-const words = ['PhD Researcher', 'Safe AI Specialist', 'AV Safety Researcher', 'RL Expert', 'EUCAD 2025 Speaker', 'Siemens Collaborator'];
+const words = ['PhD Researcher', 'Safe AI Specialist', 'AV Safety Researcher', 'RL Expert', 'Siemens Collaborator'];
 let wordIndex = 0;
 let charIndex = 0;
 let deleting = false;
@@ -133,6 +133,98 @@ function enhanceFloatingShapes() {
     });
 }
 
+// Cute Floating Particles System
+function createParticle() {
+    const particleEmojis = ['✨', '⭐', '💫', '🌟', '💖', '💕', '💗', '💝', '🎀', '🦋', '🌸', '🌺', '🌼', '🌻', '🌹', '🌷', '🎨', '🎯', '🔮', '💎', '🎪', '🎭', '🎬', '🎤', '🎧', '🎵', '🎶', '🎸', '🎹', '🎺', '🚀', '🛸', '⚡', '🌈', '☁️', '🌙', '🌝', '🌞', '🌛', '🌜'];
+
+    const colors = ['pink', 'purple', 'blue', 'yellow', 'green', 'orange', 'rainbow'];
+    const animations = ['', 'wiggle', 'spin', 'bounce'];
+
+    const container = document.getElementById('particles-container');
+    if (!container) return;
+
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+
+    // Random emoji
+    particle.textContent = particleEmojis[Math.floor(Math.random() * particleEmojis.length)];
+
+    // Random color
+    particle.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+
+    // Random animation
+    const animClass = animations[Math.floor(Math.random() * animations.length)];
+    if (animClass) particle.classList.add(animClass);
+
+    // Random position
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.bottom = '0px';
+
+    // Random size variation
+    const size = 15 + Math.random() * 25;
+    particle.style.fontSize = size + 'px';
+
+    container.appendChild(particle);
+
+    // Remove particle after animation completes
+    setTimeout(() => {
+        particle.remove();
+    }, 10000);
+}
+
+// Create particles on scroll
+let lastScrollY = 0;
+let particleCreationTimer = null;
+
+function handleScroll() {
+    const currentScrollY = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollProgress = currentScrollY / (scrollHeight - clientHeight);
+
+    // Create more particles as user scrolls down
+    if (currentScrollY > lastScrollY && scrollProgress > 0.1) {
+        // Clear existing timer
+        if (particleCreationTimer) {
+            clearTimeout(particleCreationTimer);
+        }
+
+        // Create particles during scroll
+        const particleCount = scrollProgress > 0.7 ? 3 : (scrollProgress > 0.4 ? 2 : 1);
+        for (let i = 0; i < particleCount; i++) {
+            setTimeout(() => createParticle(), i * 100);
+        }
+
+        // Create burst of particles near the end
+        if (scrollProgress > 0.85) {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => createParticle(), i * 50);
+            }
+        }
+    }
+
+    lastScrollY = currentScrollY;
+}
+
+// Throttle scroll events for performance
+let ticking = false;
+function throttledScroll() {
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            handleScroll();
+            ticking = false;
+        });
+        ticking = true;
+    }
+}
+
+// Create initial particles on page load
+function createInitialParticles() {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => createParticle(), i * 200);
+    }
+}
+
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
     type();
@@ -143,7 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFormHandler();
     setupParallax();
     enhanceFloatingShapes();
-    
+    createInitialParticles();
+
+    // Setup scroll-triggered particles
+    window.addEventListener('scroll', throttledScroll);
+
     // Add entrance animation to hero content
     const heroElements = document.querySelectorAll('.profile-pic, #name, #tagline, .social-links, nav');
     heroElements.forEach((el, index) => {
