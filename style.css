@@ -1371,3 +1371,218 @@ body.dark footer {
         justify-content: center;
     }
 }
+
+/* Minimal academic overrides */
+:root {
+    --text: #111;
+    --muted: #555;
+    --border: #e5e7eb;
+    --bg: #fff;
+    --max: 860px;
+}
+
+body.dark {
+    --text: #f2f2f2;
+    --muted: #b5b5b5;
+    --border: #2a2a2a;
+    --bg: #0b0b0c;
+}
+
+body {
+    background: var(--bg) !important;
+    color: var(--text) !important;
+}
+
+body::before {
+    display: none !important;
+}
+
+.hero {
+    height: auto !important;
+    padding: 64px 20px 24px !important;
+    background: transparent !important;
+    color: var(--text) !important;
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+.building-background,
+.hero-overlay,
+.floating-shapes,
+.building-credit {
+    display: none !important;
+}
+
+.profile-pic {
+    width: 120px !important;
+    height: 120px !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+.profile-pic:hover {
+    transform: none !important;
+}
+
+#name {
+    font-size: 2.4rem !important;
+    text-shadow: none !important;
+    animation: none !important;
+}
+
+#tagline {
+    font-size: 1.05rem !important;
+    min-height: auto !important;
+}
+
+.hero-subtitle {
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: var(--muted) !important;
+}
+
+.social-links a {
+    color: var(--text) !important;
+    background: transparent !important;
+    border: 1px solid var(--border) !important;
+    width: 44px !important;
+    height: 44px !important;
+}
+
+.social-links a:hover {
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+nav a,
+nav button {
+    color: var(--text) !important;
+    background: transparent !important;
+    border: 1px solid var(--border) !important;
+    font-weight: 600 !important;
+}
+
+nav a:hover,
+nav button:hover {
+    transform: none !important;
+    background: rgba(0, 0, 0, 0.04) !important;
+}
+
+body.dark nav a:hover,
+body.dark nav button:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+}
+
+section {
+    max-width: var(--max) !important;
+    padding: 56px 20px !important;
+}
+
+section h2 {
+    font-size: 1.6rem !important;
+    margin-bottom: 18px !important;
+    text-align: left !important;
+    background: none !important;
+    -webkit-text-fill-color: currentColor !important;
+    animation: none !important;
+}
+
+section h2::after {
+    display: none !important;
+}
+
+.about-container {
+    grid-template-columns: 120px 1fr !important;
+    gap: 24px !important;
+    align-items: start !important;
+}
+
+.about-image img {
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+.image-decoration {
+    display: none !important;
+}
+
+.about-text .lead {
+    color: var(--text) !important;
+}
+
+.meta-links {
+    margin-top: 16px;
+    color: var(--muted);
+}
+
+.meta-links a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.expertise-list {
+    margin-top: 10px;
+    padding-left: 18px;
+}
+
+.research-card,
+.publication-item,
+.timeline-content,
+.contact-item {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+}
+
+.research-icon {
+    font-size: 1.5rem !important;
+    animation: none !important;
+    filter: none !important;
+}
+
+.pub-year {
+    -webkit-text-fill-color: currentColor !important;
+    font-size: 1rem !important;
+    min-width: auto !important;
+}
+
+.pub-link {
+    background: transparent !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+}
+
+footer {
+    background: transparent !important;
+    color: var(--muted) !important;
+    border-top: 1px solid var(--border);
+}
+
+.footer-section a {
+    color: var(--muted) !important;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border) !important;
+    color: var(--muted) !important;
+}
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 12px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    z-index: 1000;
+}
+
+.skip-link:focus {
+    left: 12px;
+}

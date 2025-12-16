@@ -1,28 +1,6 @@
-const words = ['PhD Researcher', 'Safe AI Specialist', 'AV Safety Researcher', 'RL Expert', 'EUCAD 2025 Speaker', 'Siemens Collaborator'];
-let wordIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function type() {
+function setTagline() {
     const tagline = document.getElementById('tagline');
-    const currentWord = words[wordIndex];
-    if (!deleting) {
-        tagline.textContent = currentWord.slice(0, charIndex + 1);
-        charIndex++;
-        if (charIndex === currentWord.length) {
-            deleting = true;
-            setTimeout(type, 1500);
-            return;
-        }
-    } else {
-        tagline.textContent = currentWord.slice(0, charIndex - 1);
-        charIndex--;
-        if (charIndex === 0) {
-            deleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-        }
-    }
-    setTimeout(type, deleting ? 80 : 150);
+    if (tagline) tagline.textContent = 'PhD Researcher (Safe AI & Autonomous Systems)';
 }
 
 // Animate skill bars
@@ -76,6 +54,17 @@ function setupSmoothScroll() {
     });
 }
 
+function hardenExternalLinks() {
+    document.querySelectorAll('a[target="_blank"]').forEach(a => {
+        if (!a.rel) a.rel = 'noopener noreferrer';
+    });
+}
+
+function setYear() {
+    const el = document.getElementById('year');
+    if (el) el.textContent = new Date().getFullYear();
+}
+
 // Form submission handler
 function setupFormHandler() {
     const form = document.getElementById('contact-form');
@@ -91,22 +80,16 @@ function setupFormHandler() {
 // Theme toggle with localStorage
 function setupThemeToggle() {
     const toggleBtn = document.getElementById('toggle-dark');
-    
-    // Check for saved theme preference
+    if (!toggleBtn) return;
+
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark');
     }
-    
+
     toggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark');
-        
-        // Save theme preference
-        if (document.body.classList.contains('dark')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
     });
 }
 
@@ -135,24 +118,9 @@ function enhanceFloatingShapes() {
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
-    type();
+    setTagline();
     setupThemeToggle();
-    animateSkillBars();
-    setupScrollAnimations();
     setupSmoothScroll();
-    setupFormHandler();
-    setupParallax();
-    enhanceFloatingShapes();
-    
-    // Add entrance animation to hero content
-    const heroElements = document.querySelectorAll('.profile-pic, #name, #tagline, .social-links, nav');
-    heroElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        }, 100 * index);
-    });
+    hardenExternalLinks();
+    setYear();
 });
