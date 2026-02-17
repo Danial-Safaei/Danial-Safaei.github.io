@@ -1,126 +1,134 @@
-function setTagline() {
-    const tagline = document.getElementById('tagline');
-    if (tagline) tagline.textContent = 'PhD Researcher (Safe AI & Autonomous Systems)';
-}
-
-// Animate skill bars
-function animateSkillBars() {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    skillBars.forEach(bar => {
-        const progress = bar.getAttribute('data-progress');
-        bar.style.setProperty('--progress', progress + '%');
-    });
-}
-
-// Intersection Observer for scroll animations
-function setupScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe all cards and items
-    const elements = document.querySelectorAll('.project-card, .research-card, .publication-item, .timeline-item, .contact-item');
-    elements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-}
-
-// Smooth scroll for navigation links
-function setupSmoothScroll() {
-    document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
+const THEME_STORAGE_KEY = "theme";
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 function hardenExternalLinks() {
-    document.querySelectorAll('a[target="_blank"]').forEach(a => {
-        if (!a.rel) a.rel = 'noopener noreferrer';
+    document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+        link.rel = "noopener noreferrer";
     });
 }
 
 function setYear() {
-    const el = document.getElementById('year');
-    if (el) el.textContent = new Date().getFullYear();
-}
-
-// Form submission handler
-function setupFormHandler() {
-    const form = document.getElementById('contact-form');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! This is a demo form. In production, this would send your message.');
-            form.reset();
-        });
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+        yearEl.textContent = String(new Date().getFullYear());
     }
 }
 
-// Theme toggle with localStorage
+function applyTheme(theme) {
+    const isDark = theme === "dark";
+    document.body.classList.toggle("dark", isDark);
+
+    const toggleBtn = document.getElementById("toggle-dark");
+    if (toggleBtn) {
+        toggleBtn.textContent = isDark ? "Switch to light" : "Switch to dark";
+        toggleBtn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+    }
+}
+
 function setupThemeToggle() {
-    const toggleBtn = document.getElementById('toggle-dark');
+    const toggleBtn = document.getElementById("toggle-dark");
     if (!toggleBtn) return;
 
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const initialTheme = savedTheme === "light" ? "light" : "dark";
+    applyTheme(initialTheme);
+
+    toggleBtn.addEventListener("click", () => {
+        const nextTheme = document.body.classList.contains("dark") ? "light" : "dark";
+        applyTheme(nextTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    });
+}
+
+function setupSmoothScroll() {
+    const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
+    const behavior = prefersReducedMotion ? "auto" : "smooth";
+
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+            const href = link.getAttribute("href");
+            if (!href || href === "#") return;
+            const target = document.querySelector(href);
+            if (!target) return;
+
+            event.preventDefault();
+            target.scrollIntoView({ behavior, block: "start" });
+        });
+    });
+}
+
+function setupRevealAnimations() {
+    const revealElements = document.querySelectorAll(".reveal");
+    const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        revealElements.forEach((el) => el.classList.add("is-visible"));
+        return;
     }
 
-    toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark');
-        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
-    });
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    revealElements.forEach((el) => observer.observe(el));
 }
 
-// Add parallax effect to hero section
-function setupParallax() {
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        if (hero && scrolled < window.innerHeight) {
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-            hero.style.opacity = 1 - (scrolled / window.innerHeight);
-        }
-    });
+function setupActiveNavLinks() {
+    const sections = Array.from(document.querySelectorAll("main section[id]"));
+    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    if (!sections.length || !navLinks.length) return;
+
+    const byId = new Map(navLinks.map((link) => [link.getAttribute("href")?.slice(1), link]));
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach((link) => link.classList.remove("is-active"));
+                const active = byId.get(entry.target.id);
+                if (active) active.classList.add("is-active");
+            });
+        },
+        { threshold: 0.45 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
 }
 
-// Floating shapes animation variety
-function enhanceFloatingShapes() {
-    const shapes = document.querySelectorAll('.shape');
-    shapes.forEach((shape, index) => {
-        const randomDuration = 15 + Math.random() * 10;
-        const randomDelay = Math.random() * 5;
-        shape.style.animationDuration = `${randomDuration}s`;
-        shape.style.animationDelay = `${randomDelay}s`;
-    });
+function setupHeroParallax() {
+    const heroVisual = document.querySelector(".hero-visual");
+    if (!heroVisual) return;
+    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
+
+    let ticking = false;
+    window.addEventListener(
+        "scroll",
+        () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(() => {
+                const offset = Math.min(window.scrollY * 0.08, 32);
+                heroVisual.style.transform = `translateY(${offset}px)`;
+                ticking = false;
+            });
+        },
+        { passive: true }
+    );
 }
 
-// Initialize everything
-document.addEventListener('DOMContentLoaded', () => {
-    setTagline();
-    setupThemeToggle();
-    setupSmoothScroll();
+document.addEventListener("DOMContentLoaded", () => {
     hardenExternalLinks();
     setYear();
+    setupThemeToggle();
+    setupSmoothScroll();
+    setupRevealAnimations();
+    setupActiveNavLinks();
+    setupHeroParallax();
 });
