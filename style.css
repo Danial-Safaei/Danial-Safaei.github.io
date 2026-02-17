@@ -50,7 +50,7 @@ body::before {
     box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.3);
 }
 
-/* Professor Lord Bhattacharyya Building Background */
+/* Professor Lord Bhattacharyya Building & NAIC Background - Rotating */
 .building-background {
     position: absolute;
     top: 0;
@@ -63,17 +63,30 @@ body::before {
     background-repeat: no-repeat;
     opacity: 0.35;
     z-index: 0;
-    animation: buildingZoom 30s ease-in-out infinite alternate;
+    animation: buildingRotate 60s ease-in-out infinite, buildingZoom 30s ease-in-out infinite alternate;
+}
+
+@keyframes buildingRotate {
+    0%, 45% {
+        background-image: url('images/bhattacharyya-building.jpg');
+        opacity: 0.35;
+    }
+    50%, 95% {
+        background-image: url('images/bhattacharyya-building-alt.jpg');
+        opacity: 0.4;
+    }
+    100% {
+        background-image: url('images/bhattacharyya-building.jpg');
+        opacity: 0.35;
+    }
 }
 
 @keyframes buildingZoom {
     0% {
         transform: scale(1);
-        opacity: 0.35;
     }
     100% {
         transform: scale(1.08);
-        opacity: 0.42;
     }
 }
 
@@ -383,14 +396,14 @@ nav a:hover, nav button:hover {
 }
 
 section {
-    padding: 80px 20px;
+    padding: 50px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 section h2 {
     font-size: 3em;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-align: center;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
@@ -442,7 +455,7 @@ body.dark nav a {
 .about-container {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 50px;
+    gap: 35px;
     align-items: center;
 }
 
@@ -553,17 +566,19 @@ body.dark #skills {
 .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 25px;
     margin-bottom: 40px;
 }
 
 .skill-category {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-    padding: 35px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(102, 126, 234, 0.12);
     transition: all 0.4s ease;
-    border: 1px solid rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .skill-category:hover {
@@ -573,7 +588,10 @@ body.dark #skills {
 }
 
 body.dark .skill-category {
-    background: #333;
+    background: rgba(51, 51, 51, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .skill-category h3 {
@@ -689,15 +707,18 @@ body.dark .skill-progress {
 .research-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
+    gap: 25px;
 }
 
 .research-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-    padding: 35px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.15);
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-top: 5px solid transparent;
     border-image: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
     border-image-slice: 1 0 0 0;
@@ -727,7 +748,10 @@ body.dark .skill-progress {
 }
 
 body.dark .research-card {
-    background: #333;
+    background: rgba(51, 51, 51, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .research-icon {
@@ -932,16 +956,19 @@ body.dark #publications {
 .publications-container {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
 }
 
 .publication-item {
     display: flex;
-    gap: 35px;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
-    padding: 35px;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(102, 126, 234, 0.12);
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
@@ -970,7 +997,10 @@ body.dark #publications {
 }
 
 body.dark .publication-item {
-    background: #333;
+    background: rgba(51, 51, 51, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .pub-year {
@@ -1064,7 +1094,7 @@ body.dark .pub-description {
 
 .timeline-item {
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 .timeline-marker {
@@ -1083,14 +1113,20 @@ body.dark .timeline-marker {
 }
 
 .timeline-content {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 25px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 body.dark .timeline-content {
-    background: #333;
+    background: rgba(51, 51, 51, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .timeline-date {
@@ -1159,16 +1195,19 @@ body.dark .contact-intro {
 .contact-methods {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 18px;
 }
 
 .contact-item {
-    background: #fff;
-    padding: 25px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 22px;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .contact-item:hover {
@@ -1177,7 +1216,10 @@ body.dark .contact-intro {
 }
 
 body.dark .contact-item {
-    background: #333;
+    background: rgba(51, 51, 51, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .contact-icon {
@@ -1271,7 +1313,7 @@ body.dark .contact-form textarea {
 footer {
     background: linear-gradient(135deg, #4B0082, #8A2BE2);
     color: #fff;
-    padding: 50px 20px 20px;
+    padding: 40px 20px 20px;
 }
 
 body.dark footer {
