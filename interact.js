@@ -1,5 +1,7 @@
 const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+const REVEAL_DURATION_MS = 520;
+const PARALLAX_TRANSITION = `opacity ${REVEAL_DURATION_MS}ms ease`;
 
 function hardenExternalLinks() {
     document.querySelectorAll('a[target="_blank"]').forEach((link) => {
@@ -91,12 +93,18 @@ function setupActiveNavLinks() {
         (entries) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
-                navLinks.forEach((link) => link.classList.remove("is-active"));
+                navLinks.forEach((link) => {
+                    link.classList.remove("is-active");
+                    link.removeAttribute("aria-current");
+                });
                 const active = byId.get(entry.target.id);
-                if (active) active.classList.add("is-active");
+                if (active) {
+                    active.classList.add("is-active");
+                    active.setAttribute("aria-current", "true");
+                }
             });
         },
-        { threshold: 0.45 }
+        { threshold: 0.35, rootMargin: "0px 0px -20% 0px" }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -107,11 +115,29 @@ function setupHeroParallax() {
     if (!heroVisual) return;
     if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
 
+    let parallaxReady = false;
     let ticking = false;
+
+    const enableParallax = (e) => {
+        // Only respond to the transform transition ending (not opacity)
+        if (e && e.propertyName !== "transform") return;
+        parallaxReady = true;
+        // Override the CSS transition so scroll-driven transform changes are instant
+        heroVisual.style.transition = PARALLAX_TRANSITION;
+    };
+
+    if (heroVisual.classList.contains("is-visible")) {
+        // Reveal already happened (e.g. reduced-motion path ran first)
+        heroVisual.style.transition = PARALLAX_TRANSITION;
+        parallaxReady = true;
+    } else {
+        heroVisual.addEventListener("transitionend", enableParallax);
+    }
+
     window.addEventListener(
         "scroll",
         () => {
-            if (ticking) return;
+            if (!parallaxReady || ticking) return;
             ticking = true;
             window.requestAnimationFrame(() => {
                 const offset = Math.min(window.scrollY * 0.08, 32);
