@@ -210,6 +210,7 @@ button:focus-visible {
     font-weight: 700;
     letter-spacing: 0.04em;
     font-size: 1.1rem;
+    color: var(--accent);
     background: linear-gradient(120deg, var(--accent), var(--accent-strong));
     -webkit-background-clip: text;
     background-clip: text;
@@ -269,6 +270,7 @@ button:focus-visible {
     line-height: 1.02;
     letter-spacing: -0.04em;
     text-wrap: balance;
+    color: var(--text);
     background: linear-gradient(135deg, var(--text) 0%, color-mix(in srgb, var(--text) 65%, var(--accent) 35%) 100%);
     -webkit-background-clip: text;
     background-clip: text;
@@ -408,6 +410,7 @@ button:focus-visible {
     line-height: 1;
     font-variant-numeric: tabular-nums;
     font-family: var(--font-mono);
+    color: var(--accent);
     background: linear-gradient(120deg, var(--accent), var(--accent-strong));
     -webkit-background-clip: text;
     background-clip: text;
@@ -589,6 +592,7 @@ main {
     margin: 0;
     font-size: clamp(1.5rem, 3vw, 2.3rem);
     line-height: 1.15;
+    color: var(--text);
     background: linear-gradient(120deg, var(--text) 0%, color-mix(in srgb, var(--text) 60%, var(--accent) 40%) 100%);
     -webkit-background-clip: text;
     background-clip: text;
