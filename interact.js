@@ -1,6 +1,6 @@
 const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const REVEAL_DURATION_MS = 520;
+const REVEAL_DURATION_MS = 540;
 const PARALLAX_TRANSITION = `opacity ${REVEAL_DURATION_MS}ms ease`;
 
 function hardenExternalLinks() {
@@ -76,7 +76,7 @@ function setupRevealAnimations() {
                 observer.unobserve(entry.target);
             });
         },
-        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
     );
 
     revealElements.forEach((el) => observer.observe(el));
@@ -119,15 +119,12 @@ function setupHeroParallax() {
     let ticking = false;
 
     const enableParallax = (e) => {
-        // Only respond to the transform transition ending (not opacity)
         if (e && e.propertyName !== "transform") return;
         parallaxReady = true;
-        // Override the CSS transition so scroll-driven transform changes are instant
         heroVisual.style.transition = PARALLAX_TRANSITION;
     };
 
     if (heroVisual.classList.contains("is-visible")) {
-        // Reveal already happened (e.g. reduced-motion path ran first)
         heroVisual.style.transition = PARALLAX_TRANSITION;
         parallaxReady = true;
     } else {
@@ -149,6 +146,152 @@ function setupHeroParallax() {
     );
 }
 
+function initParticleCanvas() {
+    const canvas = document.getElementById("particle-canvas");
+    if (!canvas) return;
+    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
+
+    const ctx = canvas.getContext("2d");
+    const PARTICLE_COUNT = 72;
+    const MAX_DIST = 135;
+    const SPEED = 0.32;
+
+    let particles = [];
+    let animFrame = null;
+
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function makeParticle() {
+        return {
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * SPEED,
+            vy: (Math.random() - 0.5) * SPEED,
+            r: Math.random() * 1.6 + 0.6,
+            a: Math.random() * 0.45 + 0.15,
+        };
+    }
+
+    function init() {
+        particles = [];
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+            particles.push(makeParticle());
+        }
+    }
+
+    function step() {
+        for (const p of particles) {
+            p.x += p.vx;
+            p.y += p.vy;
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const isDark = document.body.classList.contains("dark");
+        const lineColor = isDark ? "102,229,255" : "15,96,255";
+        const dotColor = isDark ? "102,229,255" : "15,96,255";
+
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.hypot(dx, dy);
+                if (dist < MAX_DIST) {
+                    const alpha = (1 - dist / MAX_DIST) * 0.12;
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(${lineColor},${alpha})`;
+                    ctx.lineWidth = 0.8;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+
+        for (const p of particles) {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${dotColor},${p.a})`;
+            ctx.fill();
+        }
+    }
+
+    function animate() {
+        step();
+        draw();
+        animFrame = requestAnimationFrame(animate);
+    }
+
+    function pause() {
+        if (animFrame !== null) {
+            cancelAnimationFrame(animFrame);
+            animFrame = null;
+        }
+    }
+
+    function resume() {
+        if (animFrame === null) animate();
+    }
+
+    window.addEventListener("resize", () => { resize(); init(); }, { passive: true });
+    document.addEventListener("visibilitychange", () => {
+        document.hidden ? pause() : resume();
+    });
+
+    resize();
+    init();
+    animate();
+}
+
+function animateCounters() {
+    const counters = document.querySelectorAll(".stat-num[data-target]");
+    if (!counters.length) return;
+
+    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) {
+        counters.forEach((c) => { c.textContent = c.dataset.target; });
+        return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+        counters.forEach((c) => { c.textContent = c.dataset.target; });
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseInt(el.dataset.target, 10);
+                const start = parseInt(el.textContent, 10) || 0;
+                const duration = 1100;
+                const startTime = performance.now();
+
+                function step(now) {
+                    const elapsed = now - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.round(start + (target - start) * eased);
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+
+                requestAnimationFrame(step);
+                observer.unobserve(el);
+            });
+        },
+        { threshold: 0.6 }
+    );
+
+    counters.forEach((c) => observer.observe(c));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     hardenExternalLinks();
     setYear();
@@ -157,4 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupRevealAnimations();
     setupActiveNavLinks();
     setupHeroParallax();
+    initParticleCanvas();
+    animateCounters();
 });
