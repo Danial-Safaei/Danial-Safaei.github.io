@@ -48,9 +48,8 @@ function formatCounterValue(value) {
 }
 
 async function fetchCounterValue(action, key) {
-    const response = await fetch(`${COUNTER_API_BASE_URL}/${action}/${COUNTER_NAMESPACE}/${key}`, {
-        cache: "no-store",
-    });
+    const options = action === "hit" ? { cache: "no-store" } : undefined;
+    const response = await fetch(`${COUNTER_API_BASE_URL}/${action}/${COUNTER_NAMESPACE}/${key}`, options);
 
     if (!response.ok) {
         throw new Error(`Counter request failed with status ${response.status}`);
@@ -71,7 +70,18 @@ function markVisitCounted() {
     try {
         localStorage.setItem(VISIT_STORAGE_KEY, "true");
     } catch {
-        // Ignore storage failures and continue showing the latest counter values.
+        return;
+    }
+}
+
+function canUseLocalStorage() {
+    try {
+        const probeKey = `${VISIT_STORAGE_KEY}-probe`;
+        localStorage.setItem(probeKey, "true");
+        localStorage.removeItem(probeKey);
+        return true;
+    } catch {
+        return false;
     }
 }
 
@@ -81,13 +91,14 @@ async function setupVisitorCounters() {
     if (!viewCounter && !visitCounter) return;
 
     try {
-        const visitAction = hasCountedVisit() ? "get" : "hit";
+        const storageAvailable = canUseLocalStorage();
+        const visitAction = storageAvailable && !hasCountedVisit() ? "hit" : "get";
         const [viewResult, visitResult] = await Promise.all([
             fetchCounterValue("hit", VIEW_COUNTER_KEY),
             fetchCounterValue(visitAction, VISIT_COUNTER_KEY),
         ]);
 
-        if (visitAction === "hit") {
+        if (storageAvailable && visitAction === "hit") {
             markVisitCounted();
         }
 
