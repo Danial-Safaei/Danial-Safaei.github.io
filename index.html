@@ -421,13 +421,28 @@
 
     <footer class="site-footer">
         <p>&copy; <span id="year"></span> Danial Safaei &mdash; PhD Researcher, WMG, University of Warwick</p>
-        <p class="view-counter">
-            <img id="view-count-badge"
-                 src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdanial-safaei.github.io%2F&amp;count_bg=%234F39E0&amp;title_bg=%230A1128&amp;icon=none.svg&amp;icon_color=%23E7E7E7&amp;title=Views&amp;edge_flat=true"
-                 alt="Site visitor count"
-                 class="view-badge"
-                 height="20">
-        </p>
+        <div class="view-counter" aria-live="polite">
+            <div class="view-counter-card">
+                <span class="view-counter-label">Views</span>
+                <img id="view-count-badge"
+                     class="view-counter-badge"
+                     alt="Total site views"
+                     decoding="async"
+                     loading="lazy"
+                     hidden>
+                <strong id="view-count-fallback" class="view-counter-value" hidden>Unavailable</strong>
+            </div>
+            <div class="view-counter-card">
+                <span class="view-counter-label">Visits</span>
+                <img id="visit-count-badge"
+                     class="view-counter-badge"
+                     alt="Unique site visits"
+                     decoding="async"
+                     loading="lazy"
+                     hidden>
+                <strong id="visit-count-fallback" class="view-counter-value" hidden>Unavailable</strong>
+            </div>
+        </div>
     </footer>
 
     <script src="interact.js"></script>

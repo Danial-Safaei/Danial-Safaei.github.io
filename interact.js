@@ -2,10 +2,14 @@ const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const REVEAL_DURATION_MS = 540;
 const PARALLAX_TRANSITION = `opacity ${REVEAL_DURATION_MS}ms ease`;
-
-const VIEW_COUNT_BASE = "https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdanial-safaei.github.io%2F&icon=none.svg&icon_color=%23E7E7E7&title=Views&edge_flat=true";
-const DARK_BADGE_URL = `${VIEW_COUNT_BASE}&count_bg=%234F39E0&title_bg=%230A1128`;
-const LIGHT_BADGE_URL = `${VIEW_COUNT_BASE}&count_bg=%230F60FF&title_bg=%233E537E`;
+const VISITOR_BADGE_BASE_URL = "https://api.visitorbadge.io/api";
+const VISITOR_BADGE_PATH = encodeURIComponent("https://danial-safaei.github.io/");
+const VISITOR_BADGE_STYLE = "flat";
+const VISITOR_BADGE_LABEL_STYLE = "none";
+const VISITOR_BADGE_LABEL_COLOR = "%230A1128";
+const VISITOR_BADGE_COUNT_COLOR = "%234F39E0";
+const VIEW_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/total?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
+const VISIT_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/visitors?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
 
 function hardenExternalLinks() {
     document.querySelectorAll('a[target="_blank"]').forEach((link) => {
@@ -29,11 +33,48 @@ function applyTheme(theme) {
         toggleBtn.textContent = isDark ? "Switch to light" : "Switch to dark";
         toggleBtn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
     }
+}
 
-    const badge = document.getElementById("view-count-badge");
-    if (badge) {
-        badge.src = isDark ? DARK_BADGE_URL : LIGHT_BADGE_URL;
-    }
+function setupVisitorCounters() {
+    const counters = [
+        {
+            badgeId: "view-count-badge",
+            fallbackId: "view-count-fallback",
+            url: VIEW_BADGE_URL,
+        },
+        {
+            badgeId: "visit-count-badge",
+            fallbackId: "visit-count-fallback",
+            url: VISIT_BADGE_URL,
+        },
+    ];
+
+    counters.forEach(({ badgeId, fallbackId, url }) => {
+        const badge = document.getElementById(badgeId);
+        const fallback = document.getElementById(fallbackId);
+        if (!badge) return;
+
+        const showBadge = () => {
+            badge.hidden = false;
+            if (fallback) {
+                fallback.hidden = true;
+            }
+        };
+
+        const showFallback = () => {
+            badge.hidden = true;
+            if (fallback) {
+                fallback.hidden = false;
+            }
+        };
+
+        badge.addEventListener("load", showBadge, { once: true });
+        badge.addEventListener("error", () => {
+            console.warn(`Unable to load visitor badge: ${url}`);
+            showFallback();
+        }, { once: true });
+        badge.src = url;
+    });
 }
 
 function setupThemeToggle() {
@@ -305,6 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hardenExternalLinks();
     setYear();
     setupThemeToggle();
+    setupVisitorCounters();
     setupSmoothScroll();
     setupRevealAnimations();
     setupActiveNavLinks();
