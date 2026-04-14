@@ -3,6 +3,10 @@ const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const REVEAL_DURATION_MS = 540;
 const PARALLAX_TRANSITION = `opacity ${REVEAL_DURATION_MS}ms ease`;
 
+const VIEW_COUNT_BASE = "https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdanial-safaei.github.io%2F&icon=none.svg&icon_color=%23E7E7E7&title=Views&edge_flat=true";
+const DARK_BADGE_URL = `${VIEW_COUNT_BASE}&count_bg=%234F39E0&title_bg=%230A1128`;
+const LIGHT_BADGE_URL = `${VIEW_COUNT_BASE}&count_bg=%230F60FF&title_bg=%233E537E`;
+
 function hardenExternalLinks() {
     document.querySelectorAll('a[target="_blank"]').forEach((link) => {
         link.rel = "noopener noreferrer";
@@ -24,6 +28,11 @@ function applyTheme(theme) {
     if (toggleBtn) {
         toggleBtn.textContent = isDark ? "Switch to light" : "Switch to dark";
         toggleBtn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+    }
+
+    const badge = document.getElementById("view-count-badge");
+    if (badge) {
+        badge.src = isDark ? DARK_BADGE_URL : LIGHT_BADGE_URL;
     }
 }
 
