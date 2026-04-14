@@ -1139,6 +1139,12 @@ main {
     font-size: 0.7rem;
 }
 
+.view-counter-badge {
+    height: 20px;
+    width: auto;
+    border-radius: 999px;
+}
+
 .view-counter-value {
     color: var(--text);
     font-size: 0.86rem;

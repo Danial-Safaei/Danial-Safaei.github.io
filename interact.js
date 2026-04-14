@@ -2,11 +2,14 @@ const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const REVEAL_DURATION_MS = 540;
 const PARALLAX_TRANSITION = `opacity ${REVEAL_DURATION_MS}ms ease`;
-const COUNTER_API_BASE_URL = "https://api.countapi.xyz";
-const COUNTER_NAMESPACE = "danial-safaei-github-io";
-const VIEW_COUNTER_KEY = "page-views";
-const VISIT_COUNTER_KEY = "site-visits";
-const VISIT_STORAGE_KEY = "visitor-counted";
+const VISITOR_BADGE_BASE_URL = "https://api.visitorbadge.io/api";
+const VISITOR_BADGE_PATH = encodeURIComponent("https://danial-safaei.github.io/");
+const VISITOR_BADGE_STYLE = "flat";
+const VISITOR_BADGE_LABEL_STYLE = "none";
+const VISITOR_BADGE_LABEL_COLOR = "%230A1128";
+const VISITOR_BADGE_COUNT_COLOR = "%234F39E0";
+const VIEW_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/total?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
+const VISIT_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/visitors?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
 
 function hardenExternalLinks() {
     document.querySelectorAll('a[target="_blank"]').forEach((link) => {
@@ -32,82 +35,46 @@ function applyTheme(theme) {
     }
 }
 
-function setCounterValue(id, value) {
-    const element = document.getElementById(id);
-    if (element) {
-        element.textContent = value;
-    }
-}
+function setupVisitorCounters() {
+    const counters = [
+        {
+            badgeId: "view-count-badge",
+            fallbackId: "view-count-fallback",
+            url: VIEW_BADGE_URL,
+        },
+        {
+            badgeId: "visit-count-badge",
+            fallbackId: "visit-count-fallback",
+            url: VISIT_BADGE_URL,
+        },
+    ];
 
-function formatCounterValue(value) {
-    if (!Number.isFinite(value)) {
-        return "Unavailable";
-    }
+    counters.forEach(({ badgeId, fallbackId, url }) => {
+        const badge = document.getElementById(badgeId);
+        const fallback = document.getElementById(fallbackId);
+        if (!badge) return;
 
-    return new Intl.NumberFormat("en-GB").format(value);
-}
+        const showBadge = () => {
+            badge.hidden = false;
+            if (fallback) {
+                fallback.hidden = true;
+            }
+        };
 
-async function fetchCounterValue(action, key) {
-    const options = action === "hit" ? { cache: "no-store" } : undefined;
-    const response = await fetch(`${COUNTER_API_BASE_URL}/${action}/${COUNTER_NAMESPACE}/${key}`, options);
+        const showFallback = () => {
+            badge.hidden = true;
+            if (fallback) {
+                fallback.hidden = false;
+            }
+        };
 
-    if (!response.ok) {
-        throw new Error(`Counter request failed with status ${response.status}`);
-    }
-
-    return response.json();
-}
-
-function hasCountedVisit() {
-    try {
-        return localStorage.getItem(VISIT_STORAGE_KEY) === "true";
-    } catch {
-        return false;
-    }
-}
-
-function markVisitCounted() {
-    try {
-        localStorage.setItem(VISIT_STORAGE_KEY, "true");
-    } catch {
-        return;
-    }
-}
-
-function canUseLocalStorage() {
-    try {
-        const probeKey = `${VISIT_STORAGE_KEY}-probe`;
-        localStorage.setItem(probeKey, "true");
-        localStorage.removeItem(probeKey);
-        return true;
-    } catch {
-        return false;
-    }
-}
-
-async function setupVisitorCounters() {
-    const viewCounter = document.getElementById("view-count-total");
-    const visitCounter = document.getElementById("visit-count-total");
-    if (!viewCounter && !visitCounter) return;
-
-    try {
-        const storageAvailable = canUseLocalStorage();
-        const visitAction = storageAvailable && !hasCountedVisit() ? "hit" : "get";
-        const [viewResult, visitResult] = await Promise.all([
-            fetchCounterValue("hit", VIEW_COUNTER_KEY),
-            fetchCounterValue(visitAction, VISIT_COUNTER_KEY),
-        ]);
-
-        if (storageAvailable && visitAction === "hit") {
-            markVisitCounted();
-        }
-
-        setCounterValue("view-count-total", formatCounterValue(viewResult.value));
-        setCounterValue("visit-count-total", formatCounterValue(visitResult.value));
-    } catch {
-        setCounterValue("view-count-total", "Unavailable");
-        setCounterValue("visit-count-total", "Unavailable");
-    }
+        badge.addEventListener("load", showBadge, { once: true });
+        badge.addEventListener("error", () => {
+            console.warn(`Unable to load visitor badge: ${url}`);
+            showFallback();
+        }, { once: true });
+        badge.src = url;
+    });
 }
 
 function setupThemeToggle() {

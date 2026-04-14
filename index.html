@@ -424,11 +424,23 @@
         <div class="view-counter" aria-live="polite">
             <div class="view-counter-card">
                 <span class="view-counter-label">Views</span>
-                <strong id="view-count-total" class="view-counter-value">...</strong>
+                <img id="view-count-badge"
+                     class="view-counter-badge"
+                     alt="Total site views"
+                     decoding="async"
+                     loading="lazy"
+                     hidden>
+                <strong id="view-count-fallback" class="view-counter-value" hidden>Unavailable</strong>
             </div>
             <div class="view-counter-card">
                 <span class="view-counter-label">Visits</span>
-                <strong id="visit-count-total" class="view-counter-value">...</strong>
+                <img id="visit-count-badge"
+                     class="view-counter-badge"
+                     alt="Unique site visits"
+                     decoding="async"
+                     loading="lazy"
+                     hidden>
+                <strong id="visit-count-fallback" class="view-counter-value" hidden>Unavailable</strong>
             </div>
         </div>
     </footer>
