@@ -2,10 +2,11 @@ const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const REVEAL_DURATION_MS = 540;
 const PARALLAX_TRANSITION = `opacity ${REVEAL_DURATION_MS}ms ease`;
-
-const VIEW_COUNT_BASE = "https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fdanial-safaei.github.io%2F&icon=none.svg&icon_color=%23E7E7E7&title=Views&edge_flat=true";
-const DARK_BADGE_URL = `${VIEW_COUNT_BASE}&count_bg=%234F39E0&title_bg=%230A1128`;
-const LIGHT_BADGE_URL = `${VIEW_COUNT_BASE}&count_bg=%230F60FF&title_bg=%233E537E`;
+const COUNTER_API_BASE_URL = "https://api.countapi.xyz";
+const COUNTER_NAMESPACE = "danial-safaei-github-io";
+const VIEW_COUNTER_KEY = "page-views";
+const VISIT_COUNTER_KEY = "site-visits";
+const VISIT_STORAGE_KEY = "visitor-counted";
 
 function hardenExternalLinks() {
     document.querySelectorAll('a[target="_blank"]').forEach((link) => {
@@ -29,10 +30,72 @@ function applyTheme(theme) {
         toggleBtn.textContent = isDark ? "Switch to light" : "Switch to dark";
         toggleBtn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
     }
+}
 
-    const badge = document.getElementById("view-count-badge");
-    if (badge) {
-        badge.src = isDark ? DARK_BADGE_URL : LIGHT_BADGE_URL;
+function setCounterValue(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+        element.textContent = value;
+    }
+}
+
+function formatCounterValue(value) {
+    if (!Number.isFinite(value)) {
+        return "Unavailable";
+    }
+
+    return new Intl.NumberFormat("en-GB").format(value);
+}
+
+async function fetchCounterValue(action, key) {
+    const response = await fetch(`${COUNTER_API_BASE_URL}/${action}/${COUNTER_NAMESPACE}/${key}`, {
+        cache: "no-store",
+    });
+
+    if (!response.ok) {
+        throw new Error(`Counter request failed with status ${response.status}`);
+    }
+
+    return response.json();
+}
+
+function hasCountedVisit() {
+    try {
+        return localStorage.getItem(VISIT_STORAGE_KEY) === "true";
+    } catch {
+        return false;
+    }
+}
+
+function markVisitCounted() {
+    try {
+        localStorage.setItem(VISIT_STORAGE_KEY, "true");
+    } catch {
+        // Ignore storage failures and continue showing the latest counter values.
+    }
+}
+
+async function setupVisitorCounters() {
+    const viewCounter = document.getElementById("view-count-total");
+    const visitCounter = document.getElementById("visit-count-total");
+    if (!viewCounter && !visitCounter) return;
+
+    try {
+        const visitAction = hasCountedVisit() ? "get" : "hit";
+        const [viewResult, visitResult] = await Promise.all([
+            fetchCounterValue("hit", VIEW_COUNTER_KEY),
+            fetchCounterValue(visitAction, VISIT_COUNTER_KEY),
+        ]);
+
+        if (visitAction === "hit") {
+            markVisitCounted();
+        }
+
+        setCounterValue("view-count-total", formatCounterValue(viewResult.value));
+        setCounterValue("visit-count-total", formatCounterValue(visitResult.value));
+    } catch {
+        setCounterValue("view-count-total", "Unavailable");
+        setCounterValue("visit-count-total", "Unavailable");
     }
 }
 
@@ -305,6 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
     hardenExternalLinks();
     setYear();
     setupThemeToggle();
+    setupVisitorCounters();
     setupSmoothScroll();
     setupRevealAnimations();
     setupActiveNavLinks();
