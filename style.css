@@ -1109,6 +1109,26 @@ main {
     letter-spacing: 0.03em;
 }
 
+.view-counter {
+    margin: var(--space-xs) 0 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-badge {
+    height: 20px;
+    width: auto;
+    border-radius: 3px;
+    opacity: 0.8;
+    transition: opacity var(--transition-fast);
+}
+
+.view-badge:hover {
+    opacity: 1;
+}
+
 /* Reveal animations */
 .reveal {
     opacity: 0;
