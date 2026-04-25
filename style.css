@@ -29,6 +29,10 @@ body.dark {
     --chip-bg: rgba(115, 136, 255, 0.18);
     --glow-accent: rgba(102, 229, 255, 0.35);
     --glow-strong: rgba(143, 123, 255, 0.35);
+    --orb-a: rgba(102, 229, 255, 0.55);
+    --orb-b: rgba(143, 123, 255, 0.55);
+    --orb-c: rgba(36, 130, 255, 0.45);
+    --orb-d: rgba(102, 229, 255, 0.3);
 }
 
 body:not(.dark) {
@@ -45,6 +49,10 @@ body:not(.dark) {
     --chip-bg: rgba(79, 57, 224, 0.1);
     --glow-accent: rgba(15, 96, 255, 0.2);
     --glow-strong: rgba(79, 57, 224, 0.2);
+    --orb-a: rgba(15, 96, 255, 0.18);
+    --orb-b: rgba(79, 57, 224, 0.18);
+    --orb-c: rgba(39, 72, 170, 0.14);
+    --orb-d: rgba(15, 96, 255, 0.1);
 }
 
 *,
@@ -60,8 +68,8 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
-    background: radial-gradient(circle at 20% 20%, rgba(102, 229, 255, 0.2), transparent 40%),
-        radial-gradient(circle at 80% 0%, rgba(143, 123, 255, 0.2), transparent 36%),
+    background: radial-gradient(circle at 20% 20%, var(--orb-a), transparent 40%),
+        radial-gradient(circle at 80% 0%, var(--orb-b), transparent 36%),
         linear-gradient(160deg, var(--bg), var(--bg-soft));
     color: var(--text);
     font-family: var(--font-main);
@@ -129,7 +137,7 @@ button:focus-visible {
     height: 380px;
     top: -140px;
     left: -100px;
-    background: rgba(102, 229, 255, 0.55);
+    background: var(--orb-a);
 }
 
 .orb-b {
@@ -137,7 +145,7 @@ button:focus-visible {
     height: 320px;
     right: -60px;
     top: 220px;
-    background: rgba(143, 123, 255, 0.55);
+    background: var(--orb-b);
     animation-delay: 2s;
 }
 
@@ -146,7 +154,7 @@ button:focus-visible {
     height: 260px;
     left: 36%;
     bottom: -80px;
-    background: rgba(36, 130, 255, 0.45);
+    background: var(--orb-c);
     animation-delay: 4s;
 }
 
@@ -155,7 +163,7 @@ button:focus-visible {
     height: 200px;
     right: 20%;
     bottom: 20%;
-    background: rgba(102, 229, 255, 0.3);
+    background: var(--orb-d);
     animation-delay: 6s;
     animation-duration: 22s;
 }
@@ -301,12 +309,13 @@ button:focus-visible {
 
 .source-inline {
     margin: var(--space-xs) 0 0;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--muted);
 }
 
 .source-inline a {
     color: var(--accent);
+    text-decoration: none;
 }
 
 .source-inline a:hover {
@@ -517,15 +526,15 @@ button:focus-visible {
 
 .profile-links a:hover {
     color: var(--accent);
-    border-color: rgba(102, 229, 255, 0.25);
-    background: rgba(102, 229, 255, 0.06);
+    border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
 }
 
 /* Philosophy band */
 .philosophy-band {
-    background: linear-gradient(135deg, rgba(102, 229, 255, 0.05) 0%, rgba(143, 123, 255, 0.07) 100%);
-    border-top: 1px solid rgba(102, 229, 255, 0.14);
-    border-bottom: 1px solid rgba(102, 229, 255, 0.14);
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 5%, transparent) 0%, color-mix(in srgb, var(--accent-strong) 7%, transparent) 100%);
+    border-top: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 14%, transparent);
     padding: var(--space-xl) 0;
     margin-bottom: var(--space-lg);
 }
@@ -1017,21 +1026,6 @@ main {
 
 .chip-primary:hover {
     background: color-mix(in srgb, var(--chip-bg) 20%, rgba(102, 229, 255, 0.32) 80%);
-}
-
-.source-inline {
-    margin: var(--space-xs) 0 0;
-    font-size: 0.88rem;
-    color: var(--muted);
-}
-
-.source-inline a {
-    color: var(--accent);
-    text-decoration: none;
-}
-
-.source-inline a:hover {
-    color: var(--text);
 }
 
 /* Contact */
