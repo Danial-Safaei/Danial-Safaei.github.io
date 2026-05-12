@@ -164,7 +164,7 @@ function setupActiveNavLinks() {
     setActive(sections[0].id);
 }
 
-function animateCounters() {
+function initializeCounters() {
     const counters = document.querySelectorAll(".stat-num[data-target]");
     if (!counters.length) return;
 
@@ -181,5 +181,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSmoothScroll();
     setupRevealAnimations();
     setupActiveNavLinks();
-    animateCounters();
+    initializeCounters();
 });
