@@ -3,32 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Danial Safaei - PhD researcher at WMG, University of Warwick. Safe AI, scenario-based testing, and synthetic data fidelity for autonomous systems.">
+    <meta name="description" content="Danial Safaei is a PhD researcher at WMG, University of Warwick, building rigorous Safe AI methods for autonomous systems through scenario-based testing and synthetic data fidelity.">
     <meta name="author" content="Danial Safaei">
     <meta name="color-scheme" content="dark light">
-    <meta name="theme-color" content="#050816" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f2f6ff" media="(prefers-color-scheme: light)">
-
-    <!-- Open Graph -->
+    <meta name="theme-color" content="#07111f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
     <meta property="og:title" content="Danial Safaei | Safe AI Research">
-    <meta property="og:description" content="PhD researcher at WMG, University of Warwick. Safe AI, scenario-based testing, and synthetic data fidelity for autonomous systems.">
+    <meta property="og:description" content="PhD researcher at WMG, University of Warwick, focused on Safe AI, scenario-based testing, and synthetic data fidelity for autonomous systems.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://danial-safaei.github.io/">
     <meta property="og:image" content="https://danial-safaei.github.io/images/profile.png">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Danial Safaei | Safe AI Research">
-    <meta name="twitter:description" content="PhD researcher at WMG, University of Warwick. Safe AI, scenario-based testing, and synthetic data fidelity for autonomous systems.">
+    <meta name="twitter:description" content="Research portfolio for Danial Safaei — Safe AI, scenario-based testing, and synthetic data fidelity.">
     <meta name="twitter:image" content="https://danial-safaei.github.io/images/profile.png">
-
     <link rel="canonical" href="https://danial-safaei.github.io/">
     <link rel="icon" type="image/png" href="images/profile.png">
     <link rel="apple-touch-icon" href="images/profile.png">
     <title>Danial Safaei | Safe AI Research</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
     {
@@ -46,7 +41,6 @@
             "name": "WMG, University of Warwick",
             "url": "https://warwick.ac.uk/fac/sci/wmg"
           },
-          "knowsAbout": ["Safe AI", "Autonomous Systems", "Scenario-Based Testing", "Synthetic Data Fidelity", "Graph Neural Networks", "Computer Vision"],
           "email": "danial.safaei@warwick.ac.uk",
           "sameAs": [
             "https://github.com/Danial-Safaei",
@@ -54,6 +48,14 @@
             "https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en",
             "https://www.researchgate.net/profile/Danial-Safaei",
             "https://arxiv.org/search/?query=Danial+Safaei&searchtype=author"
+          ],
+          "knowsAbout": [
+            "Safe AI",
+            "Autonomous Systems",
+            "Scenario-Based Testing",
+            "Synthetic Data Fidelity",
+            "Computer Vision",
+            "Graph Neural Networks"
           ]
         },
         {
@@ -62,8 +64,7 @@
           "author": { "@id": "https://danial-safaei.github.io/#person" },
           "datePublished": "2025",
           "url": "https://arxiv.org/abs/2512.16468",
-          "identifier": "arXiv:2512.16468",
-          "about": ["Safe AI", "Synthetic Data Fidelity", "Autonomous Systems"]
+          "identifier": "arXiv:2512.16468"
         },
         {
           "@type": "ScholarlyArticle",
@@ -71,8 +72,7 @@
           "author": { "@id": "https://danial-safaei.github.io/#person" },
           "datePublished": "2023",
           "url": "https://link.springer.com/article/10.1007/s41870-023-01665-1",
-          "identifier": "DOI:10.1007/s41870-023-01665-1",
-          "isPartOf": { "@type": "Periodical", "name": "International Journal of Information Technology" }
+          "identifier": "DOI:10.1007/s41870-023-01665-1"
         },
         {
           "@type": "ScholarlyArticle",
@@ -89,22 +89,17 @@
 <body class="dark">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <div class="ambient" aria-hidden="true">
-        <canvas id="particle-canvas"></canvas>
-        <div class="orb orb-a"></div>
-        <div class="orb orb-b"></div>
-        <div class="orb orb-c"></div>
-        <div class="orb orb-d"></div>
-        <div class="grid-overlay"></div>
-    </div>
-
-    <header class="hero" id="top">
-        <nav class="top-nav">
-            <a class="brand" href="#top" aria-label="Danial Safaei — home">DS</a>
-            <div class="nav-links">
+    <header class="hero-shell" id="top">
+        <div class="hero-backdrop" aria-hidden="true"></div>
+        <nav class="site-nav">
+            <a class="brand" href="#top" aria-label="Danial Safaei homepage">
+                <span class="brand-mark">DS</span>
+                <span class="brand-text">Danial Safaei</span>
+            </a>
+            <div class="nav-links" aria-label="Primary navigation">
                 <a class="nav-link" href="#about">About</a>
-                <a class="nav-link" href="#timeline">Timeline</a>
-                <a class="nav-link" href="#research">Research</a>
+                <a class="nav-link" href="#journey">Journey</a>
+                <a class="nav-link" href="#focus">Focus</a>
                 <a class="nav-link" href="#publications">Publications</a>
                 <a class="nav-link" href="#code">Code</a>
                 <a class="nav-link" href="#contact">Contact</a>
@@ -112,147 +107,122 @@
             <button id="toggle-dark" type="button" aria-label="Toggle theme">Switch to light</button>
         </nav>
 
-        <div class="hero-grid">
+        <section class="hero">
             <div class="hero-copy reveal">
-                <div class="status-badge">
-                    <span class="status-dot" aria-hidden="true"></span>
-                    <span>Open to research collaboration</span>
-                </div>
-                <p class="kicker">Safe AI · Autonomous Systems · PhD Researcher</p>
-                <h1 id="name">Danial<br>Safaei</h1>
-                <p id="tagline">
-                    Building the rigorous frameworks autonomous systems need to be genuinely safe — through decisive feature analysis, scenario stress-testing, and synthetic data fidelity.
-                </p>
-                <p class="hero-meta">WMG · University of Warwick · Coventry, UK</p>
-                <div class="hero-stats" aria-label="Research statistics">
-                    <div class="stat-item">
-                        <span class="stat-num" data-target="3">0</span>
-                        <span class="stat-label">Publications</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="stat-item">
-                        <span class="stat-num" data-target="3">0</span>
-                        <span class="stat-label">Research Domains</span>
-                    </div>
-                    <div class="stat-divider" aria-hidden="true"></div>
-                    <div class="stat-item">
-                        <span class="stat-num" data-target="2023">2023</span>
-                        <span class="stat-label">Research Since</span>
-                    </div>
-                </div>
+                <p class="eyebrow">PhD Researcher · WMG, University of Warwick</p>
+                <h1 id="name">Researching the foundations of <span>Safe AI</span> for autonomous systems.</h1>
+                <p id="tagline">I build rigorous ways to evaluate whether intelligent systems can be trusted in the real world — with a focus on scenario-based testing, synthetic data fidelity, and dependable model behavior.</p>
+                <ul class="hero-points" aria-label="Research highlights">
+                    <li>Developing interpretable evaluation methods for simulation-to-real transfer.</li>
+                    <li>Connecting safety assurance with practical validation workflows.</li>
+                    <li>Working across autonomous systems, computer vision, and high-stakes AI applications.</li>
+                </ul>
                 <div class="cta-row">
-                    <a class="btn" href="#publications">View Publications</a>
-                    <a class="btn btn-ghost" href="https://github.com/Danial-Safaei" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a class="btn btn-ghost" href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
+                    <a class="btn btn-primary" href="#publications">See publications</a>
+                    <a class="btn btn-secondary" href="#contact">Get in touch</a>
+                    <a class="btn btn-secondary" href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+                </div>
+                <div class="hero-stats" aria-label="Research overview">
+                    <div class="stat-card">
+                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-label">Selected publications</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-label">Core research domains</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-num" data-target="1">0</span>
+                        <span class="stat-label">Open-source framework</span>
+                    </div>
                 </div>
             </div>
 
-            <aside class="hero-visual reveal" aria-label="Profile card">
-                <div class="profile-glow-wrap">
-                    <img src="images/profile.png" alt="Portrait of Danial Safaei" class="profile-pic" width="150" height="150" loading="eager">
-                </div>
-                <div class="profile-info">
-                    <div class="profile-name">Danial Safaei</div>
-                    <div class="profile-role">PhD Researcher</div>
-                    <div class="profile-affil">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7L12 3 3 7"/></svg>
-                        WMG, University of Warwick
+            <aside class="hero-panel reveal" aria-label="Profile summary">
+                <div class="profile-head">
+                    <img src="images/profile.png" alt="Portrait of Danial Safaei" class="profile-pic" width="132" height="132" loading="eager" decoding="async">
+                    <div>
+                        <p class="profile-kicker">Currently</p>
+                        <h2>Open to research collaboration</h2>
+                        <p>Interested in academic partnerships, technically serious industry collaboration, and work that raises the reliability bar for real-world AI systems.</p>
                     </div>
                 </div>
-                <ul class="profile-tags" aria-label="Research expertise tags">
+                <dl class="profile-details">
+                    <div>
+                        <dt>Role</dt>
+                        <dd>PhD Researcher</dd>
+                    </div>
+                    <div>
+                        <dt>Affiliation</dt>
+                        <dd><a href="https://warwick.ac.uk/fac/sci/wmg" target="_blank" rel="noopener noreferrer">WMG, University of Warwick</a></dd>
+                    </div>
+                    <div>
+                        <dt>Location</dt>
+                        <dd>Coventry, United Kingdom</dd>
+                    </div>
+                    <div>
+                        <dt>Primary topics</dt>
+                        <dd>Safe AI, autonomous systems, synthetic data fidelity</dd>
+                    </div>
+                </dl>
+                <ul class="topic-pills" aria-label="Research topics">
                     <li>Safe AI</li>
                     <li>Scenario Testing</li>
                     <li>Synthetic Data</li>
                     <li>Autonomous Systems</li>
-                    <li>Graph Neural Networks</li>
                     <li>Computer Vision</li>
+                    <li>Graph Neural Networks</li>
                 </ul>
-                <div class="profile-links">
-                    <a href="mailto:danial.safaei@warwick.ac.uk" aria-label="Email Danial Safaei">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    </a>
-                    <a href="https://github.com/Danial-Safaei" target="_blank" rel="noopener noreferrer" aria-label="Danial Safaei on GitHub">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    </a>
-                    <a href="https://linkedin.com/in/danial-safaei-6b8525138" target="_blank" rel="noopener noreferrer" aria-label="Danial Safaei on LinkedIn">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    </a>
-                    <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Danial Safaei on Google Scholar">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                    </a>
-                    <a href="https://www.researchgate.net/profile/Danial-Safaei" target="_blank" rel="noopener noreferrer" aria-label="Danial Safaei on ResearchGate">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                    </a>
+                <div class="profile-links" aria-label="External profiles">
+                    <a href="mailto:danial.safaei@warwick.ac.uk">Email</a>
+                    <a href="https://github.com/Danial-Safaei" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://linkedin.com/in/danial-safaei-6b8525138" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://www.researchgate.net/profile/Danial-Safaei" target="_blank" rel="noopener noreferrer">ResearchGate</a>
                 </div>
             </aside>
-        </div>
+        </section>
     </header>
-
-    <div class="philosophy-band reveal" aria-label="Research philosophy">
-        <div class="philosophy-inner">
-            <svg class="quote-mark" width="44" height="36" viewBox="0 0 48 40" fill="none" aria-hidden="true">
-                <path d="M0 40V24C0 10.745 6.16 3.08 18.48 1L20 6.6C14.187 8.12 11.28 12.04 11.28 18.36V20H22V40H0ZM26 40V24C26 10.745 32.16 3.08 44.48 1L46 6.6C40.187 8.12 37.28 12.04 37.28 18.36V20H48V40H26Z" fill="currentColor"/>
-            </svg>
-            <p>Safe AI is not a feature &mdash; it is a foundation.<br>
-            My research interrogates the gap between synthetic simulation and real-world behaviour, developing rigorous frameworks that make autonomous systems worthy of trust.</p>
-        </div>
-    </div>
 
     <main id="main-content">
         <section id="about" class="panel reveal">
-            <div class="section-head">
-                <span class="section-num">01</span>
-                <h2>About</h2>
-            </div>
-            <div class="about-body">
-                <div class="about-text">
-                    <p class="about-lead">
-                        Danial Safaei is a PhD researcher at <strong>WMG, University of Warwick</strong>, where he investigates the foundations of safe and trustworthy AI for autonomous systems.
-                    </p>
-                    <p>
-                        His research bridges three disciplines: formal safety assurance, scenario-based testing methodologies, and the fidelity of synthetic data for model validation. This cross-domain perspective has produced work spanning smart environments, biomedical AI, and autonomous vehicle safety — unified by a commitment to rigorous, deployable, and explainable AI systems.
-                    </p>
-                    <p>
-                        The <strong>Decisive Feature Fidelity (DFF)</strong> framework — his most recent contribution — introduces a principled metric for quantifying how well synthetic imagery preserves the features that drive model decisions, addressing a critical gap in simulation-to-real transfer research.
-                    </p>
+            <div class="section-heading">
+                <p class="section-index">01</p>
+                <div>
+                    <h2>About</h2>
+                    <p>A concise overview of the research direction, strengths, and academic positioning behind the work.</p>
                 </div>
-                <div class="about-sidebar">
-                    <h3 class="sidebar-label">Expertise</h3>
-                    <ul class="tag-cloud" aria-label="Research expertise areas">
-                        <li class="tag">Safe AI</li>
-                        <li class="tag tag-alt">Autonomous Systems</li>
-                        <li class="tag">Synthetic Data Fidelity</li>
-                        <li class="tag tag-alt">Scenario-Based Testing</li>
-                        <li class="tag">Graph Neural Networks</li>
-                        <li class="tag tag-alt">Computer Vision</li>
-                        <li class="tag">Deep Learning</li>
-                        <li class="tag tag-alt">Sim-to-Real Transfer</li>
+            </div>
+            <div class="about-grid">
+                <div class="about-copy">
+                    <p class="lead">Danial Safaei is a PhD researcher at <strong>WMG, University of Warwick</strong>, investigating how to make AI systems for autonomous settings more trustworthy, measurable, and deployment-ready.</p>
+                    <p>His work focuses on the parts of modern AI that matter most when systems leave the lab: how scenarios are designed for testing, how synthetic data should be evaluated before it is trusted, and how safety claims can be made with greater rigor.</p>
+                    <p>That agenda has led to contributions spanning smart environments, biomedical AI, and autonomous-system validation, but the common thread is consistent: building methods that are technically grounded, explainable, and useful in safety-critical practice.</p>
+                </div>
+                <div class="about-sidecard">
+                    <h3>What defines the work</h3>
+                    <ul class="check-list">
+                        <li>Methodological rigor over visual novelty or hype.</li>
+                        <li>Research questions tied to real deployment constraints.</li>
+                        <li>Clear bridges between theory, evaluation, and practical safety evidence.</li>
                     </ul>
-                    <div class="affil-block">
-                        <a href="https://warwick.ac.uk/fac/sci/wmg" target="_blank" rel="noopener noreferrer" class="affil-link">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7L12 3 3 7"/></svg>
-                            WMG, University of Warwick
-                        </a>
-                        <span class="affil-detail">Coventry, United Kingdom</span>
-                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="timeline" class="panel reveal">
-            <div class="section-head">
-                <span class="section-num">02</span>
-                <h2>Research Timeline</h2>
-                <p>A trajectory across smart environments, biomedical AI, and autonomous systems safety.</p>
+        <section id="journey" class="panel reveal">
+            <div class="section-heading">
+                <p class="section-index">02</p>
+                <div>
+                    <h2>Research journey</h2>
+                    <p>A progression from applied machine learning toward formal, high-stakes validation for autonomous intelligence.</p>
+                </div>
             </div>
-            <ol class="timeline" aria-label="Research milestones">
+            <ol class="timeline" aria-label="Research journey timeline">
                 <li class="timeline-item">
-                    <div class="timeline-marker">
-                        <span class="timeline-year">2023</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>DeePLT: Personalised Lighting via Trajectory Prediction</h3>
-                        <p>Published in the <em>International Journal of Information Technology</em>. Introduced deep-learning methods for resident trajectory prediction to drive personalised, adaptive smart-home lighting environments — an early application of sequential ML to human-centred environments.</p>
+                    <div class="timeline-year">2023</div>
+                    <div class="timeline-card">
+                        <h3>Personalised smart-home intelligence</h3>
+                        <p>Published DeePLT, a deep-learning approach for trajectory-driven adaptive lighting in smart homes, establishing an early track record in human-centred intelligent systems.</p>
                         <div class="link-row">
                             <a class="chip-link chip-primary" href="https://link.springer.com/article/10.1007/s41870-023-01665-1" target="_blank" rel="noopener noreferrer">Springer</a>
                             <a class="chip-link" href="https://arxiv.org/abs/2304.08027" target="_blank" rel="noopener noreferrer">arXiv</a>
@@ -261,125 +231,110 @@
                     </div>
                 </li>
                 <li class="timeline-item">
-                    <div class="timeline-marker">
-                        <span class="timeline-year">2024</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>GraphSAGE for Drug Synergy Discovery in Lung Adenocarcinoma</h3>
-                        <p>Deposited to <em>medRxiv</em>. Applied GraphSAGE graph neural networks to biomedical knowledge graphs to discover synergistic drug combinations — Gefitinib, Paclitaxel, and Icotinib — for lung adenocarcinoma management, demonstrating cross-domain GNN methodology transfer to high-stakes clinical problems.</p>
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-card">
+                        <h3>Graph learning in biomedical AI</h3>
+                        <p>Applied GraphSAGE to discover drug synergy in lung adenocarcinoma, showing how graph-based AI methods can transfer into high-stakes scientific and clinical domains.</p>
                         <div class="link-row">
                             <a class="chip-link chip-primary" href="https://www.medrxiv.org/content/10.1101/2024.04.14.24304384v1" target="_blank" rel="noopener noreferrer">medRxiv</a>
                             <a class="chip-link" href="https://doi.org/10.1101/2024.04.14.24304384" target="_blank" rel="noopener noreferrer">DOI</a>
                         </div>
                     </div>
                 </li>
-                <li class="timeline-item timeline-item-active">
-                    <div class="timeline-marker">
-                        <span class="timeline-year">2025</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Decisive Feature Fidelity (DFF) Framework</h3>
-                        <p>Introduced the DFF framework on arXiv — a principled, interpretable metric for quantifying how synthetic imagery preserves the model-decision-driving features of real data. Directly addresses the sim-to-real gap in autonomous-system safety validation, with open-source reference code.</p>
+                <li class="timeline-item timeline-item-current">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-card">
+                        <h3>Decisive Feature Fidelity (DFF)</h3>
+                        <p>Introduced an interpretable framework for judging whether synthetic imagery preserves the features that genuinely drive model decisions — a key step for trustworthy simulation-based validation.</p>
                         <div class="link-row">
-                            <a class="chip-link chip-primary" href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv:2512.16468</a>
+                            <a class="chip-link chip-primary" href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv</a>
                             <a class="chip-link" href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">Code</a>
                             <a class="chip-link" href="https://doi.org/10.48550/arXiv.2512.16468" target="_blank" rel="noopener noreferrer">DOI</a>
                         </div>
                     </div>
                 </li>
-                <li class="timeline-item timeline-item-future">
-                    <div class="timeline-marker">
-                        <span class="timeline-year">Now</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>PhD Research &mdash; WMG, University of Warwick</h3>
-                        <p>Advancing Safe AI frameworks for autonomous systems — focusing on scenario-based testing, simulation fidelity, and safety assurance at WMG, one of Europe's leading applied engineering research centres.</p>
+                <li class="timeline-item">
+                    <div class="timeline-year">Now</div>
+                    <div class="timeline-card">
+                        <h3>Safe AI for autonomous systems</h3>
+                        <p>Current work concentrates on scenario-based testing, simulation fidelity, and the evidential foundations needed to justify trust in autonomous-system behavior.</p>
                     </div>
                 </li>
             </ol>
         </section>
 
-        <section id="research" class="panel reveal">
-            <div class="section-head">
-                <span class="section-num">03</span>
-                <h2>Research Focus</h2>
-                <p>Three intersecting domains that define an agenda for trustworthy autonomous intelligence.</p>
+        <section id="focus" class="panel reveal">
+            <div class="section-heading">
+                <p class="section-index">03</p>
+                <div>
+                    <h2>Research focus</h2>
+                    <p>Three tightly connected areas shaping a coherent agenda for trustworthy autonomous intelligence.</p>
+                </div>
             </div>
-            <div class="research-grid">
-                <article class="card card-featured">
-                    <div class="card-icon" aria-hidden="true">
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <span class="domain-tag">Primary</span>
-                    <h3>Safe AI for Autonomous Systems</h3>
-                    <p>Developing formal safety assurance methods and trustworthy deployment architectures for AI in high-stakes autonomous contexts — where failure carries real-world consequence and verification is non-negotiable.</p>
+            <div class="card-grid three-up">
+                <article class="info-card info-card-accent">
+                    <p class="card-label">Primary</p>
+                    <h3>Safe AI for autonomous systems</h3>
+                    <p>Designing frameworks that improve how safety, reliability, and assurance are argued when AI systems operate in high-consequence environments.</p>
                 </article>
-                <article class="card">
-                    <div class="card-icon" aria-hidden="true">
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                    </div>
-                    <span class="domain-tag">Primary</span>
-                    <h3>Scenario-Based Testing</h3>
-                    <p>Rigorous methodologies for scenario generation, structured evaluation, and edge-case validation — ensuring autonomous systems are stress-tested against the full distribution of real-world operating conditions.</p>
+                <article class="info-card">
+                    <p class="card-label">Method</p>
+                    <h3>Scenario-based testing</h3>
+                    <p>Developing structured ways to generate, select, and evaluate scenarios so autonomous systems are tested against the conditions that matter most.</p>
                 </article>
-                <article class="card">
-                    <div class="card-icon" aria-hidden="true">
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                    </div>
-                    <span class="domain-tag">Primary</span>
-                    <h3>Synthetic Data Fidelity</h3>
-                    <p>Principled quantification of how synthetic and real imagery align at the feature level — answering whether a model trained on simulation will behave reliably in the real world.</p>
-                    <p class="source-inline"><a href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer" aria-label="DFF paper on arXiv (opens in new tab)">DFF paper &middot; arXiv:2512.16468 ↗</a></p>
+                <article class="info-card">
+                    <p class="card-label">Validation</p>
+                    <h3>Synthetic data fidelity</h3>
+                    <p>Measuring whether synthetic data is not merely realistic in appearance, but faithful to the underlying decision-relevant structure seen in real data.</p>
                 </article>
             </div>
         </section>
 
         <section id="publications" class="panel reveal">
-            <div class="section-head">
-                <span class="section-num">04</span>
-                <h2>Selected Publications</h2>
-                <p>Peer-reviewed and preprint research across AI safety, computer vision, and biomedical intelligence.</p>
+            <div class="section-heading">
+                <p class="section-index">04</p>
+                <div>
+                    <h2>Selected publications</h2>
+                    <p>Representative outputs across safe AI, computer vision, and graph-based learning.</p>
+                </div>
             </div>
-            <div class="publication-grid">
-                <article class="publication-card pub-highlight">
-                    <div class="pub-header">
+            <div class="card-grid publication-grid">
+                <article class="publication-card publication-card-featured">
+                    <div class="pub-meta-row">
                         <span class="pub-year">2025</span>
-                        <span class="venue-badge venue-arxiv">arXiv</span>
-                        <span class="venue-badge venue-cs">cs.AI</span>
+                        <span class="pub-tag">arXiv</span>
+                        <span class="pub-tag">Safe AI</span>
                     </div>
                     <h3>Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery</h3>
-                    <p class="pub-abstract">Introduces the Decisive Feature Fidelity (DFF) framework — a principled, interpretable metric that measures how well synthetic images preserve the model-decision-relevant features of real data. Directly addresses the simulation-to-real transfer gap critical for autonomous system safety validation.</p>
+                    <p>Introduces the DFF framework, an interpretable method for assessing whether synthetic images preserve the decision-relevant features that real-world performance depends on.</p>
                     <div class="link-row">
-                        <a class="chip-link chip-primary" href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv:2512.16468</a>
+                        <a class="chip-link chip-primary" href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv</a>
                         <a class="chip-link" href="https://doi.org/10.48550/arXiv.2512.16468" target="_blank" rel="noopener noreferrer">DOI</a>
                         <a class="chip-link" href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">Code</a>
-                        <a class="chip-link" href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
                     </div>
                 </article>
-
                 <article class="publication-card">
-                    <div class="pub-header">
+                    <div class="pub-meta-row">
                         <span class="pub-year">2023</span>
-                        <span class="venue-badge venue-journal">Peer-Reviewed</span>
-                        <span class="venue-badge venue-springer">Springer</span>
+                        <span class="pub-tag">Springer</span>
+                        <span class="pub-tag">Smart Environments</span>
                     </div>
                     <h3>DeePLT: Personalized Lighting Facilitated by Trajectory Prediction of Recognized Residents in Smart Home</h3>
-                    <p class="pub-abstract">Deep learning framework for personalised smart-home lighting driven by resident trajectory prediction. Published in the <em>International Journal of Information Technology</em> (Springer).</p>
+                    <p>A deep-learning framework for adaptive smart-home lighting informed by resident trajectory prediction, published in the International Journal of Information Technology.</p>
                     <div class="link-row">
                         <a class="chip-link chip-primary" href="https://link.springer.com/article/10.1007/s41870-023-01665-1" target="_blank" rel="noopener noreferrer">Springer</a>
                         <a class="chip-link" href="https://arxiv.org/abs/2304.08027" target="_blank" rel="noopener noreferrer">arXiv</a>
                         <a class="chip-link" href="https://doi.org/10.1007/s41870-023-01665-1" target="_blank" rel="noopener noreferrer">DOI</a>
                     </div>
                 </article>
-
                 <article class="publication-card">
-                    <div class="pub-header">
+                    <div class="pub-meta-row">
                         <span class="pub-year">2024</span>
-                        <span class="venue-badge venue-medrxiv">medRxiv</span>
-                        <span class="venue-badge venue-bio">Biomedical AI</span>
+                        <span class="pub-tag">medRxiv</span>
+                        <span class="pub-tag">Biomedical AI</span>
                     </div>
                     <h3>GraphSAGE Discovers Synergistic Combinations of Gefitinib, Paclitaxel, and Icotinib for Lung Adenocarcinoma Management</h3>
-                    <p class="pub-abstract">Graph neural network methodology applied to biomedical knowledge graphs to identify synergistic drug combinations for lung adenocarcinoma — demonstrating the breadth and transferability of GNN methodology across high-stakes domains.</p>
+                    <p>Uses graph neural networks to identify drug synergy in lung adenocarcinoma, demonstrating methodology transfer to clinically significant biomedical problems.</p>
                     <div class="link-row">
                         <a class="chip-link chip-primary" href="https://www.medrxiv.org/content/10.1101/2024.04.14.24304384v1" target="_blank" rel="noopener noreferrer">medRxiv</a>
                         <a class="chip-link" href="https://doi.org/10.1101/2024.04.14.24304384" target="_blank" rel="noopener noreferrer">DOI</a>
@@ -390,115 +345,100 @@
         </section>
 
         <section id="code" class="panel reveal">
-            <div class="section-head">
-                <span class="section-num">05</span>
-                <h2>Open Research Code</h2>
-                <p>Reproducible implementations and research artefacts on GitHub.</p>
+            <div class="section-heading">
+                <p class="section-index">05</p>
+                <div>
+                    <h2>Open research code</h2>
+                    <p>Code that supports reproducibility, transparency, and practical access to the research.</p>
+                </div>
             </div>
-            <div class="project-grid">
-                <article class="card card-code">
-                    <div class="code-header">
-                        <svg class="repo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        <code class="repo-name">Danial-Safaei / DFF</code>
-                    </div>
-                    <h3>Decisive Feature Fidelity</h3>
-                    <p>Reference implementation of the DFF framework for quantifying fidelity between synthetic and real imagery. Reproducible research artefact accompanying the arXiv preprint.</p>
+            <div class="card-grid code-grid">
+                <article class="info-card info-card-code">
+                    <p class="card-label">Featured repository</p>
+                    <h3>Decisive Feature Fidelity (DFF)</h3>
+                    <p>Reference implementation for the DFF framework, supporting transparent evaluation of fidelity between synthetic and real imagery.</p>
                     <div class="link-row">
                         <a class="chip-link chip-primary" href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">Repository</a>
                         <a class="chip-link" href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">Paper</a>
                     </div>
                 </article>
-
-                <article class="card card-code">
-                    <div class="code-header">
-                        <svg class="repo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                        <code class="repo-name">Danial-Safaei / Danial-Safaei.github.io</code>
-                    </div>
-                    <h3>This Website</h3>
-                    <p>Open-source academic portfolio — no frameworks, no build tools. Pure HTML, CSS, and JavaScript.</p>
+                <article class="info-card info-card-code">
+                    <p class="card-label">Website source</p>
+                    <h3>danial-safaei.github.io</h3>
+                    <p>This site is intentionally lightweight: a static portfolio built with plain HTML, CSS, and JavaScript for fast loading and easy maintenance.</p>
                     <div class="link-row">
-                        <a class="chip-link" href="https://github.com/Danial-Safaei/Danial-Safaei.github.io" target="_blank" rel="noopener noreferrer">Repository</a>
+                        <a class="chip-link chip-primary" href="https://github.com/Danial-Safaei/Danial-Safaei.github.io" target="_blank" rel="noopener noreferrer">Repository</a>
                     </div>
                 </article>
-
-                <article class="card card-code">
-                    <div class="code-header">
-                        <svg class="repo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-                        <code class="repo-name">All repositories</code>
-                    </div>
-                    <h3>Full Repository Inventory</h3>
-                    <p>Browse all public repositories with latest project listings and commit activity on GitHub.</p>
+                <article class="info-card info-card-code">
+                    <p class="card-label">Full catalogue</p>
+                    <h3>All public repositories</h3>
+                    <p>Browse the wider body of public work, experiments, and supporting research artefacts on GitHub.</p>
                     <div class="link-row">
-                        <a class="chip-link chip-primary" href="https://github.com/Danial-Safaei?tab=repositories" target="_blank" rel="noopener noreferrer" aria-label="View all repositories on GitHub (opens in new tab)">View on GitHub ↗</a>
+                        <a class="chip-link chip-primary" href="https://github.com/Danial-Safaei?tab=repositories" target="_blank" rel="noopener noreferrer">View GitHub</a>
                     </div>
                 </article>
             </div>
         </section>
 
         <section id="contact" class="panel panel-contact reveal">
-            <div class="section-head">
-                <span class="section-num">06</span>
-                <h2>Contact &amp; Profiles</h2>
+            <div class="section-heading">
+                <p class="section-index">06</p>
+                <div>
+                    <h2>Contact</h2>
+                    <p>For research collaboration, speaking opportunities, or technically serious conversations about Safe AI and autonomous-system validation.</p>
+                </div>
             </div>
-            <p class="contact-intro">
-                Available for research collaboration, academic discussion, and speaking opportunities. If you're working on problems at the intersection of AI safety, autonomous systems, or simulation fidelity — I'd be glad to connect.
-            </p>
-            <div class="contact-grid">
-                <a class="contact-card contact-primary" href="mailto:danial.safaei@warwick.ac.uk">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                    <span>Email</span>
-                    <strong>danial.safaei@warwick.ac.uk</strong>
-                </a>
-                <a class="contact-card" href="https://linkedin.com/in/danial-safaei-6b8525138" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                    <span>LinkedIn</span>
-                    <strong>danial-safaei</strong>
-                </a>
-                <a class="contact-card" href="https://github.com/Danial-Safaei" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                    <span>GitHub</span>
-                    <strong>Danial-Safaei</strong>
-                </a>
-                <a class="contact-card" href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-                    <span>Google Scholar</span>
-                    <strong>Scholar Profile</strong>
-                </a>
-                <a class="contact-card" href="https://arxiv.org/search/?query=Danial+Safaei&searchtype=author" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                    <span>arXiv</span>
-                    <strong>Author Listing</strong>
-                </a>
-                <a class="contact-card" href="https://www.researchgate.net/profile/Danial-Safaei" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                    <span>ResearchGate</span>
-                    <strong>Profile Page</strong>
-                </a>
+            <div class="contact-layout">
+                <div class="contact-copy">
+                    <p>If you are working on trustworthy AI, simulation-to-real transfer, validation methodology, or evidence for autonomous-system safety, I would be glad to connect.</p>
+                    <div class="contact-cards">
+                        <a class="contact-card contact-card-primary" href="mailto:danial.safaei@warwick.ac.uk">
+                            <span>Email</span>
+                            <strong>danial.safaei@warwick.ac.uk</strong>
+                        </a>
+                        <a class="contact-card" href="https://linkedin.com/in/danial-safaei-6b8525138" target="_blank" rel="noopener noreferrer">
+                            <span>LinkedIn</span>
+                            <strong>danial-safaei</strong>
+                        </a>
+                        <a class="contact-card" href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+                            <span>Google Scholar</span>
+                            <strong>Publication profile</strong>
+                        </a>
+                        <a class="contact-card" href="https://www.researchgate.net/profile/Danial-Safaei" target="_blank" rel="noopener noreferrer">
+                            <span>ResearchGate</span>
+                            <strong>Research profile</strong>
+                        </a>
+                        <a class="contact-card" href="https://arxiv.org/search/?query=Danial+Safaei&searchtype=author" target="_blank" rel="noopener noreferrer">
+                            <span>arXiv</span>
+                            <strong>Author listing</strong>
+                        </a>
+                        <a class="contact-card" href="https://github.com/Danial-Safaei" target="_blank" rel="noopener noreferrer">
+                            <span>GitHub</span>
+                            <strong>Danial-Safaei</strong>
+                        </a>
+                    </div>
+                </div>
+                <aside class="contact-note">
+                    <p class="contact-note-label">Best fit</p>
+                    <h3>Projects that value rigor</h3>
+                    <p>The strongest alignment is with work that treats safety, evaluation, and interpretability as first-class engineering and research concerns — not afterthoughts.</p>
+                </aside>
             </div>
         </section>
     </main>
 
     <footer class="site-footer">
-        <p>&copy; <span id="year"></span> Danial Safaei &mdash; PhD Researcher, WMG, University of Warwick</p>
+        <p>&copy; <span id="year"></span> Danial Safaei · PhD Researcher at WMG, University of Warwick</p>
         <div class="view-counter" aria-live="polite">
             <div class="view-counter-card">
                 <span class="view-counter-label">Views</span>
-                <img id="view-count-badge"
-                     class="view-counter-badge"
-                     alt="Total site views"
-                     decoding="async"
-                     loading="lazy"
-                     hidden>
+                <img id="view-count-badge" class="view-counter-badge" alt="Total site views" decoding="async" loading="lazy" hidden>
                 <strong id="view-count-fallback" class="view-counter-value" hidden>Unavailable</strong>
             </div>
             <div class="view-counter-card">
                 <span class="view-counter-label">Visits</span>
-                <img id="visit-count-badge"
-                     class="view-counter-badge"
-                     alt="Unique site visits"
-                     decoding="async"
-                     loading="lazy"
-                     hidden>
+                <img id="visit-count-badge" class="view-counter-badge" alt="Unique site visits" decoding="async" loading="lazy" hidden>
                 <strong id="visit-count-fallback" class="view-counter-value" hidden>Unavailable</strong>
             </div>
         </div>
