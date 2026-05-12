@@ -9,7 +9,7 @@ const VISITOR_BADGE_COUNT_COLOR = "%230f5fd7";
 const VIEW_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/total?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
 const VISIT_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/visitors?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
 const NAV_OBSERVER_THRESHOLDS = [0.2, 0.45, 0.7];
-const NAV_OBSERVER_ROOT_MARGIN = "-10% 0px -55% 0px";
+const NAV_OBSERVER_ROOT_MARGIN = "-10% 0px -45% 0px";
 
 function hardenExternalLinks() {
     document.querySelectorAll('a[target="_blank"]').forEach((link) => {
@@ -98,9 +98,6 @@ function setupSmoothScroll() {
 
             event.preventDefault();
             target.scrollIntoView({ behavior, block: "start" });
-            if (window.location.hash !== href) {
-                history.pushState(null, "", href);
-            }
         });
     });
 }

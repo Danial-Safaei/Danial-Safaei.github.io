@@ -140,7 +140,7 @@ main,
 
 .site-nav {
     position: sticky;
-    top: 0.8rem;
+    top: 1rem;
     z-index: 20;
     margin-top: 1rem;
     display: flex;
@@ -266,7 +266,7 @@ main,
 .hero-copy h1 {
     margin: 0;
     font-size: clamp(2.7rem, 7vw, 5.25rem);
-    line-height: 0.98;
+    line-height: 1;
     letter-spacing: -0.05em;
     max-width: 11ch;
     text-wrap: balance;
