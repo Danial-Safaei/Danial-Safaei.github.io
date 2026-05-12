@@ -1,13 +1,11 @@
 const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-const REVEAL_DURATION_MS = 540;
-const PARALLAX_TRANSITION = `opacity ${REVEAL_DURATION_MS}ms ease`;
 const VISITOR_BADGE_BASE_URL = "https://api.visitorbadge.io/api";
 const VISITOR_BADGE_PATH = encodeURIComponent("https://danial-safaei.github.io/");
 const VISITOR_BADGE_STYLE = "flat";
 const VISITOR_BADGE_LABEL_STYLE = "none";
-const VISITOR_BADGE_LABEL_COLOR = "%230A1128";
-const VISITOR_BADGE_COUNT_COLOR = "%234F39E0";
+const VISITOR_BADGE_LABEL_COLOR = "%2307111f";
+const VISITOR_BADGE_COUNT_COLOR = "%230f5fd7";
 const VIEW_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/total?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
 const VISIT_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/visitors?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
 
@@ -35,18 +33,29 @@ function applyTheme(theme) {
     }
 }
 
+function setupThemeToggle() {
+    const toggleBtn = document.getElementById("toggle-dark");
+    if (!toggleBtn) return;
+
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme === "light" || savedTheme === "dark"
+        ? savedTheme
+        : (prefersDark ? "dark" : "light");
+
+    applyTheme(initialTheme);
+
+    toggleBtn.addEventListener("click", () => {
+        const nextTheme = document.body.classList.contains("dark") ? "light" : "dark";
+        applyTheme(nextTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+    });
+}
+
 function setupVisitorCounters() {
     const counters = [
-        {
-            badgeId: "view-count-badge",
-            fallbackId: "view-count-fallback",
-            url: VIEW_BADGE_URL,
-        },
-        {
-            badgeId: "visit-count-badge",
-            fallbackId: "visit-count-fallback",
-            url: VISIT_BADGE_URL,
-        },
+        { badgeId: "view-count-badge", fallbackId: "view-count-fallback", url: VIEW_BADGE_URL },
+        { badgeId: "visit-count-badge", fallbackId: "visit-count-fallback", url: VISIT_BADGE_URL },
     ];
 
     counters.forEach(({ badgeId, fallbackId, url }) => {
@@ -56,16 +65,12 @@ function setupVisitorCounters() {
 
         const showBadge = () => {
             badge.hidden = false;
-            if (fallback) {
-                fallback.hidden = true;
-            }
+            if (fallback) fallback.hidden = true;
         };
 
         const showFallback = () => {
             badge.hidden = true;
-            if (fallback) {
-                fallback.hidden = false;
-            }
+            if (fallback) fallback.hidden = false;
         };
 
         badge.addEventListener("load", showBadge, { once: true });
@@ -77,21 +82,6 @@ function setupVisitorCounters() {
     });
 }
 
-function setupThemeToggle() {
-    const toggleBtn = document.getElementById("toggle-dark");
-    if (!toggleBtn) return;
-
-    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-    const initialTheme = savedTheme === "light" ? "light" : "dark";
-    applyTheme(initialTheme);
-
-    toggleBtn.addEventListener("click", () => {
-        const nextTheme = document.body.classList.contains("dark") ? "light" : "dark";
-        applyTheme(nextTheme);
-        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
-    });
-}
-
 function setupSmoothScroll() {
     const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
     const behavior = prefersReducedMotion ? "auto" : "smooth";
@@ -100,11 +90,13 @@ function setupSmoothScroll() {
         link.addEventListener("click", (event) => {
             const href = link.getAttribute("href");
             if (!href || href === "#") return;
+
             const target = document.querySelector(href);
             if (!target) return;
 
             event.preventDefault();
             target.scrollIntoView({ behavior, block: "start" });
+            history.replaceState(null, "", href);
         });
     });
 }
@@ -126,7 +118,7 @@ function setupRevealAnimations() {
                 observer.unobserve(entry.target);
             });
         },
-        { threshold: 0.1, rootMargin: "0px 0px -30px 0px" }
+        { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
     );
 
     revealElements.forEach((el) => observer.observe(el));
@@ -135,182 +127,53 @@ function setupRevealAnimations() {
 function setupActiveNavLinks() {
     const sections = Array.from(document.querySelectorAll("main section[id]"));
     const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-    if (!sections.length || !navLinks.length) return;
+    if (!sections.length || !navLinks.length || !("IntersectionObserver" in window)) return;
 
-    const byId = new Map(navLinks.map((link) => [link.getAttribute("href")?.slice(1), link]));
+    const navById = new Map(navLinks.map((link) => [link.getAttribute("href")?.slice(1), link]));
+
+    const setActive = (id) => {
+        navLinks.forEach((link) => {
+            const active = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("is-active", active);
+            if (active) {
+                link.setAttribute("aria-current", "true");
+            } else {
+                link.removeAttribute("aria-current");
+            }
+        });
+    };
 
     const observer = new IntersectionObserver(
         (entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                navLinks.forEach((link) => {
-                    link.classList.remove("is-active");
-                    link.removeAttribute("aria-current");
-                });
-                const active = byId.get(entry.target.id);
-                if (active) {
-                    active.classList.add("is-active");
-                    active.setAttribute("aria-current", "true");
-                }
-            });
+            const visibleEntries = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+            if (!visibleEntries.length) return;
+            const activeId = visibleEntries[0].target.id;
+            if (navById.has(activeId)) {
+                setActive(activeId);
+            }
         },
-        { threshold: 0.35, rootMargin: "0px 0px -20% 0px" }
+        { threshold: [0.2, 0.45, 0.7], rootMargin: "-10% 0px -55% 0px" }
     );
 
     sections.forEach((section) => observer.observe(section));
-}
-
-function setupHeroParallax() {
-    const heroVisual = document.querySelector(".hero-visual");
-    if (!heroVisual) return;
-    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
-
-    let parallaxReady = false;
-    let ticking = false;
-
-    const enableParallax = (e) => {
-        if (e && e.propertyName !== "transform") return;
-        parallaxReady = true;
-        heroVisual.style.transition = PARALLAX_TRANSITION;
-    };
-
-    if (heroVisual.classList.contains("is-visible")) {
-        heroVisual.style.transition = PARALLAX_TRANSITION;
-        parallaxReady = true;
-    } else {
-        heroVisual.addEventListener("transitionend", enableParallax);
-    }
-
-    window.addEventListener(
-        "scroll",
-        () => {
-            if (!parallaxReady || ticking) return;
-            ticking = true;
-            window.requestAnimationFrame(() => {
-                const offset = Math.min(window.scrollY * 0.08, 32);
-                heroVisual.style.transform = `translateY(${offset}px)`;
-                ticking = false;
-            });
-        },
-        { passive: true }
-    );
-}
-
-function initParticleCanvas() {
-    const canvas = document.getElementById("particle-canvas");
-    if (!canvas) return;
-    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) return;
-
-    const ctx = canvas.getContext("2d");
-    const PARTICLE_COUNT = 72;
-    const MAX_DIST = 135;
-    const SPEED = 0.32;
-
-    let particles = [];
-    let animFrame = null;
-
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    function makeParticle() {
-        return {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * SPEED,
-            vy: (Math.random() - 0.5) * SPEED,
-            r: Math.random() * 1.6 + 0.6,
-            a: Math.random() * 0.45 + 0.15,
-        };
-    }
-
-    function init() {
-        particles = [];
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-            particles.push(makeParticle());
-        }
-    }
-
-    function step() {
-        for (const p of particles) {
-            p.x += p.vx;
-            p.y += p.vy;
-            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-        }
-    }
-
-    function draw() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        const isDark = document.body.classList.contains("dark");
-        const lineColor = isDark ? "102,229,255" : "15,96,255";
-        const dotColor = isDark ? "102,229,255" : "15,96,255";
-
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.hypot(dx, dy);
-                if (dist < MAX_DIST) {
-                    const alpha = (1 - dist / MAX_DIST) * 0.12;
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(${lineColor},${alpha})`;
-                    ctx.lineWidth = 0.8;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
-                }
-            }
-        }
-
-        for (const p of particles) {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${dotColor},${p.a})`;
-            ctx.fill();
-        }
-    }
-
-    function animate() {
-        step();
-        draw();
-        animFrame = requestAnimationFrame(animate);
-    }
-
-    function pause() {
-        if (animFrame !== null) {
-            cancelAnimationFrame(animFrame);
-            animFrame = null;
-        }
-    }
-
-    function resume() {
-        if (animFrame === null) animate();
-    }
-
-    window.addEventListener("resize", () => { resize(); init(); }, { passive: true });
-    document.addEventListener("visibilitychange", () => {
-        document.hidden ? pause() : resume();
-    });
-
-    resize();
-    init();
-    animate();
+    setActive(sections[0].id);
 }
 
 function animateCounters() {
     const counters = document.querySelectorAll(".stat-num[data-target]");
     if (!counters.length) return;
 
-    if (window.matchMedia(REDUCED_MOTION_QUERY).matches) {
-        counters.forEach((c) => { c.textContent = c.dataset.target; });
-        return;
-    }
+    const showFinalValues = () => {
+        counters.forEach((counter) => {
+            counter.textContent = counter.dataset.target || counter.textContent;
+        });
+    };
 
-    if (!("IntersectionObserver" in window)) {
-        counters.forEach((c) => { c.textContent = c.dataset.target; });
+    if (window.matchMedia(REDUCED_MOTION_QUERY).matches || !("IntersectionObserver" in window)) {
+        showFinalValues();
         return;
     }
 
@@ -318,28 +181,31 @@ function animateCounters() {
         (entries) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
+
                 const el = entry.target;
-                const target = parseInt(el.dataset.target, 10);
-                const start = parseInt(el.textContent, 10) || 0;
-                const duration = 1100;
+                const target = Number.parseInt(el.dataset.target || "0", 10);
+                const duration = 900;
                 const startTime = performance.now();
 
                 function step(now) {
-                    const elapsed = now - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
+                    const progress = Math.min((now - startTime) / duration, 1);
                     const eased = 1 - Math.pow(1 - progress, 3);
-                    el.textContent = Math.round(start + (target - start) * eased);
-                    if (progress < 1) requestAnimationFrame(step);
+                    el.textContent = String(Math.round(target * eased));
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.textContent = String(target);
+                    }
                 }
 
                 requestAnimationFrame(step);
                 observer.unobserve(el);
             });
         },
-        { threshold: 0.6 }
+        { threshold: 0.45 }
     );
 
-    counters.forEach((c) => observer.observe(c));
+    counters.forEach((counter) => observer.observe(counter));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -350,7 +216,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSmoothScroll();
     setupRevealAnimations();
     setupActiveNavLinks();
-    setupHeroParallax();
-    initParticleCanvas();
     animateCounters();
 });
