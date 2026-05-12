@@ -41,8 +41,9 @@ function setupThemeToggle() {
 
     const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const hasSavedTheme = savedTheme === "light" || savedTheme === "dark";
-    const initialTheme = hasSavedTheme ? savedTheme : (prefersDark ? "dark" : "light");
+    const initialTheme = savedTheme === "light" || savedTheme === "dark"
+        ? savedTheme
+        : (prefersDark ? "dark" : "light");
 
     applyTheme(initialTheme);
 
@@ -132,7 +133,7 @@ function setupActiveNavLinks() {
     const navLinks = Array.from(document.querySelectorAll(".nav-link"));
     if (!sections.length || !navLinks.length || !("IntersectionObserver" in window)) return;
 
-    const navById = new Map(navLinks.map((link) => [link.getAttribute("href")?.slice(1), link]));
+    const navLinkById = new Map(navLinks.map((link) => [link.getAttribute("href")?.slice(1), link]));
 
     const setActive = (id) => {
         navLinks.forEach((link) => {
@@ -154,7 +155,7 @@ function setupActiveNavLinks() {
 
             if (!visibleEntries.length) return;
             const activeId = visibleEntries[0].target.id;
-            if (navById.has(activeId)) {
+            if (navLinkById.has(activeId)) {
                 setActive(activeId);
             }
         },
@@ -162,7 +163,9 @@ function setupActiveNavLinks() {
     );
 
     sections.forEach((section) => observer.observe(section));
-    setActive(sections[0].id);
+    if (sections[0]) {
+        setActive(sections[0].id);
+    }
 }
 
 function initializeCounters() {
