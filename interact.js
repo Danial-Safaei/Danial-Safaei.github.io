@@ -8,6 +8,8 @@ const VISITOR_BADGE_LABEL_COLOR = "%2307111f";
 const VISITOR_BADGE_COUNT_COLOR = "%230f5fd7";
 const VIEW_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/total?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
 const VISIT_BADGE_URL = `${VISITOR_BADGE_BASE_URL}/visitors?path=${VISITOR_BADGE_PATH}&style=${VISITOR_BADGE_STYLE}&labelStyle=${VISITOR_BADGE_LABEL_STYLE}&labelColor=${VISITOR_BADGE_LABEL_COLOR}&countColor=${VISITOR_BADGE_COUNT_COLOR}`;
+const NAV_OBSERVER_THRESHOLDS = [0.2, 0.45, 0.7];
+const NAV_OBSERVER_ROOT_MARGIN = "-10% 0px -55% 0px";
 
 function hardenExternalLinks() {
     document.querySelectorAll('a[target="_blank"]').forEach((link) => {
@@ -39,9 +41,8 @@ function setupThemeToggle() {
 
     const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme === "light" || savedTheme === "dark"
-        ? savedTheme
-        : (prefersDark ? "dark" : "light");
+    const hasSavedTheme = savedTheme === "light" || savedTheme === "dark";
+    const initialTheme = hasSavedTheme ? savedTheme : (prefersDark ? "dark" : "light");
 
     applyTheme(initialTheme);
 
@@ -157,7 +158,7 @@ function setupActiveNavLinks() {
                 setActive(activeId);
             }
         },
-        { threshold: [0.2, 0.45, 0.7], rootMargin: "-10% 0px -55% 0px" }
+        { threshold: NAV_OBSERVER_THRESHOLDS, rootMargin: NAV_OBSERVER_ROOT_MARGIN }
     );
 
     sections.forEach((section) => observer.observe(section));
