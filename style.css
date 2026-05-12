@@ -32,6 +32,8 @@ body.dark {
     --accent-strong: #a78bfa;
     --accent-soft: rgba(125, 211, 252, 0.14);
     --focus: #93c5fd;
+    --brand-mark-text: #04111f;
+    --btn-primary-text: #07111f;
     --hero-gradient: radial-gradient(circle at top left, rgba(125, 211, 252, 0.18), transparent 34%), radial-gradient(circle at top right, rgba(167, 139, 250, 0.18), transparent 34%), linear-gradient(180deg, #07111f 0%, #091525 52%, #07111f 100%);
 }
 
@@ -48,6 +50,8 @@ body:not(.dark) {
     --accent-strong: #6d4aff;
     --accent-soft: rgba(15, 95, 215, 0.08);
     --focus: #2563eb;
+    --brand-mark-text: #04111f;
+    --btn-primary-text: #07111f;
     --hero-gradient: radial-gradient(circle at top left, rgba(15, 95, 215, 0.12), transparent 34%), radial-gradient(circle at top right, rgba(109, 74, 255, 0.1), transparent 34%), linear-gradient(180deg, #f6f7fb 0%, #eef3f9 52%, #f6f7fb 100%);
 }
 
@@ -168,7 +172,7 @@ main,
     justify-content: center;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-    color: #04111f;
+    color: var(--brand-mark-text);
     font-family: var(--font-mono);
     font-size: 0.9rem;
 }
@@ -346,7 +350,7 @@ main,
 
 .btn-primary {
     border-color: transparent;
-    color: #07111f;
+    color: var(--btn-primary-text);
     background: linear-gradient(135deg, var(--accent), var(--accent-strong));
 }
 

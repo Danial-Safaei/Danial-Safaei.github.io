@@ -96,7 +96,9 @@ function setupSmoothScroll() {
 
             event.preventDefault();
             target.scrollIntoView({ behavior, block: "start" });
-            history.replaceState(null, "", href);
+            if (window.location.hash !== href) {
+                history.pushState(null, "", href);
+            }
         });
     });
 }
