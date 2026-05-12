@@ -166,46 +166,9 @@ function animateCounters() {
     const counters = document.querySelectorAll(".stat-num[data-target]");
     if (!counters.length) return;
 
-    const showFinalValues = () => {
-        counters.forEach((counter) => {
-            counter.textContent = counter.dataset.target || counter.textContent;
-        });
-    };
-
-    if (window.matchMedia(REDUCED_MOTION_QUERY).matches || !("IntersectionObserver" in window)) {
-        showFinalValues();
-        return;
-    }
-
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-
-                const el = entry.target;
-                const target = Number.parseInt(el.dataset.target || "0", 10);
-                const duration = 900;
-                const startTime = performance.now();
-
-                function step(now) {
-                    const progress = Math.min((now - startTime) / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    el.textContent = String(Math.round(target * eased));
-                    if (progress < 1) {
-                        requestAnimationFrame(step);
-                    } else {
-                        el.textContent = String(target);
-                    }
-                }
-
-                requestAnimationFrame(step);
-                observer.unobserve(el);
-            });
-        },
-        { threshold: 0.45 }
-    );
-
-    counters.forEach((counter) => observer.observe(counter));
+    counters.forEach((counter) => {
+        counter.textContent = counter.dataset.target || counter.textContent;
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
