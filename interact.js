@@ -98,6 +98,19 @@ function setupSmoothScroll() {
 
             event.preventDefault();
             target.scrollIntoView({ behavior, block: "start" });
+
+            // Move focus to the target so keyboard and screen-reader users follow the jump,
+            // without leaving a permanent tab stop on a non-interactive section.
+            const hadTabindex = target.hasAttribute("tabindex");
+            if (!hadTabindex) target.setAttribute("tabindex", "-1");
+            target.focus({ preventScroll: true });
+            if (!hadTabindex) {
+                target.addEventListener("blur", () => target.removeAttribute("tabindex"), { once: true });
+            }
+
+            if (window.history && typeof window.history.pushState === "function") {
+                window.history.pushState(null, "", href);
+            }
         });
     });
 }
@@ -165,13 +178,59 @@ function setupActiveNavLinks() {
     }
 }
 
-function initializeCounters() {
+function setupStatCounters() {
     const counters = document.querySelectorAll(".stat-num[data-target]");
     if (!counters.length) return;
 
-    counters.forEach((counter) => {
-        counter.textContent = counter.dataset.target || counter.textContent;
-    });
+    const prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY).matches;
+
+    const setFinal = (el) => {
+        el.textContent = el.dataset.target || el.textContent;
+    };
+
+    // No motion / no observer support: leave the real values already rendered in the HTML.
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        counters.forEach(setFinal);
+        return;
+    }
+
+    const animate = (el) => {
+        const target = Number(el.dataset.target);
+        if (!Number.isFinite(target)) {
+            setFinal(el);
+            return;
+        }
+
+        const duration = 900;
+        const startTime = performance.now();
+        el.textContent = "0";
+
+        const step = (now) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = String(Math.round(eased * target));
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                el.textContent = String(target);
+            }
+        };
+
+        requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                animate(entry.target);
+                observer.unobserve(entry.target);
+            });
+        },
+        { threshold: 0.6 }
+    );
+
+    counters.forEach((el) => observer.observe(el));
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -182,5 +241,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSmoothScroll();
     setupRevealAnimations();
     setupActiveNavLinks();
-    initializeCounters();
+    setupStatCounters();
 });

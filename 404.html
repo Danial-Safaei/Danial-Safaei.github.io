@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+    <meta name="description" content="The page you were looking for could not be found on Danial Safaei's research portfolio.">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#07111f" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+    <title>Page not found | Danial Safaei</title>
+    <link rel="icon" type="image/png" href="/images/profile.png">
+    <link rel="apple-touch-icon" href="/images/profile.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .notfound-shell {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 2rem;
+            background: var(--hero-gradient);
+        }
+
+        .notfound-card {
+            width: min(40rem, 100%);
+            text-align: center;
+            border-radius: var(--radius-xl);
+            padding: var(--space-xl);
+        }
+
+        .notfound-code {
+            margin: 0 0 1rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.82rem;
+        }
+
+        .notfound-card h1 {
+            margin: 0 0 1rem;
+            font-size: clamp(2.4rem, 6vw, 3.6rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+
+        .notfound-card p {
+            margin: 0 auto 1.85rem;
+            max-width: 46ch;
+            color: var(--muted);
+        }
+
+        .notfound-card .cta-row {
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="dark">
+    <script>
+        // Apply saved/preferred theme before first paint to avoid a flash of the wrong theme.
+        (function () {
+            try {
+                var saved = localStorage.getItem("theme");
+                var theme = (saved === "light" || saved === "dark")
+                    ? saved
+                    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.body.classList.toggle("dark", theme === "dark");
+            } catch (e) { /* localStorage/matchMedia unavailable: keep default theme */ }
+        })();
+    </script>
+    <main class="notfound-shell">
+        <div class="notfound-card hero-copy">
+            <p class="notfound-code">Error 404</p>
+            <h1>Page not found</h1>
+            <p>The page you&rsquo;re looking for doesn&rsquo;t exist or may have moved. Let&rsquo;s get you back on track.</p>
+            <div class="cta-row">
+                <a class="btn btn-primary" href="/">Back to home</a>
+                <a class="btn btn-secondary" href="/#publications">View publications</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

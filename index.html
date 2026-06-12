@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Danial Safaei is a PhD researcher at WMG, University of Warwick, building rigorous Safe AI methods for autonomous systems through scenario-based testing and synthetic data fidelity.">
+    <meta name="description" content="Danial Safaei is a PhD researcher at WMG, University of Warwick, working on Safe AI for autonomous systems, with published research on synthetic data fidelity and trustworthy evaluation.">
     <meta name="author" content="Danial Safaei">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="color-scheme" content="dark light">
     <meta name="theme-color" content="#07111f" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
     <meta property="og:title" content="Danial Safaei | Safe AI Research">
-    <meta property="og:description" content="PhD researcher at WMG, University of Warwick, focused on Safe AI, scenario-based testing, and synthetic data fidelity for autonomous systems.">
+    <meta property="og:description" content="PhD researcher at WMG, University of Warwick, focused on Safe AI and trustworthy evaluation for autonomous systems.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://danial-safaei.github.io/">
+    <meta property="og:site_name" content="Danial Safaei">
+    <meta property="og:locale" content="en_GB">
     <meta property="og:image" content="https://danial-safaei.github.io/images/profile.png">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image:width" content="460">
+    <meta property="og:image:height" content="460">
+    <meta property="og:image:alt" content="Portrait of Danial Safaei">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Danial Safaei | Safe AI Research">
-    <meta name="twitter:description" content="Research portfolio for Danial Safaei — Safe AI, scenario-based testing, and synthetic data fidelity.">
+    <meta name="twitter:description" content="Research portfolio for Danial Safaei — Safe AI and trustworthy evaluation for autonomous systems.">
     <meta name="twitter:image" content="https://danial-safaei.github.io/images/profile.png">
+    <meta name="twitter:image:alt" content="Portrait of Danial Safaei">
     <link rel="canonical" href="https://danial-safaei.github.io/">
     <link rel="icon" type="image/png" href="images/profile.png">
     <link rel="apple-touch-icon" href="images/profile.png">
@@ -36,6 +43,7 @@
           "url": "https://danial-safaei.github.io/",
           "image": "https://danial-safaei.github.io/images/profile.png",
           "jobTitle": "PhD Researcher",
+          "description": "PhD researcher at WMG, University of Warwick, working on Safe AI and trustworthy evaluation for autonomous systems.",
           "affiliation": {
             "@type": "Organization",
             "name": "WMG, University of Warwick",
@@ -87,6 +95,18 @@
     </script>
 </head>
 <body class="dark">
+    <script>
+        // Apply saved/preferred theme before first paint to avoid a flash of the wrong theme.
+        (function () {
+            try {
+                var saved = localStorage.getItem("theme");
+                var theme = (saved === "light" || saved === "dark")
+                    ? saved
+                    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.body.classList.toggle("dark", theme === "dark");
+            } catch (e) { /* localStorage/matchMedia unavailable: keep default theme */ }
+        })();
+    </script>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <header class="hero-shell" id="top">
@@ -111,7 +131,7 @@
             <div class="hero-copy reveal">
                 <p class="eyebrow">PhD Researcher · WMG, University of Warwick</p>
                 <h1 id="name">Researching the foundations of <span>Safe AI</span> for autonomous systems.</h1>
-                <p id="tagline">I build rigorous ways to evaluate whether intelligent systems can be trusted in the real world — with a focus on scenario-based testing, synthetic data fidelity, and dependable model behavior.</p>
+                <p id="tagline">I build rigorous ways to evaluate whether intelligent systems can be trusted in the real world — with a focus on synthetic data fidelity and dependable model behaviour for autonomous systems.</p>
                 <ul class="hero-points" aria-label="Research highlights">
                     <li>Developing interpretable evaluation methods for simulation-to-real transfer.</li>
                     <li>Connecting safety assurance with practical validation workflows.</li>
@@ -124,15 +144,15 @@
                 </div>
                 <div class="hero-stats" aria-label="Research overview">
                     <div class="stat-card">
-                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-num" data-target="3">3</span>
                         <span class="stat-label">Selected publications</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-num" data-target="3">0</span>
+                        <span class="stat-num" data-target="3">3</span>
                         <span class="stat-label">Core research domains</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-num" data-target="1">0</span>
+                        <span class="stat-num" data-target="1">1</span>
                         <span class="stat-label">Open-source framework</span>
                     </div>
                 </div>
@@ -195,7 +215,7 @@
             <div class="about-grid">
                 <div class="about-copy">
                     <p class="lead">Danial Safaei is a PhD researcher at <strong>WMG, University of Warwick</strong>, investigating how to make AI systems for autonomous settings more trustworthy, measurable, and deployment-ready.</p>
-                    <p>His work focuses on the parts of modern AI that matter most when systems leave the lab: how scenarios are designed for testing, how synthetic data should be evaluated before it is trusted, and how safety claims can be made with greater rigor.</p>
+                    <p>His work focuses on the parts of modern AI that matter most when systems leave the lab: how systems are tested, how synthetic data should be evaluated before it is trusted, and how safety claims can be made with greater rigor.</p>
                     <p>That agenda has led to contributions spanning smart environments, biomedical AI, and autonomous-system validation, but the common thread is consistent: building methods that are technically grounded, explainable, and useful in safety-critical practice.</p>
                 </div>
                 <div class="about-sidecard">
@@ -257,7 +277,7 @@
                     <div class="timeline-year">Now</div>
                     <div class="timeline-card">
                         <h3>Safe AI for autonomous systems</h3>
-                        <p>Current work concentrates on scenario-based testing, simulation fidelity, and the evidential foundations needed to justify trust in autonomous-system behavior.</p>
+                        <p>Ongoing work continues within Safe AI for autonomous systems, building on the evaluation and fidelity methods developed above.</p>
                     </div>
                 </li>
             </ol>
@@ -268,7 +288,7 @@
                 <p class="section-index">03</p>
                 <div>
                     <h2>Research focus</h2>
-                    <p>Three tightly connected areas shaping a coherent agenda for trustworthy autonomous intelligence.</p>
+                    <p>Connected areas of interest across trustworthy AI and autonomous systems.</p>
                 </div>
             </div>
             <div class="card-grid three-up">
@@ -278,9 +298,9 @@
                     <p>Designing frameworks that improve how safety, reliability, and assurance are argued when AI systems operate in high-consequence environments.</p>
                 </article>
                 <article class="info-card">
-                    <p class="card-label">Method</p>
+                    <p class="card-label">Testing</p>
                     <h3>Scenario-based testing</h3>
-                    <p>Developing structured ways to generate, select, and evaluate scenarios so autonomous systems are tested against the conditions that matter most.</p>
+                    <p>Testing autonomous systems against the conditions that matter most for safety and reliability.</p>
                 </article>
                 <article class="info-card">
                     <p class="card-label">Validation</p>

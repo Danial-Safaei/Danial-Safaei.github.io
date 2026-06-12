@@ -1,0 +1,4 @@
+# Normalize text files to LF in the repository (working tree follows local git config)
+* text=auto
+*.png binary
+*.jpg binary

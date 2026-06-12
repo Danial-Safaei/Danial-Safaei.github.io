@@ -2,7 +2,7 @@
 
 Personal website: https://danial-safaei.github.io
 
-PhD researcher at WMG, University of Warwick. Research interests: Safe AI, scenario-based testing for autonomous systems, and synthetic data fidelity.
+PhD researcher at WMG, University of Warwick. Research interests: Safe AI and trustworthy evaluation for autonomous systems, including synthetic data fidelity.
 
 ## Links
 - LinkedIn: https://linkedin.com/in/danial-safaei-6b8525138
