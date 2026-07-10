@@ -50,7 +50,7 @@ function setupThemeToggle() {
     toggleBtn.addEventListener("click", () => {
         const nextTheme = document.body.classList.contains("dark") ? "light" : "dark";
         applyTheme(nextTheme);
-        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+        try { localStorage.setItem(THEME_STORAGE_KEY, nextTheme); } catch (e) { /* storage unavailable */ }
     });
 }
 
@@ -140,7 +140,7 @@ function setupRevealAnimations() {
 
 function setupActiveNavLinks() {
     const sections = Array.from(document.querySelectorAll("main section[id]"));
-    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
+    const navLinks = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
     if (!sections.length || !navLinks.length || !("IntersectionObserver" in window)) return;
 
     const navLinkById = new Map(navLinks.map((link) => [link.getAttribute("href")?.slice(1), link]));
@@ -188,7 +188,6 @@ function setupStatCounters() {
         el.textContent = el.dataset.target || el.textContent;
     };
 
-    // No motion / no observer support: leave the real values already rendered in the HTML.
     if (prefersReducedMotion || !("IntersectionObserver" in window)) {
         counters.forEach(setFinal);
         return;
@@ -233,6 +232,45 @@ function setupStatCounters() {
     counters.forEach((el) => observer.observe(el));
 }
 
+function setupScrollProgress() {
+    const bar = document.getElementById("scroll-progress-bar");
+    if (!bar) return;
+
+    let ticking = false;
+    const update = () => {
+        const doc = document.documentElement;
+        const scrollable = doc.scrollHeight - doc.clientHeight;
+        const ratio = scrollable > 0 ? (doc.scrollTop || document.body.scrollTop) / scrollable : 0;
+        bar.style.width = `${Math.max(0, Math.min(1, ratio)) * 100}%`;
+        ticking = false;
+    };
+
+    const onScroll = () => {
+        if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+        }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    update();
+}
+
+function setupBackToTop() {
+    const btn = document.getElementById("back-to-top");
+    if (!btn) return;
+
+    const toggle = () => {
+        const show = window.scrollY > 600;
+        btn.hidden = false;
+        btn.classList.toggle("is-visible", show);
+    };
+
+    window.addEventListener("scroll", toggle, { passive: true });
+    toggle();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     hardenExternalLinks();
     setYear();
@@ -242,4 +280,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setupRevealAnimations();
     setupActiveNavLinks();
     setupStatCounters();
+    setupScrollProgress();
+    setupBackToTop();
 });

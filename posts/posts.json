@@ -1,0 +1,16 @@
+[
+  {
+    "slug": "welcome",
+    "title": "Welcome — and what I'll write about here",
+    "date": "2026-07-10",
+    "summary": "A short introduction to this blog: Safe AI, evaluation methodology, and honest notes from the research process.",
+    "tags": ["Meta", "Safe AI"]
+  },
+  {
+    "slug": "what-is-decisive-feature-fidelity",
+    "title": "What is Decisive Feature Fidelity?",
+    "date": "2026-07-09",
+    "summary": "Why pixel-level realism isn't enough for trustworthy simulation, and how DFF measures whether synthetic data preserves the features a model actually decides on.",
+    "tags": ["Research", "Synthetic Data", "Explainable AI"]
+  }
+]

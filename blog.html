@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog by Danial Safaei — short, technical notes on Safe AI, evaluation methodology, synthetic-data fidelity, and the research process.">
+    <meta name="author" content="Danial Safaei">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#060d18" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+    <meta property="og:title" content="Blog | Danial Safaei">
+    <meta property="og:description" content="Short, technical notes on Safe AI, evaluation methodology, and the research process.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://danial-safaei.github.io/blog.html">
+    <meta property="og:site_name" content="Danial Safaei">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:image" content="https://danial-safaei.github.io/images/profile.jpg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Blog | Danial Safaei">
+    <meta name="twitter:description" content="Short, technical notes on Safe AI and evaluation methodology.">
+    <link rel="canonical" href="https://danial-safaei.github.io/blog.html">
+    <link rel="icon" type="image/jpeg" href="images/profile.jpg">
+    <link rel="apple-touch-icon" href="images/profile.jpg">
+    <title>Blog | Danial Safaei</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark">
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem("theme");
+                var theme = (saved === "light" || saved === "dark")
+                    ? saved
+                    : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                document.body.classList.toggle("dark", theme === "dark");
+            } catch (e) { /* keep default theme */ }
+        })();
+    </script>
+
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
+    <div class="site-watermark" aria-hidden="true"></div>
+
+    <a class="skip-link" href="#blog-root">Skip to content</a>
+
+    <div class="hero-shell">
+        <div class="hero-backdrop" aria-hidden="true"></div>
+        <nav class="site-nav">
+            <a class="brand" href="index.html" aria-label="Danial Safaei homepage">
+                <span class="brand-mark">DS</span>
+                <span class="brand-text">Danial Safaei</span>
+            </a>
+            <div class="nav-links" aria-label="Primary navigation">
+                <a class="nav-link" href="index.html#about">About</a>
+                <a class="nav-link" href="index.html#publications">Publications</a>
+                <a class="nav-link" href="index.html#code">Code</a>
+                <a class="nav-link is-active" href="blog.html" aria-current="true">Blog</a>
+                <a class="nav-link" href="index.html#contact">Contact</a>
+            </div>
+            <button id="toggle-dark" type="button" aria-label="Toggle theme">Switch to light</button>
+        </nav>
+
+        <header class="page-shell blog-header reveal">
+            <a class="breadcrumb" href="index.html">← Home</a>
+            <h1 class="blog-title">Blog</h1>
+            <p class="blog-intro">Short, technical notes on Safe AI, evaluation methodology, synthetic-data fidelity, and lessons from the research process.</p>
+        </header>
+    </div>
+
+    <main class="page-shell">
+        <div id="blog-root" aria-live="polite">
+            <div class="blog-loading">Loading posts…</div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year"></span> Danial Safaei · PhD Researcher, WMG · University of Warwick</p>
+        <p class="footer-credit">Watermark: the National Automotive Innovation Centre (Prof. Lord Bhattacharyya Building), WMG, University of Warwick.</p>
+    </footer>
+
+    <a class="back-to-top" href="#top" id="back-to-top" aria-label="Back to top" hidden>↑</a>
+
+    <script src="interact.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>
