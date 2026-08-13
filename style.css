@@ -716,6 +716,10 @@ body.dark .theme-toggle .icon-moon {
 .pub-links a {
     color: var(--ink-2);
     text-decoration-color: var(--rule-strong);
+    /* Meet the 24px minimum pointer-target size (WCAG 2.2, 2.5.8). */
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
 }
 
 .pub-links a:hover {
@@ -821,6 +825,10 @@ body.dark .theme-toggle .icon-moon {
 
 .card-links a {
     color: var(--ink-2);
+    /* Meet the 24px minimum pointer-target size (WCAG 2.2, 2.5.8). */
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
 }
 
 .card-links a:hover {
