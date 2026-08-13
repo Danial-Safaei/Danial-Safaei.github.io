@@ -964,7 +964,9 @@ body.dark .theme-toggle .icon-moon {
 }
 
 .breadcrumb {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
     font-family: var(--font-sans);
     font-size: var(--step--1);
     color: var(--ink-3);
@@ -1224,6 +1226,16 @@ body.dark .theme-toggle .icon-moon {
 
 .cv-contact a {
     color: var(--ink-2);
+    /* Meet the 24px minimum pointer-target size (WCAG 2.2, 2.5.8). */
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+}
+
+.post-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
 }
 
 .cv-section {
