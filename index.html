@@ -154,7 +154,7 @@
                     <div class="hero-eyebrow">
                         <p class="label">PhD Researcher · Safe Autonomy Research Group · WMG, University of Warwick</p>
                     </div>
-                    <h1>Evidence that autonomous systems can be trusted.</h1>
+                    <h1>Evidence that autonomous systems can be <span class="hl">trusted</span>.</h1>
                     <p class="lede">I work on the measurement problem at the centre of AI safety assurance: how to tell whether a system's behaviour in simulation is evidence about its behaviour in the world — and how to make that claim defensible.</p>
                     <div class="hero-actions">
                         <a class="btn btn-primary" href="#publications">Publications</a>
@@ -173,19 +173,41 @@
                     <span class="metric-value stat-num" data-target="89">89</span>
                     <span class="metric-label">Citations</span>
                 </div>
-                <div>
+                <div class="metric-violet">
                     <span class="metric-value stat-num" data-target="6">6</span>
                     <span class="metric-label">h-index</span>
                 </div>
-                <div>
+                <div class="metric-teal">
                     <span class="metric-value stat-num" data-target="5">5</span>
                     <span class="metric-label">i10-index</span>
                 </div>
-                <div>
+                <div class="metric-rose">
                     <span class="metric-value stat-num" data-target="11">11</span>
                     <span class="metric-label">Works</span>
                 </div>
-                <p class="metrics-note">Source: <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>, August 2026.</p>
+                <div class="cite-chart" id="cite-chart" role="img" aria-label="Citations per year: 13 in 2023, 42 in 2024, 30 in 2025, and 4 so far in 2026. Source: Google Scholar.">
+                    <div class="cite-col">
+                        <span class="cite-val">13</span>
+                        <span class="cite-bar" style="--h: 31"></span>
+                        <span class="cite-year">2023</span>
+                    </div>
+                    <div class="cite-col">
+                        <span class="cite-val">42</span>
+                        <span class="cite-bar" style="--h: 100"></span>
+                        <span class="cite-year">2024</span>
+                    </div>
+                    <div class="cite-col">
+                        <span class="cite-val">30</span>
+                        <span class="cite-bar" style="--h: 71"></span>
+                        <span class="cite-year">2025</span>
+                    </div>
+                    <div class="cite-col">
+                        <span class="cite-val">4</span>
+                        <span class="cite-bar ytd" style="--h: 10"></span>
+                        <span class="cite-year">2026</span>
+                    </div>
+                </div>
+                <p class="metrics-note">Citations per year.<br>Source: <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>, August 2026.</p>
             </div>
 
             <section class="section" id="research">
@@ -214,17 +236,114 @@
                         <h3>Safety assurance for AI</h3>
                         <p>How safety, reliability, and assurance claims can be argued with evidence when learned components operate in high-consequence settings.</p>
                     </article>
-                    <article class="card">
+                    <article class="card card-violet">
                         <p class="label">Method</p>
                         <h3>Explainable evaluation</h3>
                         <p>Using interpretability methods as measurement instruments — comparing the evidence a model relies on, not only the outputs it produces.</p>
                     </article>
-                    <article class="card">
+                    <article class="card card-teal">
                         <p class="label">Application</p>
                         <h3>Synthetic-data fidelity</h3>
                         <p>Establishing whether synthetic imagery is faithful to the decision-relevant structure of real data, so simulation results transfer.</p>
                     </article>
                 </div>
+
+                <figure class="dff-figure" role="img" aria-label="Diagram of the Decisive Feature Fidelity pipeline: a real image and its synthetic twin are given to the same frozen system under test; explainable-AI methods extract the decisive evidence behind each decision; DFF scores the agreement between the two evidence maps.">
+                    <svg viewBox="0 0 880 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path d="M0 0 L10 5 L0 10 z" style="fill:var(--ink-3)"/>
+                            </marker>
+                            <linearGradient id="dffg" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="var(--accent)"/>
+                                <stop offset="1" stop-color="var(--c-violet)"/>
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Real image tile -->
+                        <g>
+                            <rect x="20" y="25" width="150" height="105" rx="8" stroke-width="1.6" style="fill:var(--accent-wash);stroke:var(--accent)"/>
+                            <line x1="32" y1="63" x2="158" y2="63" stroke-width="1.2" opacity="0.55" style="stroke:var(--accent)"/>
+                            <path d="M78 118 L95 63 L102 63 L119 118 Z" opacity="0.28" style="fill:var(--accent)"/>
+                            <line x1="98" y1="70" x2="98" y2="78" stroke-width="2" style="stroke:var(--accent)"/>
+                            <line x1="98" y1="88" x2="98" y2="98" stroke-width="2" style="stroke:var(--accent)"/>
+                            <line x1="98" y1="106" x2="98" y2="116" stroke-width="2" style="stroke:var(--accent)"/>
+                            <circle cx="140" cy="45" r="8" opacity="0.45" style="fill:var(--accent)"/>
+                            <text x="95" y="152" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);fill:var(--ink-2)">Real image</text>
+                        </g>
+
+                        <!-- Synthetic twin tile -->
+                        <g>
+                            <rect x="20" y="185" width="150" height="105" rx="8" stroke-width="1.6" style="fill:var(--c-teal-wash);stroke:var(--c-teal)"/>
+                            <line x1="32" y1="223" x2="158" y2="223" stroke-width="1.2" opacity="0.55" style="stroke:var(--c-teal)"/>
+                            <path d="M78 278 L95 223 L102 223 L119 278 Z" opacity="0.28" style="fill:var(--c-teal)"/>
+                            <line x1="98" y1="230" x2="98" y2="238" stroke-width="2" style="stroke:var(--c-teal)"/>
+                            <line x1="98" y1="248" x2="98" y2="258" stroke-width="2" style="stroke:var(--c-teal)"/>
+                            <line x1="98" y1="266" x2="98" y2="276" stroke-width="2" style="stroke:var(--c-teal)"/>
+                            <circle cx="140" cy="205" r="8" opacity="0.45" style="fill:var(--c-teal)"/>
+                            <text x="95" y="312" text-anchor="middle" font-size="12" style="font-family:var(--font-mono);fill:var(--ink-2)">Synthetic twin</text>
+                        </g>
+
+                        <!-- Arrows into SUT -->
+                        <path d="M172 77 C 215 77, 210 140, 248 140" fill="none" stroke-width="1.5" marker-end="url(#arr)" style="stroke:var(--ink-3)"/>
+                        <path d="M172 237 C 215 237, 210 180, 248 180" fill="none" stroke-width="1.5" marker-end="url(#arr)" style="stroke:var(--ink-3)"/>
+
+                        <!-- System under test -->
+                        <g>
+                            <rect x="252" y="115" width="168" height="90" rx="10" stroke-width="1.5" style="fill:var(--paper-2);stroke:var(--rule-strong)"/>
+                            <circle cx="278" cy="143" r="5" style="fill:var(--ink-3)"/>
+                            <circle cx="278" cy="163" r="5" style="fill:var(--ink-3)"/>
+                            <circle cx="278" cy="183" r="5" style="fill:var(--ink-3)"/>
+                            <circle cx="300" cy="153" r="5" opacity="0.7" style="fill:var(--ink-3)"/>
+                            <circle cx="300" cy="173" r="5" opacity="0.7" style="fill:var(--ink-3)"/>
+                            <line x1="283" y1="143" x2="295" y2="152" stroke-width="1" style="stroke:var(--ink-3)"/>
+                            <line x1="283" y1="163" x2="295" y2="155" stroke-width="1" style="stroke:var(--ink-3)"/>
+                            <line x1="283" y1="163" x2="295" y2="171" stroke-width="1" style="stroke:var(--ink-3)"/>
+                            <line x1="283" y1="183" x2="295" y2="174" stroke-width="1" style="stroke:var(--ink-3)"/>
+                            <text x="365" y="152" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-sans);fill:var(--ink)">System</text>
+                            <text x="365" y="168" text-anchor="middle" font-size="13" font-weight="600" style="font-family:var(--font-sans);fill:var(--ink)">under test</text>
+                            <text x="365" y="186" text-anchor="middle" font-size="10" style="font-family:var(--font-mono);fill:var(--ink-3)">frozen</text>
+                        </g>
+
+                        <!-- Arrows to evidence maps -->
+                        <path d="M422 145 C 450 145, 445 88, 466 88" fill="none" stroke-width="1.5" marker-end="url(#arr)" style="stroke:var(--ink-3)"/>
+                        <path d="M422 175 C 450 175, 445 228, 466 228" fill="none" stroke-width="1.5" marker-end="url(#arr)" style="stroke:var(--ink-3)"/>
+
+                        <!-- Decisive evidence: real (blue heatmap) -->
+                        <g>
+                            <g transform="translate(470,40)">
+                                <rect x="0" y="0" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--accent)"/><rect x="25" y="0" width="22" height="22" rx="3" opacity="0.32" style="fill:var(--accent)"/><rect x="50" y="0" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--accent)"/><rect x="75" y="0" width="22" height="22" rx="3" opacity="0.08" style="fill:var(--accent)"/>
+                                <rect x="0" y="25" width="22" height="22" rx="3" opacity="0.25" style="fill:var(--accent)"/><rect x="25" y="25" width="22" height="22" rx="3" opacity="0.85" style="fill:var(--accent)"/><rect x="50" y="25" width="22" height="22" rx="3" opacity="0.55" style="fill:var(--accent)"/><rect x="75" y="25" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--accent)"/>
+                                <rect x="0" y="50" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--accent)"/><rect x="25" y="50" width="22" height="22" rx="3" opacity="0.6" style="fill:var(--accent)"/><rect x="50" y="50" width="22" height="22" rx="3" opacity="0.9" style="fill:var(--accent)"/><rect x="75" y="50" width="22" height="22" rx="3" opacity="0.3" style="fill:var(--accent)"/>
+                                <rect x="0" y="75" width="22" height="22" rx="3" opacity="0.08" style="fill:var(--accent)"/><rect x="25" y="75" width="22" height="22" rx="3" opacity="0.2" style="fill:var(--accent)"/><rect x="50" y="75" width="22" height="22" rx="3" opacity="0.4" style="fill:var(--accent)"/><rect x="75" y="75" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--accent)"/>
+                            </g>
+                            <text x="518" y="155" text-anchor="middle" font-size="11" style="font-family:var(--font-mono);fill:var(--ink-2)">decisive evidence · real</text>
+                        </g>
+
+                        <!-- Decisive evidence: synthetic (teal heatmap) -->
+                        <g>
+                            <g transform="translate(470,180)">
+                                <rect x="0" y="0" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--c-teal)"/><rect x="25" y="0" width="22" height="22" rx="3" opacity="0.28" style="fill:var(--c-teal)"/><rect x="50" y="0" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--c-teal)"/><rect x="75" y="0" width="22" height="22" rx="3" opacity="0.08" style="fill:var(--c-teal)"/>
+                                <rect x="0" y="25" width="22" height="22" rx="3" opacity="0.22" style="fill:var(--c-teal)"/><rect x="25" y="25" width="22" height="22" rx="3" opacity="0.8" style="fill:var(--c-teal)"/><rect x="50" y="25" width="22" height="22" rx="3" opacity="0.5" style="fill:var(--c-teal)"/><rect x="75" y="25" width="22" height="22" rx="3" opacity="0.35" style="fill:var(--c-teal)"/>
+                                <rect x="0" y="50" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--c-teal)"/><rect x="25" y="50" width="22" height="22" rx="3" opacity="0.55" style="fill:var(--c-teal)"/><rect x="50" y="50" width="22" height="22" rx="3" opacity="0.85" style="fill:var(--c-teal)"/><rect x="75" y="50" width="22" height="22" rx="3" opacity="0.12" style="fill:var(--c-teal)"/>
+                                <rect x="0" y="75" width="22" height="22" rx="3" opacity="0.08" style="fill:var(--c-teal)"/><rect x="25" y="75" width="22" height="22" rx="3" opacity="0.45" style="fill:var(--c-teal)"/><rect x="50" y="75" width="22" height="22" rx="3" opacity="0.35" style="fill:var(--c-teal)"/><rect x="75" y="75" width="22" height="22" rx="3" opacity="0.14" style="fill:var(--c-teal)"/>
+                            </g>
+                            <text x="518" y="297" text-anchor="middle" font-size="11" style="font-family:var(--font-mono);fill:var(--ink-2)">decisive evidence · synthetic</text>
+                        </g>
+
+                        <!-- Arrows into DFF -->
+                        <path d="M572 88 C 615 88, 610 148, 646 148" fill="none" stroke-width="1.5" marker-end="url(#arr)" style="stroke:var(--ink-3)"/>
+                        <path d="M572 228 C 615 228, 610 172, 646 172" fill="none" stroke-width="1.5" marker-end="url(#arr)" style="stroke:var(--ink-3)"/>
+
+                        <!-- DFF score node -->
+                        <g>
+                            <rect x="650" y="118" width="205" height="84" rx="12" stroke="url(#dffg)" stroke-width="2.5" style="fill:var(--paper)"/>
+                            <text x="752" y="155" text-anchor="middle" font-size="26" font-weight="700" style="font-family:var(--font-sans);fill:var(--accent)">DFF</text>
+                            <text x="752" y="178" text-anchor="middle" font-size="10.5" style="font-family:var(--font-mono);fill:var(--ink-2)">agreement of decisive evidence</text>
+                        </g>
+                    </svg>
+                    <figcaption><strong>How Decisive Feature Fidelity works.</strong> A real image and its synthetic twin are shown to the same frozen system under test. Explainable-AI methods extract the evidence behind each decision, and DFF scores how well that evidence agrees — so fidelity is judged by <em>why</em> the system decides, not how the images look. Published at IEEE IV 2026.</figcaption>
+                </figure>
 
                 <figure class="figure" style="margin-top: var(--space-5);">
                     <img src="images/naic-building.jpg" alt="The National Automotive Innovation Centre at WMG, University of Warwick" width="1024" height="683" loading="lazy" decoding="async">
@@ -250,8 +369,8 @@
                             <div>
                                 <div class="pub-tags">
                                     <span class="tag tag-strong">First author</span>
+                                    <span class="tag tag-safeai">Safe AI</span>
                                     <span class="tag">IEEE IV</span>
-                                    <span class="tag">Conference</span>
                                 </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.1109/IV66570.2026.11624013" target="_blank" rel="noopener noreferrer">Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery</a></h4>
                                 <p class="pub-authors"><span class="me">D. Safaei</span>, S. Khastgir, M. Alirezaei, J. Ploeg, C.-H. Cheng, S. Tong, X. Zhao</p>
@@ -269,7 +388,7 @@
                             <div>
                                 <div class="pub-tags">
                                     <span class="tag tag-strong">First author</span>
-                                    <span class="tag">Springer</span>
+                                    <span class="tag tag-smart">Smart environments</span>
                                     <span class="tag">Journal</span>
                                 </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.1007/s41870-023-01665-1" target="_blank" rel="noopener noreferrer">DeePLT: Personalized Lighting Facilitates by Trajectory Prediction of Recognized Residents in the Smart Home</a></h4>
@@ -294,6 +413,10 @@
                         <li class="pub">
                             <div class="pub-year">2024</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-bio">Biomedical AI</span>
+                                    <span class="tag tag-ml">Graph learning</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.1101/2024.04.14.24304384" target="_blank" rel="noopener noreferrer">A GraphSAGE Discovers Synergistic Combinations of Gefitinib, Paclitaxel, and Icotinib for Lung Adenocarcinoma Management by Targeting Human Genes and Proteins: the RAIN Protocol</a></h4>
                                 <p class="pub-authors">S. Sadeghi, A. A. Kiaei, M. Boush, N. Salari, M. Mohammadi, <span class="me">D. Safaei</span>, M. Mahboubi, A. Tajfam, S. Moghadam</p>
                                 <p class="pub-venue"><em>medRxiv</em> 2024.04.14.24304384.</p>
@@ -306,6 +429,10 @@
                         <li class="pub">
                             <div class="pub-year">2024</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-bio">Biomedical AI</span>
+                                    <span class="tag tag-ml">Graph learning</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.1101/2024.02.18.24302988" target="_blank" rel="noopener noreferrer">Graph Attention Networks for Drug Combination Discovery: Targeting Pancreatic Cancer Genes with RAIN Protocol</a></h4>
                                 <p class="pub-authors">E. Parichehreh, A. A. Kiaei, M. Boush, <span class="me">D. Safaei</span>, R. Bahadori, N. Salari, M. Mohammadi, A. Khoram</p>
                                 <p class="pub-venue"><em>medRxiv</em> 2024.02.18.24302988.</p>
@@ -320,6 +447,7 @@
                             <div>
                                 <div class="pub-tags">
                                     <span class="tag tag-strong">First author</span>
+                                    <span class="tag tag-bio">Biomedical AI</span>
                                 </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.1101/2023.05.13.23289940" target="_blank" rel="noopener noreferrer">Systematic Review and Network Meta-analysis of Drug Combinations Suggested by Machine Learning on Genes and Proteins, with the Aim of Improving the Effectiveness of Ipilimumab in Treating Melanoma</a></h4>
                                 <p class="pub-authors"><span class="me">D. Safaei</span>, A. A. Kiaei, M. Boush, S. Abadijou, A. Khorramabadi, N. Salari, M. Mohammadi, E. Parichehreh</p>
@@ -333,6 +461,9 @@
                         <li class="pub">
                             <div class="pub-year">2023</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-bio">Biomedical AI</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.1101/2023.04.23.23289008" target="_blank" rel="noopener noreferrer">Drug Combinations Proposed by Machine Learning on Genes/Proteins to Improve the Efficacy of Tecovirimat in the Treatment of Monkeypox: A Systematic Review and Network Meta-analysis</a></h4>
                                 <p class="pub-authors">M. Boush, A. A. Kiaei, <span class="me">D. Safaei</span>, S. Abadijou, N. Salari, M. Mohammadi</p>
                                 <p class="pub-venue"><em>medRxiv</em> 2023.04.23.23289008.</p>
@@ -345,6 +476,10 @@
                         <li class="pub">
                             <div class="pub-year">2023</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-bio">Biomedical AI</span>
+                                    <span class="tag tag-ml">Reinforcement learning</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.1101/2023.04.20.23288906" target="_blank" rel="noopener noreferrer">Recommending Drug Combinations Using Reinforcement Learning to Target Genes/Proteins that Cause Stroke: A Comprehensive Systematic Review and Network Meta-analysis</a></h4>
                                 <p class="pub-authors">M. Boush, A. A. Kiaei, <span class="me">D. Safaei</span>, S. Abadijou, N. Salari, M. Mohammadi</p>
                                 <p class="pub-venue"><em>medRxiv</em> 2023.04.20.23288906.</p>
@@ -357,6 +492,9 @@
                         <li class="pub">
                             <div class="pub-year">2023</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-bio">Biomedical AI</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.20944/preprints202306.1184.v1" target="_blank" rel="noopener noreferrer">Diagnosing Alzheimer's Disease Levels Using Machine Learning and MRI: A Novel Approach</a></h4>
                                 <p class="pub-authors">A. A. Kiaei, R. Bahadori, H. Malek Zadeh, M. Boush, S. Abadijou, <span class="me">D. Safaei</span>, A. H. Mehdikhani</p>
                                 <p class="pub-venue"><em>Preprints.org</em> 2023060.1184.</p>
@@ -369,6 +507,9 @@
                         <li class="pub">
                             <div class="pub-year">2023</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-ml">ML methods</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.20944/preprints202305.1018.v1" target="_blank" rel="noopener noreferrer">Active Identity Function as Activation Function</a></h4>
                                 <p class="pub-authors">A. A. Kiaei, M. Boush, <span class="me">D. Safaei</span>, S. Abadijou, N. Baselizadeh, N. Salari, M. Mohammadi</p>
                                 <p class="pub-venue"><em>Preprints.org</em> 2023050.1018.</p>
@@ -381,6 +522,9 @@
                         <li class="pub">
                             <div class="pub-year">2023</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-ml">ML methods</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.20944/preprints202309.0280.v1" target="_blank" rel="noopener noreferrer">FPL: False Positive Loss</a></h4>
                                 <p class="pub-authors">A. A. Kiaei, M. Boush, <span class="me">D. Safaei</span>, S. Abadijou, N. Baselizadeh, A. Fayzi, R. Bahadori, N. Salari</p>
                                 <p class="pub-venue"><em>Preprints.org</em> 2023090.0280.</p>
@@ -393,6 +537,10 @@
                         <li class="pub">
                             <div class="pub-year">2023</div>
                             <div>
+                                <div class="pub-tags">
+                                    <span class="tag tag-bio">Biomedical AI</span>
+                                    <span class="tag tag-ml">Reinforcement learning</span>
+                                </div>
                                 <h4 class="pub-title"><a href="https://doi.org/10.21203/rs.3.rs-2379891/v1" target="_blank" rel="noopener noreferrer">Recommending Drug Combinations Using Reinforcement Learning Targeting Genes/Proteins Associated with Heterozygous Familial Hypercholesterolemia: A Comprehensive Systematic Review and Network Meta-analysis</a></h4>
                                 <p class="pub-authors">A. A. Kiaei, M. Boush, S. Abadijou, S. Momeni, <span class="me">D. Safaei</span>, R. Bahadori, N. Salari, M. Mohammadi</p>
                                 <p class="pub-venue"><em>Research Square</em>, preprint (in review).</p>

@@ -18,11 +18,24 @@
     --ink-3: #6c6e73;
     --rule: #e2e1db;
     --rule-strong: #c4c3bc;
-    --accent: #1d3f6e;
+    --accent: #2563eb;
     --accent-ink: #ffffff;
-    --accent-wash: #eef2f8;
-    --focus: #1d3f6e;
+    --accent-wash: #eff4fe;
+    --focus: #2563eb;
     --shadow: 0 1px 2px rgba(20, 20, 25, 0.06);
+
+    /* Semantic research-area hues (all pass AA on --paper) */
+    --c-violet: #7c3aed;
+    --c-teal: #0f766e;
+    --c-rose: #be123c;
+    --c-amber: #b45309;
+    --c-violet-wash: #f1eafd;
+    --c-teal-wash: #e3f4f2;
+    --c-rose-wash: #fcebef;
+    --c-amber-wash: #fcf5eb;
+    --hero-wash:
+        radial-gradient(58rem 26rem at 12% -8%, rgba(37, 99, 235, 0.07), transparent 60%),
+        radial-gradient(50rem 24rem at 88% -12%, rgba(124, 58, 237, 0.06), transparent 60%);
 
     /* Scale */
     --measure: 68ch;
@@ -55,11 +68,23 @@ body.dark {
     --ink-3: #8b8d92;
     --rule: #2a2c31;
     --rule-strong: #3f424a;
-    --accent: #9cc0ef;
+    --accent: #8ab4ff;
     --accent-ink: #101114;
-    --accent-wash: #182234;
-    --focus: #9cc0ef;
+    --accent-wash: #1a2540;
+    --focus: #8ab4ff;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+
+    --c-violet: #c1a4ff;
+    --c-teal: #63d8cc;
+    --c-rose: #ff9eb3;
+    --c-amber: #f0b429;
+    --c-violet-wash: #241a3d;
+    --c-teal-wash: #10302d;
+    --c-rose-wash: #3a1a24;
+    --c-amber-wash: #362a10;
+    --hero-wash:
+        radial-gradient(58rem 26rem at 12% -8%, rgba(138, 180, 255, 0.08), transparent 60%),
+        radial-gradient(50rem 24rem at 88% -12%, rgba(193, 164, 255, 0.07), transparent 60%);
 
     color-scheme: dark;
 }
@@ -312,12 +337,27 @@ body.dark .theme-toggle .icon-moon {
 
 /* ---------- Hero ---------- */
 
+body {
+    background-image: var(--hero-wash);
+    background-repeat: no-repeat;
+    background-size: 100% 60rem;
+}
+
 .hero {
     padding: var(--space-7) 0 var(--space-5);
     display: grid;
     grid-template-columns: minmax(0, 1fr) 14rem;
     gap: var(--space-6);
     align-items: start;
+}
+
+/* Colored highlight on the key phrase */
+.hl {
+    background: linear-gradient(100deg, var(--accent), var(--c-violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--accent); /* fallback */
 }
 
 .hero-eyebrow {
@@ -355,14 +395,9 @@ body.dark .theme-toggle .icon-moon {
     max-width: 14rem;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 3px;
-    filter: grayscale(100%) contrast(1.02);
-    transition: filter 400ms ease;
+    border-radius: 6px;
     border: 1px solid var(--rule);
-}
-
-.portrait:hover {
-    filter: grayscale(0%);
+    box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
 .portrait-caption {
@@ -430,7 +465,12 @@ body.dark .theme-toggle .icon-moon {
     line-height: 1;
     letter-spacing: -0.02em;
     font-variant-numeric: tabular-nums;
+    color: var(--accent);
 }
+
+.metric-violet .metric-value { color: var(--c-violet); }
+.metric-teal .metric-value { color: var(--c-teal); }
+.metric-rose .metric-value { color: var(--c-rose); }
 
 .metric-label {
     display: block;
@@ -455,6 +495,72 @@ body.dark .theme-toggle .icon-moon {
     color: inherit;
 }
 
+/* ---------- Citations-per-year chart ---------- */
+
+.cite-chart {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: flex-end;
+    gap: 1.1rem;
+    margin-left: auto;
+    padding-right: 0.25rem;
+}
+
+.cite-col {
+    display: grid;
+    justify-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+}
+
+.cite-val {
+    font-size: 0.72rem;
+    color: var(--ink-2);
+    font-variant-numeric: tabular-nums;
+}
+
+.cite-bar {
+    width: 1.7rem;
+    height: calc(var(--h) * 4.2rem / 100);
+    min-height: 4px;
+    border-radius: 3px 3px 1px 1px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 82%, var(--c-violet)), var(--accent));
+    transform-origin: bottom;
+    transform: scaleY(0);
+    transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cite-bar.ytd {
+    background: repeating-linear-gradient(-45deg,
+        color-mix(in srgb, var(--accent) 55%, var(--paper)) 0 4px,
+        color-mix(in srgb, var(--accent) 22%, var(--paper)) 4px 8px);
+    border: 1px solid color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+.cite-chart.is-in .cite-bar,
+.cite-chart .cite-bar:only-child {
+    transform: scaleY(1);
+}
+
+.cite-bar:nth-child(1) { transition-delay: 0ms; }
+
+.cite-col:nth-child(2) .cite-bar { transition-delay: 90ms; }
+.cite-col:nth-child(3) .cite-bar { transition-delay: 180ms; }
+.cite-col:nth-child(4) .cite-bar { transition-delay: 270ms; }
+
+.cite-year {
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cite-bar {
+        transform: scaleY(1);
+        transition: none;
+    }
+}
+
 /* ---------- Sections ---------- */
 
 .section {
@@ -477,10 +583,20 @@ body.dark .theme-toggle .icon-moon {
 .section-num {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    color: var(--ink-3);
+    color: var(--accent);
     letter-spacing: 0.08em;
     flex: none;
     padding-top: 0.35em;
+}
+
+.section-head::after {
+    content: "";
+    flex: 1;
+    height: 2px;
+    align-self: center;
+    margin-left: 0.5rem;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 35%, transparent), transparent 70%);
+    border-radius: 2px;
 }
 
 .section-intro {
@@ -497,6 +613,50 @@ body.dark .theme-toggle .icon-moon {
 
 .prose strong {
     font-weight: 600;
+}
+
+.prose a,
+.entry-body a,
+.aside-note a,
+.section-intro a {
+    color: var(--accent);
+    text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.pub-title a:hover {
+    color: var(--accent);
+}
+
+/* ---------- DFF pipeline figure ---------- */
+
+.dff-figure {
+    margin: var(--space-5) 0 0;
+    padding: var(--space-4);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background:
+        radial-gradient(30rem 16rem at 8% 0%, color-mix(in srgb, var(--accent) 5%, transparent), transparent 60%),
+        radial-gradient(26rem 14rem at 95% 100%, color-mix(in srgb, var(--c-violet) 5%, transparent), transparent 60%),
+        var(--paper);
+}
+
+.dff-figure svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.dff-figure figcaption {
+    margin-top: var(--space-3);
+    font-family: var(--font-sans);
+    font-size: var(--step--1);
+    line-height: 1.55;
+    color: var(--ink-2);
+    max-width: var(--measure);
+}
+
+.dff-figure figcaption strong {
+    color: var(--ink);
 }
 
 .two-col {
@@ -578,16 +738,10 @@ body.dark .theme-toggle .icon-moon {
 
 .figure img {
     width: 100%;
-    border-radius: 3px;
+    border-radius: 6px;
     border: 1px solid var(--rule);
-    filter: grayscale(100%);
-    opacity: 0.94;
-    transition: filter 400ms ease, opacity 400ms ease;
-}
-
-.figure:hover img {
-    filter: grayscale(0%);
-    opacity: 1;
+    /* The source photo is monochrome; tint it toward the site's blue so it reads as intentional. */
+    filter: grayscale(1) sepia(0.32) hue-rotate(175deg) saturate(1.5) brightness(1.03);
 }
 
 .figure figcaption {
@@ -675,6 +829,37 @@ body.dark .theme-toggle .icon-moon {
     color: var(--accent);
     border-color: color-mix(in srgb, var(--accent) 40%, var(--rule));
     background: var(--accent-wash);
+}
+
+/* Research-domain tag hues */
+.tag-safeai {
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 38%, var(--rule));
+    background: var(--accent-wash);
+}
+
+.tag-ml {
+    color: var(--c-violet);
+    border-color: color-mix(in srgb, var(--c-violet) 38%, var(--rule));
+    background: var(--c-violet-wash);
+}
+
+.tag-bio {
+    color: var(--c-rose);
+    border-color: color-mix(in srgb, var(--c-rose) 38%, var(--rule));
+    background: var(--c-rose-wash);
+}
+
+.tag-smart {
+    color: var(--c-amber);
+    border-color: color-mix(in srgb, var(--c-amber) 38%, var(--rule));
+    background: var(--c-amber-wash);
+}
+
+.tag-teal {
+    color: var(--c-teal);
+    border-color: color-mix(in srgb, var(--c-teal) 38%, var(--rule));
+    background: var(--c-teal-wash);
 }
 
 .pub-title {
@@ -791,12 +976,26 @@ body.dark .theme-toggle .icon-moon {
 
 .card {
     padding: var(--space-3) 0 0;
-    border-top: 2px solid var(--rule-strong);
+    border-top: 3px solid var(--rule-strong);
 }
 
 .card-accent {
     border-top-color: var(--accent);
 }
+
+.card-accent .label { color: var(--accent); }
+
+.card-violet { border-top-color: var(--c-violet); }
+
+.card-violet .label { color: var(--c-violet); }
+
+.card-teal { border-top-color: var(--c-teal); }
+
+.card-teal .label { color: var(--c-teal); }
+
+.card-amber { border-top-color: var(--c-amber); }
+
+.card-amber .label { color: var(--c-amber); }
 
 .card h3 {
     font-size: var(--step-1);
@@ -1389,6 +1588,16 @@ body.dark .theme-toggle .icon-moon {
 
     .metrics {
         gap: var(--space-4);
+    }
+
+    .cite-chart {
+        flex-basis: 100%;
+        margin-left: 0;
+        justify-content: flex-start;
+    }
+
+    .metrics-note {
+        text-align: left;
     }
 
     .section-head {

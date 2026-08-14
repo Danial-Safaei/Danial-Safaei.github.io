@@ -227,6 +227,31 @@ function setupStatCounters() {
     counters.forEach((el) => observer.observe(el));
 }
 
+/* ---------- Citations chart ---------- */
+
+function setupCiteChart() {
+    const chart = document.getElementById("cite-chart");
+    if (!chart) return;
+
+    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+        chart.classList.add("is-in");
+        return;
+    }
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-in");
+                observer.unobserve(entry.target);
+            });
+        },
+        { threshold: 0.5 }
+    );
+
+    observer.observe(chart);
+}
+
 /* ---------- Back to top ---------- */
 
 function setupBackToTop() {
@@ -268,6 +293,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupRevealAnimations();
     setupActiveNavLinks();
     setupStatCounters();
+    setupCiteChart();
     setupBackToTop();
     setupPrintButton();
 });
