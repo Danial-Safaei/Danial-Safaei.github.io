@@ -14,7 +14,7 @@ PhD researcher in the Safe Autonomy Research Group at WMG, University of Warwick
 - ORCID: https://orcid.org/0000-0002-4443-8763
 - Google Scholar: https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en
 - GitHub: https://github.com/Danial-Safaei
-- LinkedIn: https://www.linkedin.com/in/danial-safaei-6b8525138
+- LinkedIn: https://www.linkedin.com/in/danial-safaei
 - ResearchGate: https://www.researchgate.net/profile/Danial-Safaei
 
 ## About this repository
