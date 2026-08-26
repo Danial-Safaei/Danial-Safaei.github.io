@@ -8,7 +8,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="color-scheme" content="light dark">
     <meta name="theme-color" content="#fdfdfb" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#101114" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#0c1322" media="(prefers-color-scheme: dark)">
     <meta property="og:title" content="Writing | Danial Safaei">
     <meta property="og:description" content="Short technical notes on Safe AI, evaluation methodology, and the research process.">
     <meta property="og:type" content="website">
@@ -33,7 +33,7 @@
         (function () {
             try {
                 var saved = localStorage.getItem("theme");
-                var dark = saved === "dark" || (saved !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+                var dark = saved === "dark"; // light is the default; dark is an explicit visitor choice
                 if (dark) { document.body.classList.add("dark"); }
             } catch (e) { /* keep the light default */ }
         })();

@@ -34,8 +34,9 @@
     --c-rose-wash: #fcebef;
     --c-amber-wash: #fcf5eb;
     --hero-wash:
-        radial-gradient(58rem 26rem at 12% -8%, rgba(37, 99, 235, 0.07), transparent 60%),
-        radial-gradient(50rem 24rem at 88% -12%, rgba(124, 58, 237, 0.06), transparent 60%);
+        radial-gradient(58rem 26rem at 12% -8%, rgba(37, 99, 235, 0.10), transparent 60%),
+        radial-gradient(50rem 24rem at 88% -12%, rgba(124, 58, 237, 0.08), transparent 60%),
+        radial-gradient(44rem 22rem at 55% 108%, rgba(15, 118, 110, 0.05), transparent 60%);
 
     /* Scale */
     --measure: 68ch;
@@ -60,17 +61,19 @@
     color-scheme: light;
 }
 
+/* Dark is an explicit visitor choice (moon toggle), never the default.
+   Deep navy rather than flat black, with stronger colour washes. */
 body.dark {
-    --paper: #101114;
-    --paper-2: #191a1e;
-    --ink: #ecebe6;
-    --ink-2: #b7b8bb;
-    --ink-3: #8b8d92;
-    --rule: #2a2c31;
-    --rule-strong: #3f424a;
+    --paper: #0c1322;
+    --paper-2: #141d33;
+    --ink: #edeef2;
+    --ink-2: #bac0cd;
+    --ink-3: #8e96a8;
+    --rule: #223050;
+    --rule-strong: #354a73;
     --accent: #8ab4ff;
-    --accent-ink: #101114;
-    --accent-wash: #1a2540;
+    --accent-ink: #0c1322;
+    --accent-wash: #182540;
     --focus: #8ab4ff;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 
@@ -78,13 +81,14 @@ body.dark {
     --c-teal: #63d8cc;
     --c-rose: #ff9eb3;
     --c-amber: #f0b429;
-    --c-violet-wash: #241a3d;
-    --c-teal-wash: #10302d;
-    --c-rose-wash: #3a1a24;
-    --c-amber-wash: #362a10;
+    --c-violet-wash: #261d44;
+    --c-teal-wash: #103631;
+    --c-rose-wash: #3d1c28;
+    --c-amber-wash: #382d12;
     --hero-wash:
-        radial-gradient(58rem 26rem at 12% -8%, rgba(138, 180, 255, 0.08), transparent 60%),
-        radial-gradient(50rem 24rem at 88% -12%, rgba(193, 164, 255, 0.07), transparent 60%);
+        radial-gradient(58rem 26rem at 12% -8%, rgba(138, 180, 255, 0.14), transparent 60%),
+        radial-gradient(50rem 24rem at 88% -12%, rgba(193, 164, 255, 0.12), transparent 60%),
+        radial-gradient(44rem 22rem at 55% 108%, rgba(99, 216, 204, 0.07), transparent 60%);
 
     color-scheme: dark;
 }

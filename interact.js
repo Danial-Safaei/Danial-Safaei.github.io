@@ -55,23 +55,8 @@ function setupThemeToggle() {
         } catch (e) { /* storage unavailable; theme still applies for this page view */ }
     });
 
-    // Follow the system preference while the visitor has made no explicit choice.
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = (event) => {
-        let saved = null;
-        try {
-            saved = localStorage.getItem(THEME_STORAGE_KEY);
-        } catch (e) { /* ignore */ }
-        if (saved !== "light" && saved !== "dark") {
-            applyTheme(event.matches ? "dark" : "light");
-        }
-    };
-
-    if (typeof media.addEventListener === "function") {
-        media.addEventListener("change", onChange);
-    } else if (typeof media.addListener === "function") {
-        media.addListener(onChange);
-    }
+    // Light is the site's default for everyone; dark applies only as an explicit
+    // visitor choice made with this toggle. No system-preference listener.
 }
 
 /* ---------- Smooth in-page navigation ---------- */
