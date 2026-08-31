@@ -11,6 +11,10 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    # Scholar rate-limits datacentre IPs; scholarly can retry for a long time.
+    # Bound the job so a blocked scrape costs minutes, not hours - the site
+    # simply keeps its committed data until the next weekly attempt.
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
 
