@@ -1,0 +1,183 @@
+{
+  "note": "Single source of truth for the publication list. The homepage renders this file at runtime; edit here and the site updates.",
+  "publications": [
+    {
+      "id": "dff-iv2026",
+      "group": "peer",
+      "year": "2026",
+      "tags": [
+        { "label": "First author", "type": "strong" },
+        { "label": "Safe AI", "type": "safeai" },
+        { "label": "IEEE IV", "type": "plain" }
+      ],
+      "title": "Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery",
+      "authors": "D. Safaei, S. Khastgir, M. Alirezaei, J. Ploeg, C.-H. Cheng, S. Tong, X. Zhao",
+      "venue": "<em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Detroit, MI, USA, June 2026.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.1109/IV66570.2026.11624013" },
+        { "label": "arXiv", "href": "https://arxiv.org/abs/2512.16468" },
+        { "label": "Code", "href": "https://github.com/Danial-Safaei/DFF" },
+        { "label": "Explainer", "href": "blog.html#what-is-decisive-feature-fidelity" }
+      ],
+      "cites": null
+    },
+    {
+      "id": "deeplt",
+      "group": "peer",
+      "year": "2024",
+      "tags": [
+        { "label": "First author", "type": "strong" },
+        { "label": "Smart environments", "type": "smart" },
+        { "label": "Journal", "type": "plain" }
+      ],
+      "title": "DeePLT: Personalized Lighting Facilitates by Trajectory Prediction of Recognized Residents in the Smart Home",
+      "authors": "D. Safaei, A. Sobhani, A. A. Kiaei",
+      "venue": "<em>International Journal of Information Technology</em>, vol. 16, no. 5, pp. 2987–2999. Published online December 2023.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.1007/s41870-023-01665-1" },
+        { "label": "arXiv", "href": "https://arxiv.org/abs/2304.08027" }
+      ],
+      "cites": 13
+    },
+    {
+      "id": "graphsage-rain",
+      "group": "preprint",
+      "year": "2024",
+      "tags": [
+        { "label": "Biomedical AI", "type": "bio" },
+        { "label": "Graph learning", "type": "ml" }
+      ],
+      "title": "A GraphSAGE Discovers Synergistic Combinations of Gefitinib, Paclitaxel, and Icotinib for Lung Adenocarcinoma Management by Targeting Human Genes and Proteins: the RAIN Protocol",
+      "authors": "S. Sadeghi, A. A. Kiaei, M. Boush, N. Salari, M. Mohammadi, D. Safaei, M. Mahboubi, A. Tajfam, S. Moghadam",
+      "venue": "<em>medRxiv</em> 2024.04.14.24304384.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.1101/2024.04.14.24304384" }
+      ],
+      "cites": 4
+    },
+    {
+      "id": "gat-pancreatic",
+      "group": "preprint",
+      "year": "2024",
+      "tags": [
+        { "label": "Biomedical AI", "type": "bio" },
+        { "label": "Graph learning", "type": "ml" }
+      ],
+      "title": "Graph Attention Networks for Drug Combination Discovery: Targeting Pancreatic Cancer Genes with RAIN Protocol",
+      "authors": "E. Parichehreh, A. A. Kiaei, M. Boush, D. Safaei, R. Bahadori, N. Salari, M. Mohammadi, A. Khoram",
+      "venue": "<em>medRxiv</em> 2024.02.18.24302988.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.1101/2024.02.18.24302988" }
+      ],
+      "cites": 4
+    },
+    {
+      "id": "ipilimumab",
+      "group": "preprint",
+      "year": "2023",
+      "tags": [
+        { "label": "First author", "type": "strong" },
+        { "label": "Biomedical AI", "type": "bio" }
+      ],
+      "title": "Systematic Review and Network Meta-analysis of Drug Combinations Suggested by Machine Learning on Genes and Proteins, with the Aim of Improving the Effectiveness of Ipilimumab in Treating Melanoma",
+      "authors": "D. Safaei, A. A. Kiaei, M. Boush, S. Abadijou, A. Khorramabadi, N. Salari, M. Mohammadi, E. Parichehreh",
+      "venue": "<em>medRxiv</em> 2023.05.13.23289940.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.1101/2023.05.13.23289940" }
+      ],
+      "cites": 10
+    },
+    {
+      "id": "tecovirimat",
+      "group": "preprint",
+      "year": "2023",
+      "tags": [
+        { "label": "Biomedical AI", "type": "bio" }
+      ],
+      "title": "Drug Combinations Proposed by Machine Learning on Genes/Proteins to Improve the Efficacy of Tecovirimat in the Treatment of Monkeypox: A Systematic Review and Network Meta-analysis",
+      "authors": "M. Boush, A. A. Kiaei, D. Safaei, S. Abadijou, N. Salari, M. Mohammadi",
+      "venue": "<em>medRxiv</em> 2023.04.23.23289008.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.1101/2023.04.23.23289008" }
+      ],
+      "cites": 12
+    },
+    {
+      "id": "stroke-rl",
+      "group": "preprint",
+      "year": "2023",
+      "tags": [
+        { "label": "Biomedical AI", "type": "bio" },
+        { "label": "Reinforcement learning", "type": "ml" }
+      ],
+      "title": "Recommending Drug Combinations Using Reinforcement Learning to Target Genes/Proteins that Cause Stroke: A Comprehensive Systematic Review and Network Meta-analysis",
+      "authors": "M. Boush, A. A. Kiaei, D. Safaei, S. Abadijou, N. Salari, M. Mohammadi",
+      "venue": "<em>medRxiv</em> 2023.04.20.23288906.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.1101/2023.04.20.23288906" }
+      ],
+      "cites": 13
+    },
+    {
+      "id": "alzheimers",
+      "group": "preprint",
+      "year": "2023",
+      "tags": [
+        { "label": "Biomedical AI", "type": "bio" }
+      ],
+      "title": "Diagnosing Alzheimer's Disease Levels Using Machine Learning and MRI: A Novel Approach",
+      "authors": "A. A. Kiaei, R. Bahadori, H. Malek Zadeh, M. Boush, S. Abadijou, D. Safaei, A. H. Mehdikhani",
+      "venue": "<em>Preprints.org</em> 202306.1184.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.20944/preprints202306.1184.v1" }
+      ],
+      "cites": 12
+    },
+    {
+      "id": "active-identity",
+      "group": "preprint",
+      "year": "2023",
+      "tags": [
+        { "label": "ML methods", "type": "ml" }
+      ],
+      "title": "Active Identity Function as Activation Function",
+      "authors": "A. A. Kiaei, M. Boush, D. Safaei, S. Abadijou, N. Baselizadeh, N. Salari, M. Mohammadi",
+      "venue": "<em>Preprints.org</em> 202305.1018.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.20944/preprints202305.1018.v1" }
+      ],
+      "cites": 11
+    },
+    {
+      "id": "fpl",
+      "group": "preprint",
+      "year": "2023",
+      "tags": [
+        { "label": "ML methods", "type": "ml" }
+      ],
+      "title": "FPL: False Positive Loss",
+      "authors": "A. A. Kiaei, M. Boush, D. Safaei, S. Abadijou, N. Baselizadeh, A. Fayzi, R. Bahadori, N. Salari",
+      "venue": "<em>Preprints.org</em> 202309.0280.",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.20944/preprints202309.0280.v1" }
+      ],
+      "cites": 4
+    },
+    {
+      "id": "hfh-rl",
+      "group": "preprint",
+      "year": "2023",
+      "tags": [
+        { "label": "Biomedical AI", "type": "bio" },
+        { "label": "Reinforcement learning", "type": "ml" }
+      ],
+      "title": "Recommending Drug Combinations Using Reinforcement Learning Targeting Genes/Proteins Associated with Heterozygous Familial Hypercholesterolemia: A Comprehensive Systematic Review and Network Meta-analysis",
+      "authors": "A. A. Kiaei, M. Boush, S. Abadijou, S. Momeni, D. Safaei, R. Bahadori, N. Salari, M. Mohammadi",
+      "venue": "<em>Research Square</em>, preprint (in review).",
+      "links": [
+        { "label": "DOI", "href": "https://doi.org/10.21203/rs.3.rs-2379891/v1" }
+      ],
+      "cites": 6
+    }
+  ]
+}
