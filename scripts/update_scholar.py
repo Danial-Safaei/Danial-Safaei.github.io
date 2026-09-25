@@ -13,6 +13,14 @@ One pass keeps every copy of the numbers in step:
 Fail-safe by design: if Scholar is unreachable, rate-limits the runner, serves
 a CAPTCHA, or returns anything that does not parse cleanly and plausibly, the
 Scholar data is left untouched. The script always exits 0.
+
+Google Scholar refuses requests from GitHub's servers (HTTP 403), so the
+Action usually keeps the committed data. A weekly scheduled run on Danial's
+own machine reads the profile in a real browser and feeds the numbers in with
+--from-browser, which goes through exactly the same checks and rendering:
+
+    python scripts/update_scholar.py --from-browser scholar-browser.json
+    python scripts/update_scholar.py --offline   # re-render fallbacks only
 """
 
 from __future__ import annotations
@@ -256,12 +264,33 @@ def load_json(path: Path) -> dict:
         return {}
 
 
-def refresh_from_scholar(old: dict) -> None:
-    try:
-        profile = parse_profile(fetch_profile())
-    except Exception as exc:  # network block, rate limit, CAPTCHA, layout change
-        log(f"Scholar not usable this run, keeping existing data: {exc}")
-        return
+def load_browser_profile(path: Path) -> dict:
+    """Profile numbers read from Scholar in a real browser (see --from-browser).
+
+    Expected JSON: {"citations": int, "hIndex": int, "i10Index": int,
+    "perYear": {"2023": 13, ...}, "rows": [{"title": str, "cites": int}, ...]}
+    """
+    raw = json.loads(path.read_text(encoding="utf-8-sig"))
+    profile = {
+        "citations": int(raw["citations"]),
+        "hIndex": int(raw["hIndex"]),
+        "i10Index": int(raw["i10Index"]),
+        "perYear": {str(k): int(v) for k, v in sorted(raw["perYear"].items())},
+        "rows": [{"title": str(r["title"]).strip(), "cites": int(r.get("cites") or 0)}
+                 for r in raw["rows"]],
+    }
+    if not profile["rows"]:
+        raise ValueError("no publication rows")
+    return profile
+
+
+def refresh_from_scholar(old: dict, profile: dict | None = None) -> None:
+    if profile is None:
+        try:
+            profile = parse_profile(fetch_profile())
+        except Exception as exc:  # network block, rate limit, CAPTCHA, layout change
+            log(f"Scholar not usable this run, keeping existing data: {exc}")
+            return
 
     new = {
         "updated": old.get("updated", date.today().isoformat()),
@@ -292,8 +321,24 @@ def refresh_from_scholar(old: dict) -> None:
             PUBS_JSON.write_text(patched, encoding="utf-8")
 
 
-def main() -> int:
-    refresh_from_scholar(load_json(SCHOLAR_JSON))
+def main(argv: list[str] | None = None) -> int:
+    """Usage:
+      update_scholar.py                        fetch Scholar directly (GitHub Action)
+      update_scholar.py --from-browser F.json  use numbers read in a browser
+      update_scholar.py --offline              only re-render the static fallbacks
+    """
+    args = sys.argv[1:] if argv is None else argv
+    if "--offline" in args:
+        log("offline: skipping Scholar, re-rendering fallbacks only")
+    elif "--from-browser" in args:
+        try:
+            profile = load_browser_profile(Path(args[args.index("--from-browser") + 1]))
+        except Exception as exc:
+            log(f"could not read browser data, keeping existing data: {exc}")
+        else:
+            refresh_from_scholar(load_json(SCHOLAR_JSON), profile)
+    else:
+        refresh_from_scholar(load_json(SCHOLAR_JSON))
 
     # Always re-render the static fallbacks from the committed data, so a
     # hand edit to publications.json (e.g. a new paper) also reaches the HTML.
