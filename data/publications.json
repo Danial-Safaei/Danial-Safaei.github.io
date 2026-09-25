@@ -17,9 +17,9 @@
         { "label": "DOI", "href": "https://doi.org/10.1109/IV66570.2026.11624013" },
         { "label": "arXiv", "href": "https://arxiv.org/abs/2512.16468" },
         { "label": "Code", "href": "https://github.com/Danial-Safaei/DFF" },
-        { "label": "Explainer", "href": "blog.html#what-is-decisive-feature-fidelity" }
+        { "label": "Explainer", "href": "blog.html?post=what-is-decisive-feature-fidelity" }
       ],
-      "cites": null
+      "cites": 1
     },
     {
       "id": "deeplt",
@@ -37,7 +37,7 @@
         { "label": "DOI", "href": "https://doi.org/10.1007/s41870-023-01665-1" },
         { "label": "arXiv", "href": "https://arxiv.org/abs/2304.08027" }
       ],
-      "cites": 13
+      "cites": 14
     },
     {
       "id": "graphsage-rain",
@@ -53,7 +53,7 @@
       "links": [
         { "label": "DOI", "href": "https://doi.org/10.1101/2024.04.14.24304384" }
       ],
-      "cites": 4
+      "cites": 5
     },
     {
       "id": "gat-pancreatic",
@@ -64,7 +64,7 @@
         { "label": "Graph learning", "type": "ml" }
       ],
       "title": "Graph Attention Networks for Drug Combination Discovery: Targeting Pancreatic Cancer Genes with RAIN Protocol",
-      "authors": "E. Parichehreh, A. A. Kiaei, M. Boush, D. Safaei, R. Bahadori, N. Salari, M. Mohammadi, A. Khoram",
+      "authors": "E. Parichehreh, A. A. Kiaei, M. Boush, D. Safaei, R. Bahadori, N. Salari, M. Mohammadi, A. Khorram",
       "venue": "<em>medRxiv</em> 2024.02.18.24302988.",
       "links": [
         { "label": "DOI", "href": "https://doi.org/10.1101/2024.02.18.24302988" }
@@ -173,7 +173,7 @@
       ],
       "title": "Recommending Drug Combinations Using Reinforcement Learning Targeting Genes/Proteins Associated with Heterozygous Familial Hypercholesterolemia: A Comprehensive Systematic Review and Network Meta-analysis",
       "authors": "A. A. Kiaei, M. Boush, S. Abadijou, S. Momeni, D. Safaei, R. Bahadori, N. Salari, M. Mohammadi",
-      "venue": "<em>Research Square</em>, preprint (in review).",
+      "venue": "<em>Research Square</em> preprint rs-2379891.",
       "links": [
         { "label": "DOI", "href": "https://doi.org/10.21203/rs.3.rs-2379891/v1" }
       ],

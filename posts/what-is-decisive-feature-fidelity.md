@@ -18,10 +18,10 @@ We call that agreement **mechanism parity**: not "do these look alike?" but "doe
 
 ## How it was validated
 
-We evaluated DFF on **2,126 matched real–synthetic frame pairs** from KITTI and Virtual KITTI 2, across two very different automotive tasks:
+We evaluated DFF on **2,126 matched real–synthetic frame pairs** from KITTI and Virtual KITTI 2, across two very different automotive tasks and three frozen systems under test:
 
 - a **PilotNet-style steering regressor**, and
-- a **YOLOP segmentation head**.
+- **YOLOP's two segmentation heads**, drivable area and lane lines.
 
 | Question | Pixel metrics | DFF |
 | --- | --- | --- |
@@ -32,4 +32,4 @@ We evaluated DFF on **2,126 matched real–synthetic frame pairs** from KITTI an
 
 If we want to justify using simulation to test an autonomous system, we need evidence that the simulation exercises the same decision mechanisms the real world would. DFF is a step toward making that argument *measurable* rather than assumed.
 
-The full paper is on [arXiv](https://arxiv.org/abs/2512.16468), and the reference implementation is [on GitHub](https://github.com/Danial-Safaei/DFF).
+The paper is published in the proceedings of the 2026 IEEE Intelligent Vehicles Symposium ([IEEE Xplore](https://doi.org/10.1109/IV66570.2026.11624013)). An open-access version is on [arXiv](https://arxiv.org/abs/2512.16468), and the reference implementation is [on GitHub](https://github.com/Danial-Safaei/DFF).

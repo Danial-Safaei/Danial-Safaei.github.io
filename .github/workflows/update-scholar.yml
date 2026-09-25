@@ -2,40 +2,46 @@ name: Update Scholar metrics
 
 on:
   schedule:
-    - cron: "0 6 * * 1" # every Monday 06:00 UTC
+    - cron: "17 5 * * *" # daily, 05:17 UTC
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - data/publications.json
+      - scripts/update_scholar.py
 
 permissions:
   contents: write
+  pages: write
+
+concurrency:
+  group: update-scholar
+  cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    # Scholar rate-limits datacentre IPs; scholarly can retry for a long time.
-    # Bound the job so a blocked scrape costs minutes, not hours - the site
-    # simply keeps its committed data until the next weekly attempt.
-    timeout-minutes: 10
+    # Scholar sometimes blocks datacentre IPs. The script gives up fast and
+    # keeps the committed data, so a blocked day costs seconds, not minutes.
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+      - name: Refresh citation data (standard library only)
+        run: python3 scripts/update_scholar.py
 
-      - name: Install scholarly
-        run: pip install --quiet scholarly
-
-      - name: Refresh data/scholar.json
-        run: python scripts/update_scholar.py
-
-      - name: Commit if changed
+      - name: Commit and publish if anything changed
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          if ! git diff --quiet data/scholar.json; then
-            git config user.name "scholar-bot"
-            git config user.email "actions@github.com"
-            git add data/scholar.json
-            git commit -m "chore: refresh Scholar metrics ($(date -u +%F))"
-            git push
-          else
+          if git diff --quiet; then
             echo "No changes to commit."
+            exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/scholar.json data/publications.json index.html cv.html
+          git commit -m "chore: refresh Scholar metrics ($(date -u +%F))"
+          git push
+          # Make sure GitHub Pages rebuilds even if a bot push does not trigger it.
+          gh api -X POST "repos/${GITHUB_REPOSITORY}/pages/builds" --silent || true

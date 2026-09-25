@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,13 +28,13 @@
     <meta name="twitter:image:alt" content="Portrait of Danial Safaei">
     <link rel="canonical" href="https://danial-safaei.github.io/">
     <link rel="icon" type="image/jpeg" href="images/profile.jpg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="images/profile.jpg">
     <title>Danial Safaei — Safe AI for Autonomous Systems</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <noscript><style>.reveal{opacity:1;transform:none}.cite-bar{transform:scaleY(1)}</style></noscript>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -69,8 +69,7 @@
             "https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en",
             "https://github.com/Danial-Safaei",
             "https://www.linkedin.com/in/danial-safaei",
-            "https://www.researchgate.net/profile/Danial-Safaei",
-            "https://dblp.org/rec/conf/ivs/SafaeiKAPCTZ26.html"
+            "https://www.researchgate.net/profile/Danial-Safaei"
           ],
           "knowsAbout": [
             "Safe AI",
@@ -99,7 +98,11 @@
           "isPartOf": "2026 IEEE Intelligent Vehicles Symposium (IV)",
           "pagination": "847-854",
           "url": "https://doi.org/10.1109/IV66570.2026.11624013",
-          "identifier": "DOI:10.1109/IV66570.2026.11624013"
+          "identifier": "DOI:10.1109/IV66570.2026.11624013",
+          "sameAs": [
+            "https://arxiv.org/abs/2512.16468",
+            "https://dblp.org/rec/conf/ivs/SafaeiKAPCTZ26.html"
+          ]
         },
         {
           "@type": "ScholarlyArticle",
@@ -122,6 +125,13 @@
                 var saved = localStorage.getItem("theme");
                 if (saved === "dark") { document.body.classList.add("dark"); }
             } catch (e) { /* keep the light default */ }
+            // Scroll-reveal is opt-in: content only starts hidden once JS runs,
+            // and it is shown anyway if interact.js has not taken over in 2.5 s.
+            var root = document.documentElement;
+            root.classList.add("js");
+            setTimeout(function () {
+                if (!window.__revealReady) { root.classList.remove("js"); }
+            }, 2500);
         })();
     </script>
 
@@ -255,7 +265,7 @@
                         <p class="label">Bibliometrics · auto-updated</p>
                         <div class="metric-grid">
                             <div>
-                                <span class="metric-value stat-num" id="m-citations" data-target="89">89</span>
+                                <span class="metric-value stat-num" id="m-citations" data-target="92">92</span>
                                 <span class="metric-label">Citations</span>
                             </div>
                             <div class="metric-violet">
@@ -271,13 +281,15 @@
                                 <span class="metric-label">Works</span>
                             </div>
                         </div>
-                        <div class="cite-chart" id="cite-chart" role="img" aria-label="Citations per year. Source: Google Scholar.">
+                        <!-- cite-chart:start -->
+                        <div class="cite-chart" id="cite-chart" role="img" aria-label="Citations per year: 13 in 2023, 42 in 2024, 30 in 2025, 7 in 2026. Source: Google Scholar.">
                             <div class="cite-col"><span class="cite-val">13</span><span class="cite-bar" style="--h: 31"></span><span class="cite-year">2023</span></div>
                             <div class="cite-col"><span class="cite-val">42</span><span class="cite-bar" style="--h: 100"></span><span class="cite-year">2024</span></div>
                             <div class="cite-col"><span class="cite-val">30</span><span class="cite-bar" style="--h: 71"></span><span class="cite-year">2025</span></div>
-                            <div class="cite-col"><span class="cite-val">4</span><span class="cite-bar ytd" style="--h: 10"></span><span class="cite-year">2026</span></div>
+                            <div class="cite-col"><span class="cite-val">7</span><span class="cite-bar ytd" style="--h: 17"></span><span class="cite-year">2026</span></div>
                         </div>
-                        <p class="metric-note">Refreshed weekly from <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a> · <span id="scholar-updated">Aug 2026</span></p>
+                        <!-- cite-chart:end -->
+                        <p class="metric-note">Source: <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>, checked daily · updated <span id="scholar-updated">Sep 2026</span> · hatched bar = year to date</p>
                     </article>
 
                     <!-- Featured paper -->
@@ -289,7 +301,7 @@
                             <a class="chip chip-primary" href="https://doi.org/10.1109/IV66570.2026.11624013" target="_blank" rel="noopener noreferrer">IEEE Xplore</a>
                             <a class="chip" href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv</a>
                             <a class="chip" href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">Code</a>
-                            <a class="chip" href="blog.html#what-is-decisive-feature-fidelity">Plain-language explainer</a>
+                            <a class="chip" href="blog.html?post=what-is-decisive-feature-fidelity">Plain-language explainer</a>
                         </div>
                     </article>
 
@@ -328,6 +340,14 @@
                 </div>
                 <ul class="entries">
                     <li class="entry reveal">
+                        <div class="entry-when">Oct 2024 —<br>present</div>
+                        <div>
+                            <h3 class="entry-title">PhD Researcher</h3>
+                            <p class="entry-org">Safe Autonomy Research Group, WMG, University of Warwick</p>
+                            <div class="entry-body"><p>Doctoral research on safety assurance and trustworthy evaluation for autonomous systems.</p></div>
+                        </div>
+                    </li>
+                    <li class="entry reveal">
                         <div class="entry-when">Feb 2025 —<br>present</div>
                         <div>
                             <h3 class="entry-title">Research Collaborator (PhD partnership)</h3>
@@ -336,26 +356,18 @@
                         </div>
                     </li>
                     <li class="entry reveal">
-                        <div class="entry-when">Oct 2025 —<br>present</div>
+                        <div class="entry-when">Oct 2025 —<br>Sep 2026</div>
                         <div>
                             <h3 class="entry-title">Teaching Assistant</h3>
                             <p class="entry-org">WMG, University of Warwick</p>
                         </div>
                     </li>
                     <li class="entry reveal">
-                        <div class="entry-when">Jul 2025 —<br>present</div>
+                        <div class="entry-when">Jul 2025 —<br>May 2026</div>
                         <div>
                             <h3 class="entry-title">PGR Academic Officer</h3>
                             <p class="entry-org">Postgraduate Society, University of Warwick</p>
                             <div class="entry-body"><p>Elected representative for postgraduate researchers on academic matters.</p></div>
-                        </div>
-                    </li>
-                    <li class="entry reveal">
-                        <div class="entry-when">Oct 2024 —<br>present</div>
-                        <div>
-                            <h3 class="entry-title">PhD Researcher</h3>
-                            <p class="entry-org">Safe Autonomy Research Group, WMG, University of Warwick</p>
-                            <div class="entry-body"><p>Doctoral research on safety assurance and trustworthy evaluation for autonomous systems.</p></div>
                         </div>
                     </li>
                     <li class="entry reveal">
@@ -468,7 +480,7 @@
                 <p>&copy; <span id="year">2026</span> Danial Safaei · WMG, University of Warwick</p>
                 <p id="site-updated">Coventry, UK</p>
             </div>
-            <p class="footer-note">Static site, no analytics, no tracking. Metrics refresh weekly via GitHub Actions; repositories and writing update live.</p>
+            <p class="footer-note">Static site, no analytics, no tracking. Citation metrics refresh automatically via GitHub Actions; repositories and writing update live.</p>
         </div>
     </footer>
 

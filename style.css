@@ -602,18 +602,18 @@ body.dark .btn-primary:hover {
     display: flex;
     align-items: flex-end;
     gap: 1rem;
-    height: 8.2rem;
+    min-height: 8.2rem;
     padding-top: 0.6rem;
 }
 
 .cite-col {
     flex: 1;
-    display: grid;
-    justify-items: center;
-    align-content: end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
     gap: 0.4rem;
     font-family: var(--font-mono);
-    height: 100%;
 }
 
 .cite-val {
@@ -623,16 +623,21 @@ body.dark .btn-primary:hover {
     font-variant-numeric: tabular-nums;
 }
 
+/* --h is 0-100 (share of the busiest year); 100 maps to a 5rem bar. */
 .cite-bar {
+    display: block;
     width: 100%;
     max-width: 3.4rem;
-    height: calc(var(--h) * 1%);
-    min-height: 6px;
+    height: calc(var(--h) * 0.05rem);
+    min-height: 4px;
     border-radius: 8px 8px 3px 3px;
     background: var(--grad);
     transform-origin: bottom;
-    transform: scaleY(0);
     transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .cite-bar {
+    transform: scaleY(0);
 }
 
 .cite-bar.ytd {
@@ -642,7 +647,7 @@ body.dark .btn-primary:hover {
     border: 1px solid color-mix(in srgb, var(--blue) 50%, transparent);
 }
 
-.cite-chart.is-in .cite-bar {
+.js .cite-chart.is-in .cite-bar {
     transform: scaleY(1);
 }
 
@@ -1251,14 +1256,16 @@ body.dark .chip-primary:hover { color: #0b111f; }
 }
 
 /* ---------- Reveal ---------- */
+/* Opt-in: only hidden once the page's inline script has added html.js, so
+   content can never be stranded invisible if JavaScript fails. */
 
-.reveal {
+.js .reveal {
     opacity: 0;
     transform: translateY(14px);
     transition: opacity 550ms ease, transform 550ms ease;
 }
 
-.reveal.is-visible {
+.js .reveal.is-visible {
     opacity: 1;
     transform: none;
 }
@@ -1428,11 +1435,48 @@ body.dark .chip-primary:hover { color: #0b111f; }
 
 .post-body a { color: var(--blue); }
 
+.post-body table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: var(--sp-3) 0 var(--sp-4);
+    font-size: var(--step--1);
+    line-height: 1.5;
+}
+
+.post-body th,
+.post-body td {
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--rule);
+    text-align: left;
+    vertical-align: top;
+}
+
+.post-body th {
+    background: var(--card-2);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.post-body td {
+    background: var(--card);
+    color: var(--ink-2);
+}
+
 .post-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.5rem;
     margin-top: var(--sp-5);
     padding-top: var(--sp-3);
     border-top: 1px solid var(--rule);
     font-size: var(--step--1);
+}
+
+.post-footer .breadcrumb {
+    margin-bottom: 0;
 }
 
 .post-footer a {
@@ -1608,8 +1652,8 @@ body.dark .chip-primary:hover { color: #0b111f; }
         transition-duration: 0.01ms !important;
     }
 
-    .reveal { opacity: 1; transform: none; }
-    .cite-bar { transform: scaleY(1); }
+    .js .reveal { opacity: 1; transform: none; }
+    .js .cite-bar { transform: scaleY(1); }
     .flow { animation: none; }
 }
 
@@ -1635,4 +1679,6 @@ body.dark .chip-primary:hover { color: #0b111f; }
     .pub, .entry, .cv-section { break-inside: avoid; box-shadow: none; }
 
     .reveal { opacity: 1 !important; transform: none !important; }
+
+    .cite-bar { transform: none !important; }
 }

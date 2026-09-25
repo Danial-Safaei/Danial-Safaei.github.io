@@ -1,28 +1,23 @@
 # Copilot instructions for this repository
 
-## Build, test, and lint
-- This is a static site repository with no package manager or task runner configuration (`package.json`, `pyproject.toml`, `Makefile`, etc. are not present).
-- No automated test framework is configured, so running a full suite or a single test is not applicable in the current codebase.
-- The only workflow (`.github/workflows/snake.yml`) generates a GitHub contribution snake SVG; it does not build, test, or lint the website.
-- For manual local verification, serve the repo root with `python3 -m http.server 8000` and open `http://localhost:8000`.
+## Build, test, and deploy
+- Static site served by GitHub Pages from `main`; there is no build step, package manager, or test framework.
+- Preview locally with `python3 -m http.server 8000` from the repo root.
+- Workflows:
+  - `.github/workflows/update-scholar.yml` runs `scripts/update_scholar.py` daily (standard library only). It refreshes `data/scholar.json`, the per-paper `cites` in `data/publications.json`, and the static fallback numbers in `index.html` and `cv.html`, then commits only if something changed.
+  - `.github/workflows/snake.yml` is unrelated to the site (contribution-graph SVG).
 
-## High-level architecture
-- The site is a single-page profile website deployed from static files:
-  - `index.html`: all page content and section structure.
-  - `style.css`: all styling and responsive behavior.
-  - `interact.js`: client-side behavior initialized on `DOMContentLoaded`.
-  - `images/`: static assets referenced by HTML/CSS.
-- Content in `index.html` reflects the public profile links also listed in `README.md` (LinkedIn, GitHub, ResearchGate, Google Scholar, arXiv).
-- `interact.js` currently initializes tagline text, theme toggling, smooth in-page scrolling, external-link hardening, and dynamic footer year.
+## Architecture
+- `index.html`, `cv.html`, `blog.html`, `404.html`: complete static pages. Content must stay meaningful with JavaScript disabled.
+- `interact.js`: behaviour plus live-data loaders (`loadScholar`, `loadPublications`, `loadRepos`, `loadHomePosts`, `loadSiteUpdated`). Every loader fails silently back to the committed HTML.
+- `data/publications.json`: single source of truth for the publication list; the homepage renders it at runtime and the "Works" count is its length.
+- `blog.js` + `posts/`: Markdown posts rendered client-side; `blog.html?post=<slug>` shows one post.
+- `style.css`: one stylesheet with design tokens; light theme by default, dark only via `body.dark`.
 
-## Key conventions in this codebase
-- Keep navigation links and section IDs aligned (`nav a[href^="#"]` in JS depends on matching anchors like `#about`, `#research`, etc.).
-- Keep HTML IDs/classes synchronized with both `style.css` selectors and `interact.js` DOM queries when renaming or restructuring sections.
-- Preserve JS hooks unless refactoring both HTML and JS together:
-  - `#toggle-dark` for theme toggle
-  - `#tagline` for runtime tagline text
-  - `#year` for footer year injection
-- Theme behavior is implemented via `body.dark` plus `localStorage.getItem('theme')` / `setItem('theme', ...)`; follow this pattern for theme-related changes.
-- For external links opened in new tabs, keep `target="_blank"` and allow `hardenExternalLinks()` to enforce `rel="noopener noreferrer"`.
-- `style.css` intentionally has a late-file "Minimal academic overrides" section that uses `!important` to simplify the earlier animated theme; when changing visuals, update both the base styles and this override block to avoid unexpected results.
-- `interact.js` contains additional helper functions (`animateSkillBars`, `setupScrollAnimations`, `setupFormHandler`, `setupParallax`, `enhanceFloatingShapes`) that are not currently wired into initialization; if enabled, add matching markup and call them from the `DOMContentLoaded` block.
+## Conventions
+- Keep these hooks in sync across HTML, CSS and JS: `#toggle-dark`, `#year`, `#site-updated`, `#cite-chart`, `#m-citations`, `#m-h`, `#m-i10`, `#m-works`, `#scholar-updated`, `#pub-root`, `#repo-root`, `#home-posts`, `#cv-citations`, `#cv-h`, `#cv-i10`, `#cv-works`, `#cv-scholar-date`, `#print-cv`.
+- `scripts/update_scholar.py` rewrites the block between `<!-- cite-chart:start -->` and `<!-- cite-chart:end -->` in `index.html`; do not remove the markers.
+- Scroll-reveal is opt-in: the inline script in `index.html` adds `html.js`, and `.reveal` is only hidden under `.js`. `setupRevealAnimations` sets `window.__revealReady`; without it the page reveals everything after 2.5 s.
+- Theme: `localStorage.theme === "dark"` is the only way to get dark mode; there is no system-preference listener.
+- External links use `target="_blank"`; `hardenExternalLinks()` enforces `rel="noopener noreferrer"`.
+- Privacy: only published work belongs on the site. Do not describe unpublished or under-review research.

@@ -4,9 +4,9 @@
  * Static-first: every number and card in the HTML is real, committed data.
  * At runtime this file upgrades the page from live sources, failing silently
  * back to the committed values:
- *   - data/scholar.json      (refreshed weekly by GitHub Actions)
+ *   - data/scholar.json      (refreshed daily by a GitHub Action)
  *   - data/publications.json (single source of truth for the pub list)
- *   - api.github.com         (repository cards)
+ *   - api.github.com         (repository cards, last site update)
  *   - posts/posts.json       (latest writing)
  */
 
@@ -14,6 +14,12 @@ const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const GITHUB_USER = "Danial-Safaei";
 const REPO_NAMES = ["DFF", "Danial-Safaei.github.io", "RealTraj"];
+
+// Fixed English month names: toLocaleDateString("en-GB") renders September
+// as "Sept" in current browsers, which would not match the static HTML.
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const MONTHS_LONG = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"];
 
 function prefersReducedMotion() {
     return window.matchMedia(REDUCED_MOTION_QUERY).matches;
@@ -24,6 +30,15 @@ function esc(s) {
     d.textContent = String(s == null ? "" : s);
     return d.innerHTML;
 }
+
+function parseDate(value) {
+    const d = /^\d{4}-\d{2}-\d{2}$/.test(String(value)) ? new Date(`${value}T00:00:00`) : new Date(value);
+    return Number.isNaN(d.getTime()) ? null : d;
+}
+
+function fmtDay(d) { return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`; }
+function fmtMonth(d) { return `${MONTHS[d.getMonth()]} ${d.getFullYear()}`; }
+function fmtMonthLong(d) { return `${MONTHS_LONG[d.getMonth()]} ${d.getFullYear()}`; }
 
 /* ---------- Basics ---------- */
 
@@ -93,19 +108,20 @@ function setupSmoothScroll() {
 
 function setupRevealAnimations() {
     const elements = document.querySelectorAll(".reveal");
-    if (!elements.length) return;
-    if (prefersReducedMotion() || !("IntersectionObserver" in window)) {
+    if (elements.length && !prefersReducedMotion() && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.08, rootMargin: "0px 0px -36px 0px" });
+        elements.forEach((el) => observer.observe(el));
+    } else {
         elements.forEach((el) => el.classList.add("is-visible"));
-        return;
     }
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-        });
-    }, { threshold: 0.08, rootMargin: "0px 0px -36px 0px" });
-    elements.forEach((el) => observer.observe(el));
+    // Tell the inline failsafe (index.html) that reveal is under control.
+    window.__revealReady = true;
 }
 
 /* ---------- Active nav ---------- */
@@ -145,6 +161,7 @@ function animateCounter(el) {
         const p = Math.min((now - start) / duration, 1);
         el.textContent = String(Math.round((1 - Math.pow(1 - p, 3)) * target));
         if (p < 1) requestAnimationFrame(step);
+        else el.textContent = String(Number(el.dataset.target));
     };
     el.textContent = "0";
     requestAnimationFrame(step);
@@ -215,31 +232,36 @@ async function fetchJson(url) {
     return res.json();
 }
 
-/* ----- Scholar metrics + chart (data/scholar.json, weekly Action) ----- */
+function setNumber(id, value) {
+    const el = document.getElementById(id);
+    if (!el || !Number.isFinite(value)) return;
+    if (el.dataset.target !== undefined) el.dataset.target = String(value);
+    el.textContent = String(value);
+}
+
+function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el && value) el.textContent = value;
+}
+
+/* ----- Scholar metrics + chart (data/scholar.json, daily Action) ----- */
 
 async function loadScholar() {
     let data;
     try { data = await fetchJson("data/scholar.json"); } catch (e) { return; }
     if (!data || !Number.isFinite(data.citations)) return;
 
-    const set = (id, value) => {
-        const el = document.getElementById(id);
-        if (el && Number.isFinite(value)) {
-            el.dataset.target = String(value);
-            el.textContent = String(value);
-        }
-    };
-    set("m-citations", data.citations);
-    set("m-h", data.hIndex);
-    set("m-i10", data.i10Index);
-    set("m-works", data.works);
+    setNumber("m-citations", data.citations);
+    setNumber("m-h", data.hIndex);
+    setNumber("m-i10", data.i10Index);
+    setNumber("cv-citations", data.citations);
+    setNumber("cv-h", data.hIndex);
+    setNumber("cv-i10", data.i10Index);
 
-    const updated = document.getElementById("scholar-updated");
-    if (updated && data.updated) {
-        const d = new Date(`${data.updated}T00:00:00`);
-        if (!Number.isNaN(d.getTime())) {
-            updated.textContent = d.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
-        }
+    const updated = parseDate(data.updated);
+    if (updated) {
+        setText("scholar-updated", fmtMonth(updated));
+        setText("cv-scholar-date", fmtMonthLong(updated));
     }
 
     const chart = document.getElementById("cite-chart");
@@ -282,7 +304,9 @@ function renderPub(pub) {
         const attrs = external ? ' target="_blank" rel="noopener noreferrer"' : "";
         return `<a href="${esc(l.href)}"${attrs}>${esc(l.label)}</a>`;
     }).join("");
-    const cites = Number.isFinite(pub.cites) ? `<span class="pub-cites">${esc(pub.cites)} citations</span>` : "";
+    const n = Number(pub.cites);
+    const cites = Number.isFinite(n) && n > 0
+        ? `<span class="pub-cites">${esc(n)} citation${n === 1 ? "" : "s"}</span>` : "";
     const titleLink = (pub.links && pub.links[0]) ? esc(pub.links[0].href) : null;
     const title = titleLink
         ? `<a href="${titleLink}" target="_blank" rel="noopener noreferrer">${esc(pub.title)}</a>`
@@ -299,15 +323,22 @@ function renderPub(pub) {
 
 async function loadPublications() {
     const root = document.getElementById("pub-root");
-    if (!root) return;
+    const wantsCount = document.getElementById("m-works") || document.getElementById("cv-works");
+    if (!root && !wantsCount) return;
     let data;
     try { data = await fetchJson("data/publications.json"); } catch (e) {
-        root.insertAdjacentHTML("beforeend",
-            '<p class="blog-empty">Unable to load the publication list right now — see ' +
-            '<a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>');
+        if (root) {
+            root.insertAdjacentHTML("beforeend",
+                '<p class="blog-empty">Unable to load the publication list right now — see ' +
+                '<a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>');
+        }
         return;
     }
     const pubs = data.publications || [];
+    // "Works" counts the curated list shown on this site (Scholar lists a duplicate).
+    setNumber("m-works", pubs.length);
+    setNumber("cv-works", pubs.length);
+    if (!root) return;
     const peer = pubs.filter((p) => p.group === "peer");
     const pre = pubs.filter((p) => p.group === "preprint");
     const group = (title, list) => list.length
@@ -332,9 +363,7 @@ async function loadRepos() {
     const chosen = REPO_NAMES.map((n) => byName.get(n)).filter(Boolean);
     if (!chosen.length) return;
     root.innerHTML = chosen.map((r) => {
-        const updated = new Date(r.pushed_at);
-        const when = Number.isNaN(updated.getTime()) ? "" :
-            updated.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        const updated = parseDate(r.pushed_at);
         const stars = r.stargazers_count ? `<span>★ ${esc(r.stargazers_count)}</span>` : "";
         return `<a class="repo-card" href="${esc(r.html_url)}" target="_blank" rel="noopener noreferrer">` +
             `<span class="repo-name">${esc(r.name)}</span>` +
@@ -342,7 +371,7 @@ async function loadRepos() {
             `<span class="repo-meta">` +
             (r.language ? `<span class="dot">${esc(r.language)}</span>` : "") +
             stars +
-            (when ? `<span>updated ${esc(when)}</span>` : "") +
+            (updated ? `<span>updated ${esc(fmtDay(updated))}</span>` : "") +
             `</span></a>`;
     }).join("");
 }
@@ -357,9 +386,8 @@ async function loadHomePosts() {
     if (!Array.isArray(posts) || !posts.length) return;
     const latest = posts.slice().sort((a, b) => String(b.date).localeCompare(String(a.date))).slice(0, 3);
     root.innerHTML = latest.map((p) => {
-        const d = new Date(`${p.date}T00:00:00`);
-        const when = Number.isNaN(d.getTime()) ? esc(p.date) :
-            d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        const d = parseDate(p.date);
+        const when = d ? fmtDay(d) : esc(p.date);
         return `<a class="home-post" href="blog.html?post=${encodeURIComponent(p.slug)}">` +
             `<span class="post-date">${when}</span>` +
             `<h3>${esc(p.title)}</h3>` +
@@ -376,27 +404,30 @@ async function loadSiteUpdated() {
         const commits = await fetchJson(
             `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_USER}.github.io/commits?per_page=1`);
         const date = commits && commits[0] && commits[0].commit && commits[0].commit.committer.date;
-        if (!date) return;
-        const d = new Date(date);
-        if (Number.isNaN(d.getTime())) return;
-        el.textContent = "Site updated " +
-            d.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+        const d = date ? parseDate(date) : null;
+        if (!d) return;
+        el.textContent = (el.dataset.prefix || "Site updated") + " " + fmtDay(d);
     } catch (e) { /* keep the static footer text */ }
 }
 
 /* ---------- Init ---------- */
 
 document.addEventListener("DOMContentLoaded", () => {
-    hardenExternalLinks();
-    setYear();
-    setupThemeToggle();
-    setupSmoothScroll();
-    setupRevealAnimations();
-    setupActiveNavLinks();
-    setupStatCounters();
-    setupCiteChart();
-    setupBackToTop();
-    setupPrintButton();
+    // Each step is isolated: one failure must not take the rest of the page down.
+    [
+        hardenExternalLinks,
+        setYear,
+        setupThemeToggle,
+        setupSmoothScroll,
+        setupRevealAnimations,
+        setupActiveNavLinks,
+        setupStatCounters,
+        setupCiteChart,
+        setupBackToTop,
+        setupPrintButton,
+    ].forEach((step) => {
+        try { step(); } catch (e) { console.error(e); }
+    });
 
     loadScholar();
     loadPublications();
