@@ -37,7 +37,7 @@
         { "label": "DOI", "href": "https://doi.org/10.1007/s41870-023-01665-1" },
         { "label": "arXiv", "href": "https://arxiv.org/abs/2304.08027" }
       ],
-      "cites": 14
+      "cites": 15
     },
     {
       "id": "graphsage-rain",
