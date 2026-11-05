@@ -8,12 +8,14 @@
  *   - data/publications.json (single source of truth for the pub list)
  *   - api.github.com         (repository cards, last site update)
  *   - posts/posts.json       (latest writing)
+ *
+ * Theme: dark by default; body.light only when localStorage.theme === "light".
  */
 
 const THEME_STORAGE_KEY = "theme";
 const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 const GITHUB_USER = "Danial-Safaei";
-const REPO_NAMES = ["DFF", "Danial-Safaei.github.io", "RealTraj"];
+const REPO_NAMES = ["DFF", "handheld-pedestrian-forecasts", "RealTraj"];
 
 // Fixed English month names: toLocaleDateString("en-GB") renders September
 // as "Sept" in current browsers, which would not match the static HTML.
@@ -53,24 +55,25 @@ function setYear() {
     if (el) el.textContent = String(new Date().getFullYear());
 }
 
-/* ---------- Theme (light default; dark is explicit) ---------- */
+/* ---------- Theme (dark default; light is explicit) ---------- */
 
 function applyTheme(theme) {
-    const isDark = theme === "dark";
-    document.body.classList.toggle("dark", isDark);
+    const isLight = theme === "light";
+    document.body.classList.toggle("light", isLight);
     const btn = document.getElementById("toggle-dark");
     if (btn) {
-        btn.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
-        btn.setAttribute("aria-pressed", String(isDark));
+        btn.setAttribute("aria-label", isLight ? "Switch to dark theme" : "Switch to light theme");
     }
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", isLight ? "#f4f3ef" : "#07090c");
 }
 
 function setupThemeToggle() {
     const btn = document.getElementById("toggle-dark");
+    applyTheme(document.body.classList.contains("light") ? "light" : "dark");
     if (!btn) return;
-    applyTheme(document.body.classList.contains("dark") ? "dark" : "light");
     btn.addEventListener("click", () => {
-        const next = document.body.classList.contains("dark") ? "light" : "dark";
+        const next = document.body.classList.contains("light") ? "dark" : "light";
         applyTheme(next);
         try {
             localStorage.setItem(THEME_STORAGE_KEY, next);
@@ -196,6 +199,64 @@ function setupCiteChart() {
         });
     }, { threshold: 0.4 });
     observer.observe(chart);
+}
+
+/* ---------- Test bench demo (hero) ----------
+   Static HTML shows the full "evidence" view, so the point survives without
+   JavaScript. With JS the bench starts on "outputs only" and reveals the
+   decisive evidence once it is on screen; buttons switch views at any time. */
+
+function setupDemo() {
+    const demo = document.getElementById("demo");
+    if (!demo) return;
+    const buttons = Array.from(demo.querySelectorAll(".seg[data-mode]"));
+    const status = demo.querySelector(".demo-status");
+    const messages = {
+        output: "Outputs only: both frames give the same steering output, so an output check passes.",
+        evidence: "Evidence shown: the real frame's output rests on the pedestrian and the synthetic twin's on the road sign. Output agreement passes; evidence agreement fails.",
+    };
+    let timer = null;
+    let touched = false;
+
+    const setMode = (mode, announce) => {
+        demo.dataset.mode = mode;
+        buttons.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === mode)));
+        if (mode === "evidence" && !prefersReducedMotion()) {
+            demo.classList.remove("is-scanning");
+            void demo.offsetWidth; // restart the scan sweep
+            demo.classList.add("is-scanning");
+        }
+        if (announce && status) status.textContent = messages[mode];
+    };
+
+    buttons.forEach((b) => b.addEventListener("click", () => {
+        touched = true;
+        clearTimeout(timer);
+        setMode(b.dataset.mode, true);
+    }));
+
+    if (prefersReducedMotion()) {
+        setMode("evidence", false);
+        demo.classList.add("is-live");
+        return;
+    }
+
+    setMode("output", false);
+    requestAnimationFrame(() => demo.classList.add("is-live"));
+
+    const reveal = () => {
+        timer = setTimeout(() => { if (!touched) setMode("evidence", false); }, 1600);
+    };
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+            if (!entries.some((e) => e.isIntersecting)) return;
+            observer.disconnect();
+            reveal();
+        }, { threshold: 0.45 });
+        observer.observe(demo);
+    } else {
+        reveal();
+    }
 }
 
 /* ---------- Back to top / print ---------- */
@@ -346,7 +407,14 @@ async function loadPublications() {
           `<span class="pub-group-count">${list.length} work${list.length === 1 ? "" : "s"}</span></div>` +
           `<ol class="pub-list">${list.map(renderPub).join("")}</ol></div>`
         : "";
-    root.innerHTML = group("Peer-reviewed", peer) + group("Preprints and working papers", pre);
+    // Preprints sit in a closed <details> so the peer-reviewed work leads.
+    const preprints = pre.length
+        ? `<details class="pub-group pub-group-more"><summary class="pub-group-head">` +
+          `<h3>Preprints and working papers</h3>` +
+          `<span class="pub-group-count">${pre.length} work${pre.length === 1 ? "" : "s"}<span class="chev" aria-hidden="true"></span></span>` +
+          `</summary><ol class="pub-list">${pre.map(renderPub).join("")}</ol></details>`
+        : "";
+    root.innerHTML = group("Peer-reviewed", peer) + preprints;
 }
 
 /* ----- GitHub repositories (live API) ----- */
@@ -418,6 +486,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hardenExternalLinks,
         setYear,
         setupThemeToggle,
+        setupDemo,
         setupSmoothScroll,
         setupRevealAnimations,
         setupActiveNavLinks,

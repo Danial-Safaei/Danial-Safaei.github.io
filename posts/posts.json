@@ -1,5 +1,12 @@
 [
   {
+    "slug": "what-is-c-dff",
+    "title": "C-DFF: from ‘the evidence changed’ to ‘which evidence changed’",
+    "date": "2026-10-27",
+    "summary": "DFF shows when a model relies on different evidence in simulation. C-DFF shows which scene concepts, such as road, buildings or sky, gained or lost importance.",
+    "tags": ["Research", "Explainable AI", "Simulation"]
+  },
+  {
     "slug": "welcome",
     "title": "Welcome — and what I'll write about here",
     "date": "2026-07-10",

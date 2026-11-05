@@ -33,3 +33,5 @@ We evaluated DFF on **2,126 matched real–synthetic frame pairs** from KITTI an
 If we want to justify using simulation to test an autonomous system, we need evidence that the simulation exercises the same decision mechanisms the real world would. DFF is a step toward making that argument *measurable* rather than assumed.
 
 The paper is published in the proceedings of the 2026 IEEE Intelligent Vehicles Symposium ([IEEE Xplore](https://doi.org/10.1109/IV66570.2026.11624013)). An open-access version is on [arXiv](https://arxiv.org/abs/2512.16468), and the reference implementation is [on GitHub](https://github.com/Danial-Safaei/DFF).
+
+**Follow-up:** [C-DFF](blog.html?post=what-is-c-dff) (IEEE ITSC 2026) expresses decisive evidence in terms of scene concepts, so a mismatch comes with a ranked list of the concepts that changed.

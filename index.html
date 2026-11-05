@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Danial Safaei is a PhD researcher in the Safe Autonomy Research Group at WMG, University of Warwick, working on safety assurance and trustworthy evaluation for autonomous systems. First author of Decisive Feature Fidelity (IEEE IV 2026).">
+    <meta name="description" content="Danial Safaei is a PhD researcher in the Safe Autonomy Research Group at WMG, University of Warwick. He builds metrics that test whether AI perception relies on the same evidence in simulation as on real roads. First author of DFF (IEEE IV 2026) and C-DFF (IEEE ITSC 2026).">
     <meta name="author" content="Danial Safaei">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#fafbfe" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0b111f" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#07090c">
     <meta property="og:title" content="Danial Safaei — Safe AI for Autonomous Systems">
-    <meta property="og:description" content="PhD researcher, Safe Autonomy Research Group, WMG, University of Warwick. Safety assurance and trustworthy evaluation for autonomous systems.">
+    <meta property="og:description" content="PhD researcher, WMG, University of Warwick. Metrics that check whether a model that passes in simulation relies on the same evidence it would use on real roads.">
     <meta property="og:type" content="profile">
     <meta property="profile:first_name" content="Danial">
     <meta property="profile:last_name" content="Safaei">
@@ -20,20 +19,19 @@
     <meta property="og:image" content="https://danial-safaei.github.io/images/og-card.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Danial Safaei, PhD Researcher, Safe Autonomy Research Group, WMG, University of Warwick">
+    <meta property="og:image:alt" content="Danial Safaei, PhD researcher, WMG, University of Warwick: a test can pass for the wrong reason.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Danial Safaei — Safe AI for Autonomous Systems">
-    <meta name="twitter:description" content="PhD researcher at WMG, University of Warwick. Safety assurance and trustworthy evaluation for autonomous systems.">
+    <meta name="twitter:description" content="PhD researcher at WMG, University of Warwick. Measuring whether AI perception relies on the same evidence in simulation as on real roads.">
     <meta name="twitter:image" content="https://danial-safaei.github.io/images/og-card.jpg">
-    <meta name="twitter:image:alt" content="Danial Safaei, PhD Researcher, Safe Autonomy Research Group, WMG, University of Warwick">
+    <meta name="twitter:image:alt" content="Danial Safaei, PhD researcher, WMG, University of Warwick: a test can pass for the wrong reason.">
     <link rel="canonical" href="https://danial-safaei.github.io/">
-    <link rel="icon" type="image/jpeg" href="images/profile.jpg">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="images/profile.jpg">
     <title>Danial Safaei — Safe AI for Autonomous Systems</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script type="application/ld+json">
     {
@@ -79,6 +77,7 @@
             "Synthetic Data Fidelity",
             "Scenario-Based Testing",
             "Computer Vision",
+            "Probabilistic Forecasting",
             "Graph Neural Networks"
           ]
         },
@@ -89,6 +88,15 @@
           "name": "Danial Safaei",
           "inLanguage": "en-GB",
           "publisher": { "@id": "https://danial-safaei.github.io/#person" }
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "headline": "C-DFF: Concept-Level Diagnostics for Mechanism Parity in Simulation-Based Validation of Autonomous Driving Perception",
+          "author": { "@id": "https://danial-safaei.github.io/#person" },
+          "datePublished": "2026-09",
+          "isPartOf": "2026 IEEE 29th International Conference on Intelligent Transportation Systems (ITSC)",
+          "url": "https://arxiv.org/abs/2610.33760",
+          "identifier": "arXiv:2610.33760"
         },
         {
           "@type": "ScholarlyArticle",
@@ -103,6 +111,15 @@
             "https://arxiv.org/abs/2512.16468",
             "https://dblp.org/rec/conf/ivs/SafaeiKAPCTZ26.html"
           ]
+        },
+        {
+          "@type": "ScholarlyArticle",
+          "headline": "Probabilistic Pedestrian Forecasts from a Handheld Phone: World-Frame Heat Maps, Visual-Inertial Height Drift, and Evaluation without Ground Truth",
+          "author": { "@id": "https://danial-safaei.github.io/#person" },
+          "datePublished": "2026-10",
+          "isPartOf": "arXiv",
+          "url": "https://arxiv.org/abs/2610.04736",
+          "identifier": "arXiv:2610.04736"
         },
         {
           "@type": "ScholarlyArticle",
@@ -122,11 +139,12 @@
     <script>
         (function () {
             try {
-                var saved = localStorage.getItem("theme");
-                if (saved === "dark") { document.body.classList.add("dark"); }
-            } catch (e) { /* keep the light default */ }
-            // Scroll-reveal is opt-in: content only starts hidden once JS runs,
-            // and it is shown anyway if interact.js has not taken over in 2.5 s.
+                // Dark is the default; light is an explicit visitor choice.
+                if (localStorage.getItem("theme") === "light") { document.body.classList.add("light"); }
+            } catch (e) { /* keep the dark default */ }
+            // Scroll-reveal and the demo are opt-in: content only starts hidden
+            // once JS runs, and it is shown anyway if interact.js has not taken
+            // over within 2.5 s.
             var root = document.documentElement;
             root.classList.add("js");
             setTimeout(function () {
@@ -139,7 +157,11 @@
 
     <header class="site-header" id="top">
         <div class="wrap masthead">
-            <a class="brand" href="#top">Danial Safaei</a>
+            <a class="brand" href="#top">
+                <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect class="frame" x="1" y="1" width="22" height="22" rx="6"/><path class="t1" d="M4 14.6c2.3 0 2.7-6.1 5-6.1s2.6 8.1 5 8.1 2.9-6.1 6-6.1"/><path class="t2" d="M4 12.4c2.3 0 2.7-3.9 5-3.9s2.6 5.6 5 5.6 2.9-6.6 6-6.6"/></svg>
+                <span>Danial Safaei</span>
+                <span class="brand-tag">PhD · WMG</span>
+            </a>
             <nav class="nav" aria-label="Primary">
                 <a href="#research">Research</a>
                 <a href="#publications">Publications</a>
@@ -149,7 +171,7 @@
                 <a href="cv.html">CV</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <button class="theme-toggle" id="toggle-dark" type="button" aria-label="Switch to dark theme">
+            <button class="theme-toggle" id="toggle-dark" type="button" aria-label="Switch to light theme">
                 <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.8v2.4M12 19.8v2.4M4.22 4.22l1.7 1.7M18.08 18.08l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.22 19.78l1.7-1.7M18.08 5.92l1.7-1.7"/></svg>
             </button>
@@ -157,127 +179,220 @@
     </header>
 
     <main id="main">
-        <div class="wrap">
 
-            <!-- ================= HERO ================= -->
-            <section class="hero">
+        <!-- ================= HERO ================= -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="wrap hero-grid">
                 <div class="hero-copy reveal">
-                    <p class="hero-eyebrow">Open to collaboration · Safe Autonomy · WMG, Warwick</p>
-                    <h1>Evidence that autonomous systems can be <span class="hl">trusted</span>.</h1>
-                    <p class="lede">I work on the measurement problem at the centre of AI safety assurance: how to tell whether a system's behaviour in simulation is evidence about its behaviour in the world — and how to make that claim defensible.</p>
+                    <p class="status"><span class="status-dot" aria-hidden="true"></span>Open to research collaboration</p>
+                    <p class="eyebrow">PhD researcher · WMG, University of Warwick</p>
+                    <h1 id="hero-title">A test can pass for the wrong reason. <em>I make that measurable.</em></h1>
+                    <p class="lede">I build metrics that check whether a perception model that passes in simulation relies on the same evidence it would use on real roads, so that simulation results can count as safety evidence.</p>
                     <div class="hero-actions">
-                        <a class="btn btn-primary" href="#publications">Publications</a>
+                        <a class="btn btn-primary" href="#publications">Read the papers <span class="arrow" aria-hidden="true">→</span></a>
                         <a class="btn" href="cv.html">Curriculum vitae</a>
-                        <a class="btn" href="mailto:danial.safaei@warwick.ac.uk">Email</a>
+                        <a class="btn btn-ghost" href="mailto:danial.safaei@warwick.ac.uk">Email</a>
                     </div>
+                    <dl class="hero-facts">
+                        <div><dt>IEEE IV 2026</dt><dd>Decisive Feature Fidelity, first author</dd></div>
+                        <div><dt>IEEE ITSC 2026</dt><dd>Concept-level DFF, first author</dd></div>
+                        <div><dt>Industrial partner</dt><dd>Siemens Digital Industries Software</dd></div>
+                    </dl>
                 </div>
-                <div class="hero-media reveal">
-                    <div class="portrait-ring">
-                        <img class="portrait" src="images/profile.jpg" alt="Portrait of Danial Safaei" width="460" height="460" fetchpriority="high" decoding="async">
+
+                <!-- Test bench: same output, different evidence (illustration) -->
+                <figure class="demo reveal" id="demo" data-mode="evidence" aria-labelledby="demo-title">
+                    <div class="demo-head">
+                        <span class="demo-title" id="demo-title">Test bench · one frozen model, two inputs</span>
+                        <span class="demo-leds" aria-hidden="true"><i></i><i></i><i></i></span>
                     </div>
-                    <p class="portrait-caption">Coventry, United Kingdom<br>danial.safaei@warwick.ac.uk</p>
-                </div>
-            </section>
 
-            <!-- ================= BENTO ================= -->
-            <section class="section" id="research" style="padding-top: var(--sp-5);">
-                <div class="section-head reveal">
-                    <span class="section-num">01</span>
-                    <h2>Research at a glance</h2>
-                </div>
+                    <div class="demo-screens">
+                        <div class="screen screen-ch1">
+                            <p class="screen-label"><span class="ch">CH1</span> Real frame</p>
+                            <svg class="scene" viewBox="0 0 320 200" role="img" aria-label="Real camera frame: a road ahead, a pedestrian at the left kerb, and a turn-right sign beside a dog on the right. The model's decisive evidence is the pedestrian.">
+                                <defs>
+                                    <radialGradient id="heat-real-a"><stop offset="0" stop-color="#ff4f74" stop-opacity="0.85"/><stop offset="0.55" stop-color="#ff4f74" stop-opacity="0.32"/><stop offset="1" stop-color="#ff4f74" stop-opacity="0"/></radialGradient>
+                                    <radialGradient id="heat-real-b"><stop offset="0" stop-color="#ff4f74" stop-opacity="0.32"/><stop offset="1" stop-color="#ff4f74" stop-opacity="0"/></radialGradient>
+                                </defs>
+                                <g class="graticule"><line x1="40" y1="0" x2="40" y2="200"/><line x1="80" y1="0" x2="80" y2="200"/><line x1="120" y1="0" x2="120" y2="200"/><line x1="160" y1="0" x2="160" y2="200"/><line x1="200" y1="0" x2="200" y2="200"/><line x1="240" y1="0" x2="240" y2="200"/><line x1="280" y1="0" x2="280" y2="200"/><line x1="0" y1="40" x2="320" y2="40"/><line x1="0" y1="80" x2="320" y2="80"/><line x1="0" y1="120" x2="320" y2="120"/><line x1="0" y1="160" x2="320" y2="160"/></g>
+                                <g class="heat">
+                                    <circle cx="88" cy="132" r="34" fill="url(#heat-real-a)"/>
+                                    <circle cx="150" cy="168" r="18" fill="url(#heat-real-b)"/>
+                                    <rect x="70" y="106" width="36" height="50" rx="4" fill="none" stroke="#ff4f74" stroke-width="1.2" stroke-dasharray="4 3"/>
+                                </g>
+                                <g class="art">
+                                    <g class="faint"><path d="M0 80 H320"/><path d="M20 80 V48 H52 V80 M60 80 V32 H84 V80 M238 80 V42 H266 V80 M274 80 V54 H306 V80"/><rect x="166" y="88" width="16" height="10" rx="2"/></g>
+                                    <path d="M36 200 L150 82 M284 200 L170 82"/>
+                                    <path d="M160 198 V86" stroke-dasharray="10 9"/>
+                                    <circle cx="88" cy="117" r="5"/>
+                                    <path d="M88 122 V138 M88 127 L80 133 M88 127 L96 132 M88 138 L82 151 M88 138 L94 151"/>
+                                    <path d="M250 154 V107"/>
+                                    <circle cx="250" cy="96" r="11"/>
+                                    <path d="M245.5 101 V93.5 H254 M250.5 90 L254.5 93.5 L250.5 97"/>
+                                    <ellipse cx="270" cy="146" rx="9" ry="4.5"/>
+                                    <circle cx="281" cy="141" r="3.2"/>
+                                    <path d="M264 150 V155 M268 150 V155 M273 150 V155 M277 150 V155 M261 145 L256 140"/>
+                                </g>
+                                <line class="scan" x1="0" y1="0" x2="0" y2="200"/>
+                            </svg>
+                            <div class="screen-readout">
+                                <span><b>Output</b><strong>Steer 20° left</strong></span>
+                                <span class="ev-row"><b>Evidence</b><strong><span class="ev-off">not checked</span><span class="ev-on">Pedestrian</span></strong></span>
+                            </div>
+                        </div>
 
-                <div class="bento">
-                    <!-- DFF pipeline -->
-                    <article class="tile tile-7 reveal">
-                        <p class="label">Decisive Feature Fidelity · IEEE IV 2026</p>
-                        <svg class="dff-svg" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline: a real camera frame and its synthetic twin feed the same frozen system under test; explainable AI extracts the decisive evidence behind each output; DFF scores the agreement of that evidence.">
-                            <defs>
-                                <linearGradient id="dffg" x1="0" y1="0" x2="1" y2="1">
-                                    <stop offset="0" style="stop-color:var(--blue)"/>
-                                    <stop offset="1" style="stop-color:var(--violet)"/>
-                                </linearGradient>
-                            </defs>
+                        <div class="screen screen-ch2">
+                            <p class="screen-label"><span class="ch">CH2</span> Synthetic twin</p>
+                            <svg class="scene" viewBox="0 0 320 200" role="img" aria-label="Synthetic twin of the same frame: the same road, pedestrian, sign and dog. The model's decisive evidence is the road sign.">
+                                <defs>
+                                    <radialGradient id="heat-syn-a"><stop offset="0" stop-color="#ff4f74" stop-opacity="0.85"/><stop offset="0.55" stop-color="#ff4f74" stop-opacity="0.32"/><stop offset="1" stop-color="#ff4f74" stop-opacity="0"/></radialGradient>
+                                    <radialGradient id="heat-syn-b"><stop offset="0" stop-color="#ff4f74" stop-opacity="0.38"/><stop offset="1" stop-color="#ff4f74" stop-opacity="0"/></radialGradient>
+                                </defs>
+                                <g class="graticule"><line x1="40" y1="0" x2="40" y2="200"/><line x1="80" y1="0" x2="80" y2="200"/><line x1="120" y1="0" x2="120" y2="200"/><line x1="160" y1="0" x2="160" y2="200"/><line x1="200" y1="0" x2="200" y2="200"/><line x1="240" y1="0" x2="240" y2="200"/><line x1="280" y1="0" x2="280" y2="200"/><line x1="0" y1="40" x2="320" y2="40"/><line x1="0" y1="80" x2="320" y2="80"/><line x1="0" y1="120" x2="320" y2="120"/><line x1="0" y1="160" x2="320" y2="160"/></g>
+                                <g class="heat">
+                                    <circle cx="250" cy="98" r="32" fill="url(#heat-syn-a)"/>
+                                    <circle cx="272" cy="146" r="16" fill="url(#heat-syn-b)"/>
+                                    <rect x="234" y="80" width="32" height="34" rx="4" fill="none" stroke="#ff4f74" stroke-width="1.2" stroke-dasharray="4 3"/>
+                                </g>
+                                <g class="art">
+                                    <g class="faint"><path d="M0 80 H320"/><path d="M20 80 V48 H52 V80 M60 80 V32 H84 V80 M238 80 V42 H266 V80 M274 80 V54 H306 V80"/><rect x="166" y="88" width="16" height="10" rx="2"/></g>
+                                    <path d="M36 200 L150 82 M284 200 L170 82"/>
+                                    <path d="M160 198 V86" stroke-dasharray="10 9"/>
+                                    <circle cx="88" cy="117" r="5"/>
+                                    <path d="M88 122 V138 M88 127 L80 133 M88 127 L96 132 M88 138 L82 151 M88 138 L94 151"/>
+                                    <path d="M250 154 V107"/>
+                                    <circle cx="250" cy="96" r="11"/>
+                                    <path d="M245.5 101 V93.5 H254 M250.5 90 L254.5 93.5 L250.5 97"/>
+                                    <ellipse cx="270" cy="146" rx="9" ry="4.5"/>
+                                    <circle cx="281" cy="141" r="3.2"/>
+                                    <path d="M264 150 V155 M268 150 V155 M273 150 V155 M277 150 V155 M261 145 L256 140"/>
+                                </g>
+                                <line class="scan" x1="0" y1="0" x2="0" y2="200"/>
+                            </svg>
+                            <div class="screen-readout">
+                                <span><b>Output</b><strong>Steer 20° left</strong></span>
+                                <span class="ev-row"><b>Evidence</b><strong><span class="ev-off">not checked</span><span class="ev-on">Road sign</span></strong></span>
+                            </div>
+                        </div>
+                    </div>
 
-                            <g>
-                                <rect x="8" y="24" width="120" height="72" rx="10" style="fill:var(--blue-wash);stroke:var(--blue)" stroke-width="1.6"/>
-                                <path d="M18 96 L56 58 L66 58 L44 96 Z" style="fill:var(--blue)" opacity="0.18"/>
-                                <rect x="8" y="58" width="120" height="1.4" style="fill:var(--blue)" opacity="0.3"/>
-                                <circle cx="104" cy="44" r="8" style="fill:var(--blue)" opacity="0.42"/>
-                                <rect x="80" y="66" width="11" height="24" rx="2.5" style="fill:var(--blue)" opacity="0.9"/>
-                                <text x="68" y="116" text-anchor="middle" font-size="10" style="fill:var(--ink-3);font-family:var(--font-mono)">real frame</text>
-                            </g>
+                    <div class="demo-meters">
+                        <div class="meter meter-out">
+                            <span class="meter-name">Output agreement</span>
+                            <span class="meter-bar" aria-hidden="true"><span style="--v: 1"></span></span>
+                            <span class="meter-verdict ok">Pass</span>
+                        </div>
+                        <div class="meter meter-ev">
+                            <span class="meter-name">Evidence agreement (DFF)</span>
+                            <span class="meter-bar" aria-hidden="true"><span style="--v: 0.18"></span></span>
+                            <span class="meter-verdict bad"><span class="ev-off">—</span><span class="ev-on">Fail</span></span>
+                        </div>
+                    </div>
 
-                            <g>
-                                <rect x="8" y="152" width="120" height="72" rx="10" style="fill:var(--teal-wash);stroke:var(--teal)" stroke-width="1.6"/>
-                                <path d="M18 224 L56 186 L66 186 L44 224 Z" style="fill:var(--teal)" opacity="0.18"/>
-                                <rect x="8" y="186" width="120" height="1.4" style="fill:var(--teal)" opacity="0.3"/>
-                                <circle cx="104" cy="172" r="8" style="fill:var(--teal)" opacity="0.42"/>
-                                <rect x="30" y="192" width="14" height="11" rx="2.5" style="fill:var(--teal)" opacity="0.9"/>
-                                <text x="68" y="244" text-anchor="middle" font-size="10" style="fill:var(--ink-3);font-family:var(--font-mono)">synthetic twin</text>
-                            </g>
+                    <div class="demo-foot">
+                        <figcaption class="demo-caption">
+                            <strong>Same output. Different evidence.</strong> The test passed for the wrong reason.
+                            <span class="demo-note">Illustration of the failure mode DFF measures</span>
+                        </figcaption>
+                        <div class="demo-controls" role="group" aria-label="Test bench view">
+                            <button type="button" class="seg" data-mode="output" aria-pressed="false">Outputs only</button>
+                            <button type="button" class="seg" data-mode="evidence" aria-pressed="true">Show evidence</button>
+                        </div>
+                    </div>
+                    <p class="demo-status visually-hidden" aria-live="polite"></p>
+                </figure>
+            </div>
+        </section>
 
-                            <path class="flow" d="M132 60 C 168 60, 162 110, 196 110" fill="none" style="stroke:var(--blue)" stroke-width="1.8" opacity="0.75"/>
-                            <path class="flow" d="M132 188 C 168 188, 162 138, 196 138" fill="none" style="stroke:var(--teal)" stroke-width="1.8" opacity="0.75"/>
+        <!-- ================= RESEARCH ================= -->
+        <section class="section" id="research" aria-labelledby="research-title">
+            <div class="wrap">
+                <header class="section-head reveal">
+                    <p class="section-kicker"><span>01</span> Research</p>
+                    <h2 id="research-title">Measuring <em>why</em> a model decides, not just what it outputs.</h2>
+                    <p class="section-intro">Simulators and generative models now supply much of the evidence used to test camera-based perception in automated vehicles. But a model can give the same output on a real image and on its synthetic twin while relying on different visual evidence. My metrics compare that evidence, so a test passed in simulation can be trusted as evidence about the real world.</p>
+                </header>
 
-                            <g>
-                                <rect x="200" y="86" width="104" height="76" rx="11" style="fill:var(--card-2);stroke:var(--rule-strong)" stroke-width="1.5"/>
-                                <circle cx="228" cy="110" r="4" style="fill:var(--ink-3)"/>
-                                <circle cx="228" cy="124" r="4" style="fill:var(--ink-3)"/>
-                                <circle cx="228" cy="138" r="4" style="fill:var(--ink-3)"/>
-                                <circle cx="252" cy="117" r="4" style="fill:var(--ink-2)"/>
-                                <circle cx="252" cy="131" r="4" style="fill:var(--ink-2)"/>
-                                <circle cx="276" cy="124" r="4" style="fill:var(--ink)"/>
-                                <path d="M232 110 L248 116 M232 124 L248 118 M232 124 L248 130 M232 138 L248 132 M256 117 L272 123 M256 131 L272 125" style="stroke:var(--rule-strong)" stroke-width="1.1"/>
-                                <text x="252" y="177" text-anchor="middle" font-size="10" style="fill:var(--ink-3);font-family:var(--font-mono)">frozen SUT</text>
-                            </g>
-
-                            <path class="flow" d="M308 110 C 344 110, 338 60, 372 60" fill="none" style="stroke:var(--blue)" stroke-width="1.8" opacity="0.75"/>
-                            <path class="flow" d="M308 138 C 344 138, 338 188, 372 188" fill="none" style="stroke:var(--teal)" stroke-width="1.8" opacity="0.75"/>
-
-                            <g transform="translate(376,26)">
-                                <rect x="0" y="0" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.10"/><rect x="19" y="0" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.24"/><rect x="38" y="0" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.10"/><rect x="57" y="0" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.06"/>
-                                <rect x="0" y="19" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.22"/><rect x="19" y="19" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.95"/><rect x="38" y="19" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.55"/><rect x="57" y="19" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.12"/>
-                                <rect x="0" y="38" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.10"/><rect x="19" y="38" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.62"/><rect x="38" y="38" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.34"/><rect x="57" y="38" width="16" height="16" rx="3" style="fill:var(--blue)" opacity="0.08"/>
-                                <text x="36" y="74" text-anchor="middle" font-size="10" style="fill:var(--ink-3);font-family:var(--font-mono)">evidence · pedestrian</text>
-                            </g>
-
-                            <g transform="translate(376,154)">
-                                <rect x="0" y="0" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.10"/><rect x="19" y="0" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.14"/><rect x="38" y="0" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.55"/><rect x="57" y="0" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.92"/>
-                                <rect x="0" y="19" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.12"/><rect x="19" y="19" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.18"/><rect x="38" y="19" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.30"/><rect x="57" y="19" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.62"/>
-                                <rect x="0" y="38" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.08"/><rect x="19" y="38" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.10"/><rect x="38" y="38" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.16"/><rect x="57" y="38" width="16" height="16" rx="3" style="fill:var(--teal)" opacity="0.22"/>
-                                <text x="36" y="74" text-anchor="middle" font-size="10" style="fill:var(--ink-3);font-family:var(--font-mono)">evidence · road sign</text>
-                            </g>
-
-                            <path class="flow" d="M456 60 C 492 60, 486 110, 516 112" fill="none" style="stroke:var(--ink-3)" stroke-width="1.6" opacity="0.7"/>
-                            <path class="flow" d="M456 188 C 492 188, 486 138, 516 136" fill="none" style="stroke:var(--ink-3)" stroke-width="1.6" opacity="0.7"/>
-
-                            <g>
-                                <rect x="520" y="92" width="112" height="64" rx="12" style="fill:var(--card)" stroke="url(#dffg)" stroke-width="2.5"/>
-                                <text x="576" y="121" text-anchor="middle" font-size="22" font-weight="700" style="fill:var(--blue);font-family:var(--font-display)">DFF</text>
-                                <text x="576" y="141" text-anchor="middle" font-size="9" style="fill:var(--ink-2);font-family:var(--font-mono)">evidence agreement</text>
-                            </g>
-                        </svg>
-                        <p class="dff-caption"><strong>Same output, different reason.</strong> A real frame and its synthetic twin can produce identical outputs from the same frozen model while relying on different visual evidence. DFF makes that divergence measurable — so fidelity is judged by <em>why</em> the system decides, not how the images look.</p>
+                <div class="instruments">
+                    <article class="instrument reveal">
+                        <header class="instrument-head"><span class="instrument-id">Instrument 01</span><span class="instrument-venue">IEEE IV 2026</span></header>
+                        <h3 class="instrument-name">Decisive Feature Fidelity <span class="acr">DFF</span></h3>
+                        <p class="instrument-desc">Uses counterfactual explanations to find the image evidence that decides a frozen model's output, then compares that evidence on a real frame and on its synthetic twin.</p>
+                        <dl class="readouts">
+                            <div><dt>matched KITTI and Virtual KITTI 2 image pairs, three frozen models</dt><dd>2,126</dd></div>
+                            <div><dt>Spearman correlation between output agreement and evidence agreement</dt><dd>|ρ| ≤ 0.21</dd></div>
+                            <div class="wide"><dt>Tuning the image generator for output agreement alone (drivable-area task): the score improved while the evidence drifted further apart</dt><dd>−74% <small>output loss</small> · +16% <small>evidence divergence</small></dd></div>
+                        </dl>
+                        <p class="instrument-links">
+                            <a href="https://doi.org/10.1109/IV66570.2026.11624013" target="_blank" rel="noopener noreferrer">IEEE Xplore</a>
+                            <a href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv</a>
+                            <a href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">Code</a>
+                            <a href="blog.html?post=what-is-decisive-feature-fidelity">Plain-language explainer</a>
+                        </p>
                     </article>
 
-                    <!-- Metrics (auto-updated) -->
-                    <article class="tile tile-5 reveal" id="metrics-tile">
-                        <p class="label">Bibliometrics · auto-updated</p>
+                    <article class="instrument reveal">
+                        <header class="instrument-head"><span class="instrument-id">Instrument 02</span><span class="instrument-venue">IEEE ITSC 2026</span></header>
+                        <h3 class="instrument-name">Concept-Decisive Feature Fidelity <span class="acr">C-DFF</span></h3>
+                        <p class="instrument-desc">Maps the decisive evidence onto scene concepts such as road, cars, poles, buildings and sky, to show which parts of the scene a model relies on more, or less, in simulation.</p>
+                        <dl class="readouts">
+                            <div><dt>image pairs passing the check, drivable-area model</dt><dd>97%</dd></div>
+                            <div><dt>image pairs passing the check, lane-line model (each model judged against its own threshold)</dt><dd>67%</dd></div>
+                            <div class="wide"><dt>Scene concepts that became more (↑) or less (↓) decisive in simulation for the drivable-area model: a ranked target list for simulator teams</dt><dd class="concepts"><span>↑ cars · poles · walls</span><span>↓ buildings · fences · trucks</span></dd></div>
+                        </dl>
+                        <p class="instrument-links">
+                            <a href="https://arxiv.org/abs/2610.33760" target="_blank" rel="noopener noreferrer">arXiv</a>
+                            <a href="blog.html?post=what-is-c-dff">Plain-language explainer</a>
+                            <span class="pub-cites">IEEE Xplore: in press</span>
+                        </p>
+                    </article>
+                </div>
+
+                <div class="method reveal">
+                    <div class="panel-head"><span>How the measurement works</span><span>DFF pipeline</span></div>
+                    <ol class="method-steps">
+                        <li>
+                            <span class="step-n">01 · Pair</span>
+                            <h3>Real frame and synthetic twin</h3>
+                            <p>A camera frame from the real world and its matched rendering from a simulator or generative model.</p>
+                        </li>
+                        <li>
+                            <span class="step-n">02 · Freeze</span>
+                            <h3>Same frozen model</h3>
+                            <p>Both images go through the same system under test, unchanged, so any difference comes from the data.</p>
+                        </li>
+                        <li>
+                            <span class="step-n">03 · Explain</span>
+                            <h3>Decisive evidence</h3>
+                            <p>Counterfactual explanations find the image regions that actually decide each output.</p>
+                        </li>
+                        <li>
+                            <span class="step-n">04 · Compare</span>
+                            <h3>Evidence agreement</h3>
+                            <p>DFF scores how well the two sets of evidence agree; C-DFF breaks the gap down by scene concept.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="signal-row">
+                    <article class="panel reveal" id="metrics-tile">
+                        <div class="panel-head"><span>Bibliometrics</span><span class="live">Updated daily</span></div>
                         <div class="metric-grid">
                             <div>
                                 <span class="metric-value stat-num" id="m-citations" data-target="94">94</span>
                                 <span class="metric-label">Citations</span>
                             </div>
-                            <div class="metric-violet">
+                            <div>
                                 <span class="metric-value stat-num" id="m-h" data-target="6">6</span>
                                 <span class="metric-label">h-index</span>
                             </div>
-                            <div class="metric-teal">
+                            <div>
                                 <span class="metric-value stat-num" id="m-i10" data-target="6">6</span>
                                 <span class="metric-label">i10-index</span>
                             </div>
-                            <div class="metric-rose">
-                                <span class="metric-value stat-num" id="m-works" data-target="11">11</span>
+                            <div>
+                                <span class="metric-value stat-num" id="m-works" data-target="13">13</span>
                                 <span class="metric-label">Works</span>
                             </div>
                         </div>
@@ -292,175 +407,193 @@
                         <p class="metric-note">Source: <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>, checked daily · updated <span id="scholar-updated">Nov 2026</span> · hatched bar = year to date</p>
                     </article>
 
-                    <!-- Featured paper -->
-                    <article class="tile tile-7 tile-feature reveal">
-                        <p class="label">Featured · peer-reviewed</p>
-                        <h3 class="paper-title">Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery</h3>
-                        <p class="paper-meta">First author · <em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854 · Detroit, MI, USA · validated on 2,126 matched KITTI / Virtual KITTI 2 pairs across three frozen systems under test.</p>
-                        <div class="chip-row">
-                            <a class="chip chip-primary" href="https://doi.org/10.1109/IV66570.2026.11624013" target="_blank" rel="noopener noreferrer">IEEE Xplore</a>
-                            <a class="chip" href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv</a>
-                            <a class="chip" href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">Code</a>
-                            <a class="chip" href="blog.html?post=what-is-decisive-feature-fidelity">Plain-language explainer</a>
-                        </div>
-                    </article>
-
-                    <!-- People -->
-                    <article class="tile tile-5 reveal">
-                        <p class="label">Supervision &amp; partnership</p>
-                        <div class="people">
-                            <p class="people-row"><span>PhD supervised by <strong>Prof. Siddartha Khastgir</strong> and <strong>Prof. Matthew Higgins</strong>, WMG. Previously co-supervised by Dr Xingyu Zhao.</span></p>
-                            <p class="people-row"><span>Industrial research partnership with <strong>Siemens Digital Industries Software</strong> since February 2025.</span></p>
-                            <p class="people-row"><span>Before Warwick: MSc Artificial Intelligence, <strong>University of Tehran</strong> (GPA 19.41/20).</span></p>
-                        </div>
+                    <article class="panel reveal">
+                        <div class="panel-head"><span>Supervision and partnership</span></div>
+                        <ul class="people-list">
+                            <li><span class="people-k">Supervisors, WMG</span><span class="people-v"><span class="nowrap">Matthew Higgins</span>, <span class="nowrap">Thomas Bashford-Rogers</span> and <span class="nowrap">Siddartha Khastgir</span></span></li>
+                            <li><span class="people-k">Supervisors, Siemens</span><span class="people-v">Mohsen Alirezaei and Son Tong</span></li>
+                            <li><span class="people-k">Industrial partner</span><span class="people-v">Siemens Digital Industries Software, since February 2025</span></li>
+                            <li><span class="people-k">Research group</span><span class="people-v">Safe Autonomy Research Group, WMG, University of Warwick</span></li>
+                            <li><span class="people-k">Before Warwick</span><span class="people-v">MSc Artificial Intelligence, University of Tehran (GPA 19.41/20)</span></li>
+                        </ul>
                     </article>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- ================= PUBLICATIONS ================= -->
-            <section class="section" id="publications">
-                <div class="section-head reveal">
-                    <span class="section-num">02</span>
-                    <h2>Publications</h2>
+        <!-- ================= PUBLICATIONS ================= -->
+        <section class="section" id="publications" aria-labelledby="publications-title">
+            <div class="wrap">
+                <header class="section-head reveal">
+                    <p class="section-kicker"><span>02</span> Publications</p>
+                    <h2 id="publications-title">Peer-reviewed work, then preprints.</h2>
+                    <p class="section-intro">Author order as published. The list renders from a single data file, and citation counts refresh daily from Google Scholar.</p>
+                </header>
+                <div id="pub-root">
+                    <div class="pub-group">
+                        <div class="pub-group-head"><h3>Peer-reviewed</h3><span class="pub-group-count">3 works</span></div>
+                        <ol class="pub-list">
+                            <li class="pub" data-accent="safeai"><div class="pub-year">2026</div><div><div class="pub-tags"><span class="tag tag-strong">First author</span><span class="tag tag-safeai">Safe AI</span><span class="tag tag-plain">IEEE ITSC</span></div><h4 class="pub-title"><a href="https://arxiv.org/abs/2610.33760" target="_blank" rel="noopener noreferrer">C-DFF: Concept-Level Diagnostics for Mechanism Parity in Simulation-Based Validation of Autonomous Driving Perception</a></h4><p class="pub-authors"><span class="me">D. Safaei</span>, S. Khastgir, M. Higgins, J. Ploeg, M. Alirezaei, S. Tong, L. Gielen</p><p class="pub-venue"><em>2026 IEEE 29th International Conference on Intelligent Transportation Systems (ITSC)</em>, Naples, Italy, September 2026. In press.</p><div class="pub-links"><a href="https://arxiv.org/abs/2610.33760" target="_blank" rel="noopener noreferrer">arXiv</a></div></div></li>
+                            <li class="pub" data-accent="safeai"><div class="pub-year">2026</div><div><div class="pub-tags"><span class="tag tag-strong">First author</span><span class="tag tag-safeai">Safe AI</span><span class="tag tag-plain">IEEE IV</span></div><h4 class="pub-title"><a href="https://doi.org/10.1109/IV66570.2026.11624013" target="_blank" rel="noopener noreferrer">Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery</a></h4><p class="pub-authors"><span class="me">D. Safaei</span>, S. Khastgir, M. Alirezaei, J. Ploeg, C.-H. Cheng, S. Tong, X. Zhao</p><p class="pub-venue"><em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Plymouth, MI, USA, June 2026.</p><div class="pub-links"><a href="https://doi.org/10.1109/IV66570.2026.11624013" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://arxiv.org/abs/2512.16468" target="_blank" rel="noopener noreferrer">arXiv</a><a href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">Code</a><a href="blog.html?post=what-is-decisive-feature-fidelity">Explainer</a></div></div></li>
+                            <li class="pub" data-accent="smart"><div class="pub-year">2024</div><div><div class="pub-tags"><span class="tag tag-strong">First author</span><span class="tag tag-smart">Smart environments</span><span class="tag tag-plain">Journal</span></div><h4 class="pub-title"><a href="https://doi.org/10.1007/s41870-023-01665-1" target="_blank" rel="noopener noreferrer">DeePLT: Personalized Lighting Facilitates by Trajectory Prediction of Recognized Residents in the Smart Home</a></h4><p class="pub-authors"><span class="me">D. Safaei</span>, A. Sobhani, A. A. Kiaei</p><p class="pub-venue"><em>International Journal of Information Technology</em>, vol. 16, no. 5, pp. 2987–2999. Published online December 2023.</p><div class="pub-links"><a href="https://doi.org/10.1007/s41870-023-01665-1" target="_blank" rel="noopener noreferrer">DOI</a><a href="https://arxiv.org/abs/2304.08027" target="_blank" rel="noopener noreferrer">arXiv</a></div></div></li>
+                        </ol>
+                    </div>
+                    <p class="pub-more">Preprints and working papers load here with JavaScript, and are all listed on <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>.</p>
                 </div>
-                <p class="section-intro reveal">Peer-reviewed work first, preprints separately. Author order as published. This list renders from a single data file — one edit updates the whole site.</p>
-                <div id="pub-root" aria-live="polite">
-                    <noscript>
-                        <p>The full publication list requires JavaScript. See the complete record on
-                        <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en">Google Scholar</a>.</p>
-                    </noscript>
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- ================= EXPERIENCE ================= -->
-            <section class="section" id="experience">
-                <div class="section-head reveal">
-                    <span class="section-num">03</span>
-                    <h2>Experience</h2>
+        <!-- ================= EXPERIENCE ================= -->
+        <section class="section" id="experience" aria-labelledby="experience-title">
+            <div class="wrap">
+                <header class="section-head reveal">
+                    <p class="section-kicker"><span>03</span> Experience</p>
+                    <h2 id="experience-title">Research, industry and service.</h2>
+                </header>
+                <div class="timeline-grid">
+                    <div class="reveal">
+                        <h3 class="timeline-title">Experience</h3>
+                        <ul class="entries">
+                            <li class="entry">
+                                <div class="entry-when">Oct 2024 — <br>present</div>
+                                <div>
+                                    <h4 class="entry-title">PhD Researcher</h4>
+                                    <p class="entry-org">Safe Autonomy Research Group, WMG, University of Warwick</p>
+                                    <div class="entry-body"><p>Doctoral research on safety assurance and trustworthy evaluation for autonomous systems.</p></div>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <div class="entry-when">Feb 2025 — <br>present</div>
+                                <div>
+                                    <h4 class="entry-title">Research Collaborator (PhD partnership)</h4>
+                                    <p class="entry-org">Siemens Digital Industries Software</p>
+                                    <div class="entry-body"><p>Industrial research partnership running alongside the doctorate, connecting simulation-fidelity research to production virtual-validation practice.</p></div>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <div class="entry-when">Oct 2025 — <br>Sep 2026</div>
+                                <div>
+                                    <h4 class="entry-title">Teaching Assistant</h4>
+                                    <p class="entry-org">WMG, University of Warwick</p>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <div class="entry-when">Jul 2025 — <br>May 2026</div>
+                                <div>
+                                    <h4 class="entry-title">PGR Academic Officer</h4>
+                                    <p class="entry-org">Postgraduate Society, University of Warwick</p>
+                                    <div class="entry-body"><p>Elected representative for postgraduate researchers on academic matters.</p></div>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <div class="entry-when">2020 — 2024</div>
+                                <div>
+                                    <h4 class="entry-title">AI and Reinforcement Learning Researcher</h4>
+                                    <p class="entry-org">University of Tehran</p>
+                                    <div class="entry-body"><p>Research across deep learning, reinforcement and inverse reinforcement learning, computer vision, and graph-based methods.</p></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="reveal">
+                        <h3 class="timeline-title">Education</h3>
+                        <ul class="entries">
+                            <li class="entry">
+                                <div class="entry-when">2024 — 2029 <br>(expected)</div>
+                                <div>
+                                    <h4 class="entry-title">PhD, Safe AI for Autonomous Systems</h4>
+                                    <p class="entry-org">WMG, University of Warwick, United Kingdom</p>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <div class="entry-when">2019 — 2022</div>
+                                <div>
+                                    <h4 class="entry-title">MSc, Artificial Intelligence</h4>
+                                    <p class="entry-org">University of Tehran, Iran</p>
+                                    <div class="entry-body"><p>GPA 19.41 / 20.0.</p></div>
+                                </div>
+                            </li>
+                            <li class="entry">
+                                <div class="entry-when">2014 — 2019</div>
+                                <div>
+                                    <h4 class="entry-title">BSc, Computer Software Engineering</h4>
+                                    <p class="entry-org">University of Kashan, Iran</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <ul class="entries">
-                    <li class="entry reveal">
-                        <div class="entry-when">Oct 2024 —<br>present</div>
-                        <div>
-                            <h3 class="entry-title">PhD Researcher</h3>
-                            <p class="entry-org">Safe Autonomy Research Group, WMG, University of Warwick</p>
-                            <div class="entry-body"><p>Doctoral research on safety assurance and trustworthy evaluation for autonomous systems.</p></div>
-                        </div>
-                    </li>
-                    <li class="entry reveal">
-                        <div class="entry-when">Feb 2025 —<br>present</div>
-                        <div>
-                            <h3 class="entry-title">Research Collaborator (PhD partnership)</h3>
-                            <p class="entry-org">Siemens Digital Industries Software</p>
-                            <div class="entry-body"><p>Industrial research partnership running alongside the doctorate, connecting simulation-fidelity research to production virtual-validation practice.</p></div>
-                        </div>
-                    </li>
-                    <li class="entry reveal">
-                        <div class="entry-when">Oct 2025 —<br>Sep 2026</div>
-                        <div>
-                            <h3 class="entry-title">Teaching Assistant</h3>
-                            <p class="entry-org">WMG, University of Warwick</p>
-                        </div>
-                    </li>
-                    <li class="entry reveal">
-                        <div class="entry-when">Jul 2025 —<br>May 2026</div>
-                        <div>
-                            <h3 class="entry-title">PGR Academic Officer</h3>
-                            <p class="entry-org">Postgraduate Society, University of Warwick</p>
-                            <div class="entry-body"><p>Elected representative for postgraduate researchers on academic matters.</p></div>
-                        </div>
-                    </li>
-                    <li class="entry reveal">
-                        <div class="entry-when">2020 — 2024</div>
-                        <div>
-                            <h3 class="entry-title">AI and Reinforcement Learning Researcher</h3>
-                            <p class="entry-org">University of Tehran</p>
-                            <div class="entry-body"><p>Research across deep learning, reinforcement and inverse reinforcement learning, computer vision, and graph-based methods.</p></div>
-                        </div>
-                    </li>
-                </ul>
+            </div>
+        </section>
 
-                <div class="section-head reveal" style="margin-top: var(--sp-6);">
-                    <span class="section-num">04</span>
-                    <h2>Education</h2>
-                </div>
-                <ul class="entries">
-                    <li class="entry reveal">
-                        <div class="entry-when">2024 — 2029<br>(expected)</div>
-                        <div>
-                            <h3 class="entry-title">PhD, Safe AI for Autonomous Systems</h3>
-                            <p class="entry-org">WMG, University of Warwick, United Kingdom</p>
-                        </div>
-                    </li>
-                    <li class="entry reveal">
-                        <div class="entry-when">2019 — 2022</div>
-                        <div>
-                            <h3 class="entry-title">MSc, Artificial Intelligence</h3>
-                            <p class="entry-org">University of Tehran, Iran</p>
-                            <div class="entry-body"><p>GPA 19.41 / 20.0.</p></div>
-                        </div>
-                    </li>
-                    <li class="entry reveal">
-                        <div class="entry-when">2014 — 2019</div>
-                        <div>
-                            <h3 class="entry-title">BSc, Computer Software Engineering</h3>
-                            <p class="entry-org">University of Kashan, Iran</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <!-- ================= SOFTWARE (live) ================= -->
-            <section class="section" id="software">
-                <div class="section-head reveal">
-                    <span class="section-num">05</span>
-                    <h2>Software</h2>
-                </div>
-                <p class="section-intro reveal">Live from the GitHub API — stars, language, and last activity update themselves.</p>
+        <!-- ================= SOFTWARE (live) ================= -->
+        <section class="section" id="software" aria-labelledby="software-title">
+            <div class="wrap">
+                <header class="section-head reveal">
+                    <p class="section-kicker"><span>04</span> Software</p>
+                    <h2 id="software-title">Open code behind the papers.</h2>
+                    <p class="section-intro">Live from the GitHub API: stars, language and last activity update themselves.</p>
+                </header>
                 <div class="repo-grid reveal" id="repo-root">
                     <a class="repo-card" href="https://github.com/Danial-Safaei/DFF" target="_blank" rel="noopener noreferrer">
                         <span class="repo-name">DFF</span>
                         <span class="repo-desc">Decisive Feature Fidelity (IEEE IV 2026): counterfactual-XAI metric testing whether a model relies on the same visual evidence in simulation as in reality.</span>
                         <span class="repo-meta"><span class="dot">Python</span></span>
                     </a>
-                    <a class="repo-card" href="https://github.com/Danial-Safaei/Danial-Safaei.github.io" target="_blank" rel="noopener noreferrer">
-                        <span class="repo-name">danial-safaei.github.io</span>
-                        <span class="repo-desc">This site — dependency-free static HTML/CSS/JS with a self-updating data layer.</span>
-                        <span class="repo-meta"><span class="dot">HTML</span></span>
+                    <a class="repo-card" href="https://github.com/Danial-Safaei/handheld-pedestrian-forecasts" target="_blank" rel="noopener noreferrer">
+                        <span class="repo-name">handheld-pedestrian-forecasts</span>
+                        <span class="repo-desc">Probabilistic pedestrian forecasts from a handheld phone: world-frame heat maps, visual-inertial height drift and evaluation without ground truth. Code, pre-registered protocol and paper sources.</span>
+                        <span class="repo-meta"><span class="dot">Python</span></span>
                     </a>
                     <a class="repo-card" href="https://github.com/Danial-Safaei/RealTraj" target="_blank" rel="noopener noreferrer">
                         <span class="repo-name">RealTraj</span>
-                        <span class="repo-desc">Forecasting future trajectories and activities of people in video — detection, multi-object tracking, and scene segmentation.</span>
+                        <span class="repo-desc">Forecasting future trajectories and activities of people in video: detection, multi-object tracking and scene segmentation.</span>
                         <span class="repo-meta"><span class="dot">Python</span></span>
                     </a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <!-- ================= WRITING (live) ================= -->
-            <section class="section" id="writing">
-                <div class="section-head reveal">
-                    <span class="section-num">06</span>
-                    <h2>Writing</h2>
-                </div>
+        <!-- ================= WRITING (live) ================= -->
+        <section class="section" id="writing" aria-labelledby="writing-title">
+            <div class="wrap">
+                <header class="section-head reveal">
+                    <p class="section-kicker"><span>05</span> Writing</p>
+                    <h2 id="writing-title">Notes on evaluation and safe AI.</h2>
+                </header>
                 <div class="home-posts reveal" id="home-posts">
-                    <a class="home-post" href="blog.html">
-                        <span class="post-date">The blog</span>
-                        <h3>Notes on Safe AI and evaluation methodology</h3>
-                        <p>Short technical pieces, published as the research goes.</p>
+                    <a class="home-post" href="blog.html?post=what-is-c-dff">
+                        <span class="post-date">27 Oct 2026</span>
+                        <h3>C-DFF: from ‘the evidence changed’ to ‘which evidence changed’</h3>
+                        <p>DFF shows when a model relies on different evidence in simulation. C-DFF shows which scene concepts, such as road, buildings or sky, gained or lost importance.</p>
+                    </a>
+                    <a class="home-post" href="blog.html?post=welcome">
+                        <span class="post-date">10 Jul 2026</span>
+                        <h3>Welcome — and what I'll write about here</h3>
+                        <p>A short introduction to this blog: Safe AI, evaluation methodology, and honest notes from the research process.</p>
+                    </a>
+                    <a class="home-post" href="blog.html?post=what-is-decisive-feature-fidelity">
+                        <span class="post-date">9 Jul 2026</span>
+                        <h3>What is Decisive Feature Fidelity?</h3>
+                        <p>Why pixel-level realism isn't enough for trustworthy simulation, and how DFF measures whether synthetic data preserves the features a model actually decides on.</p>
                     </a>
                 </div>
-                <p class="section-intro reveal" style="margin-top: var(--sp-3); margin-bottom: 0;"><a href="blog.html">All posts →</a></p>
-            </section>
+                <p class="section-more reveal"><a href="blog.html">All posts →</a></p>
+            </div>
+        </section>
 
-            <!-- ================= CONTACT ================= -->
-            <section class="section" id="contact">
-                <div class="section-head reveal">
-                    <span class="section-num">07</span>
-                    <h2>Contact</h2>
-                </div>
+        <!-- ================= CONTACT ================= -->
+        <section class="section" id="contact" aria-labelledby="contact-title">
+            <div class="wrap">
+                <header class="section-head reveal">
+                    <p class="section-kicker"><span>06</span> Contact</p>
+                    <h2 id="contact-title">Get in touch.</h2>
+                </header>
                 <div class="contact-panel reveal">
-                    <h3 style="font-size: var(--step-2); margin-bottom: 0.5rem;">Working on trustworthy AI?</h3>
-                    <p class="prose" style="color: var(--ink-2); margin-bottom: 0;">I am glad to hear from people working on simulation-to-real transfer, validation methodology, or safety evidence for autonomous systems.</p>
+                    <div>
+                        <h3>Working on trustworthy AI?</h3>
+                        <p class="prose">I am glad to hear from people working on simulation-to-real transfer, validation methodology, or safety evidence for autonomous systems.</p>
+                    </div>
                     <div class="contact-grid">
                         <a class="contact-item" href="mailto:danial.safaei@warwick.ac.uk"><span>Email</span><strong>danial.safaei@warwick.ac.uk</strong></a>
                         <a class="contact-item" href="https://orcid.org/0000-0002-4443-8763" target="_blank" rel="noopener noreferrer"><span>ORCID</span><strong>0000-0002-4443-8763</strong></a>
@@ -470,23 +603,23 @@
                         <a class="contact-item" href="https://www.researchgate.net/profile/Danial-Safaei" target="_blank" rel="noopener noreferrer"><span>ResearchGate</span><strong>Research profile</strong></a>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
     <footer class="site-footer">
         <div class="wrap">
             <div class="footer-row">
-                <p>&copy; <span id="year">2026</span> Danial Safaei · WMG, University of Warwick</p>
-                <p id="site-updated">Coventry, UK</p>
+                <p>&copy; <span id="year">2026</span> Danial Safaei · WMG, University of Warwick · Coventry, UK</p>
+                <p id="site-updated">Site updated November 2026</p>
             </div>
             <p class="footer-note">Static site, no analytics, no tracking. Citation metrics refresh automatically via GitHub Actions; repositories and writing update live.</p>
         </div>
+        <a class="back-to-top" href="#top" id="back-to-top" aria-label="Back to top" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </a>
     </footer>
 
-    <a class="back-to-top" href="#top" id="back-to-top" aria-label="Back to top" hidden>
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-    </a>
 
     <script src="interact.js"></script>
 </body>

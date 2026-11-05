@@ -1,0 +1,3 @@
+# Python bytecode (created when the Scholar refresher runs locally)
+__pycache__/
+*.pyc

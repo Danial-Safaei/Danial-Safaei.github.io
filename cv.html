@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Curriculum vitae of Danial Safaei — PhD researcher in the Safe Autonomy Research Group at WMG, University of Warwick.">
+    <meta name="description" content="Curriculum vitae of Danial Safaei, PhD researcher in the Safe Autonomy Research Group at WMG, University of Warwick. First author of DFF (IEEE IV 2026) and C-DFF (IEEE ITSC 2026).">
     <meta name="author" content="Danial Safaei">
     <meta name="robots" content="index, follow">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#fafbfe" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0b111f" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#07090c">
     <meta property="og:title" content="Curriculum Vitae | Danial Safaei">
     <meta property="og:description" content="Academic CV — PhD researcher at WMG, University of Warwick. Safe AI for autonomous systems.">
     <meta property="og:type" content="profile">
@@ -18,27 +17,25 @@
     <meta property="og:image" content="https://danial-safaei.github.io/images/og-card.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Danial Safaei, PhD Researcher, Safe Autonomy Research Group, WMG, University of Warwick">
+    <meta property="og:image:alt" content="Danial Safaei, PhD researcher, WMG, University of Warwick: a test can pass for the wrong reason.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://danial-safaei.github.io/images/og-card.jpg">
     <link rel="canonical" href="https://danial-safaei.github.io/cv.html">
-    <link rel="icon" type="image/jpeg" href="images/profile.jpg">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="images/profile.jpg">
     <title>Curriculum Vitae | Danial Safaei</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <script>
         (function () {
             try {
-                var saved = localStorage.getItem("theme");
-                var dark = saved === "dark"; // light is the default; dark is an explicit visitor choice
-                if (dark) { document.body.classList.add("dark"); }
-            } catch (e) { /* keep the light default */ }
+                // Dark is the default; light is an explicit visitor choice.
+                if (localStorage.getItem("theme") === "light") { document.body.classList.add("light"); }
+            } catch (e) { /* keep the dark default */ }
         })();
     </script>
 
@@ -46,7 +43,11 @@
 
     <header class="site-header">
         <div class="wrap masthead">
-            <a class="brand" href="index.html">Danial Safaei</a>
+            <a class="brand" href="index.html">
+                <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect class="frame" x="1" y="1" width="22" height="22" rx="6"/><path class="t1" d="M4 14.6c2.3 0 2.7-6.1 5-6.1s2.6 8.1 5 8.1 2.9-6.1 6-6.1"/><path class="t2" d="M4 12.4c2.3 0 2.7-3.9 5-3.9s2.6 5.6 5 5.6 2.9-6.6 6-6.6"/></svg>
+                <span>Danial Safaei</span>
+                <span class="brand-tag">PhD · WMG</span>
+            </a>
             <nav class="nav" aria-label="Primary">
                 <a href="index.html#research">Research</a>
                 <a href="index.html#publications">Publications</a>
@@ -56,14 +57,14 @@
                 <a href="cv.html" class="is-active" aria-current="page">CV</a>
                 <a href="index.html#contact">Contact</a>
             </nav>
-            <button class="theme-toggle" id="toggle-dark" type="button" aria-label="Switch to dark theme">
+            <button class="theme-toggle" id="toggle-dark" type="button" aria-label="Switch to light theme">
                 <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.8v2.4M12 19.8v2.4M4.22 4.22l1.7 1.7M18.08 18.08l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.22 19.78l1.7-1.7M18.08 5.92l1.7-1.7"/></svg>
             </button>
         </div>
     </header>
 
-    <main id="main">
+    <main id="main" class="page">
         <div class="wrap narrow">
             <header class="cv-header">
                 <h1 class="cv-name">Danial Safaei</h1>
@@ -85,7 +86,7 @@
 
             <section class="cv-section">
                 <h2>Research interests</h2>
-                <p class="prose">Safety assurance for AI-enabled autonomous systems; trustworthy evaluation and simulation-to-real transfer; explainable AI as a measurement instrument; synthetic-data fidelity; scenario-based testing.</p>
+                <p class="prose">Safety assurance for AI-enabled autonomous systems; trustworthy evaluation and simulation-to-real transfer; explainable AI as a measurement instrument; synthetic-data fidelity; scenario-based testing; probabilistic forecasting of pedestrian motion.</p>
             </section>
 
             <section class="cv-section">
@@ -96,7 +97,7 @@
                         <div>
                             <h3 class="entry-title">PhD, Safe AI for Autonomous Systems</h3>
                             <p class="entry-org">WMG, University of Warwick, United Kingdom</p>
-                            <div class="entry-body"><p>Supervisors: Prof. Siddartha Khastgir and Prof. Matthew Higgins (previously co-supervised by Dr Xingyu Zhao). Industrial partner: Siemens Digital Industries Software.</p></div>
+                            <div class="entry-body"><p>Supervisors: Matthew Higgins, <span class="nowrap">Thomas Bashford-Rogers</span> and <span class="nowrap">Siddartha Khastgir</span> (WMG); Mohsen Alirezaei and Son Tong (Siemens Digital Industries Software, the industrial partner).</p></div>
                         </div>
                     </li>
                     <li class="entry">
@@ -187,9 +188,17 @@
                     <li class="pub">
                         <div class="pub-year">2026</div>
                         <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2610.33760" target="_blank" rel="noopener noreferrer">C-DFF: Concept-Level Diagnostics for Mechanism Parity in Simulation-Based Validation of Autonomous Driving Perception</a></h3>
+                            <p class="pub-authors"><span class="me">D. Safaei</span>, S. Khastgir, M. Higgins, J. Ploeg, M. Alirezaei, S. Tong, L. Gielen</p>
+                            <p class="pub-venue"><em>2026 IEEE 29th International Conference on Intelligent Transportation Systems (ITSC)</em>, Naples, Italy, September 2026. In press. arXiv: 2610.33760</p>
+                        </div>
+                    </li>
+                    <li class="pub">
+                        <div class="pub-year">2026</div>
+                        <div>
                             <h3 class="pub-title"><a href="https://doi.org/10.1109/IV66570.2026.11624013" target="_blank" rel="noopener noreferrer">Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery</a></h3>
                             <p class="pub-authors"><span class="me">D. Safaei</span>, S. Khastgir, M. Alirezaei, J. Ploeg, C.-H. Cheng, S. Tong, X. Zhao</p>
-                            <p class="pub-venue"><em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Detroit, MI, USA. DOI: 10.1109/IV66570.2026.11624013</p>
+                            <p class="pub-venue"><em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Plymouth, MI, USA. DOI: 10.1109/IV66570.2026.11624013</p>
                         </div>
                     </li>
                     <li class="pub">
@@ -206,6 +215,14 @@
             <section class="cv-section">
                 <h2>Preprints and working papers</h2>
                 <ol class="pub-list">
+                    <li class="pub">
+                        <div class="pub-year">2026</div>
+                        <div>
+                            <h3 class="pub-title"><a href="https://arxiv.org/abs/2610.04736" target="_blank" rel="noopener noreferrer">Probabilistic Pedestrian Forecasts from a Handheld Phone: World-Frame Heat Maps, Visual-Inertial Height Drift, and Evaluation without Ground Truth</a></h3>
+                            <p class="pub-authors"><span class="me">D. Safaei</span> (sole author)</p>
+                            <p class="pub-venue"><em>arXiv</em> preprint arXiv:2610.04736, October 2026. Code: github.com/Danial-Safaei/handheld-pedestrian-forecasts</p>
+                        </div>
+                    </li>
                     <li class="pub">
                         <div class="pub-year">2024</div>
                         <div>
@@ -283,7 +300,7 @@
 
             <section class="cv-section">
                 <h2>Bibliometrics</h2>
-                <p class="prose"><span id="cv-citations">94</span> citations · h-index <span id="cv-h">6</span> · i10-index <span id="cv-i10">6</span> · <span id="cv-works">11</span> works. Source: <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>, <span id="cv-scholar-date">November 2026</span>.</p>
+                <p class="prose"><span id="cv-citations">94</span> citations · h-index <span id="cv-h">6</span> · i10-index <span id="cv-i10">6</span> · <span id="cv-works">13</span> works. Source: <a href="https://scholar.google.co.uk/citations?user=qNJPWrMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a>, <span id="cv-scholar-date">November 2026</span>.</p>
             </section>
 
             <section class="cv-section">
@@ -319,7 +336,7 @@
         <div class="wrap narrow">
             <div class="footer-row">
                 <p>&copy; <span id="year">2026</span> Danial Safaei</p>
-                <p id="site-updated" data-prefix="Last updated">Last updated September 2026</p>
+                <p id="site-updated" data-prefix="Last updated">Last updated November 2026</p>
             </div>
         </div>
     </footer>

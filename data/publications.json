@@ -2,6 +2,23 @@
   "note": "Single source of truth for the publication list. The homepage renders this file at runtime; edit here and the site updates.",
   "publications": [
     {
+      "id": "cdff-itsc2026",
+      "group": "peer",
+      "year": "2026",
+      "tags": [
+        { "label": "First author", "type": "strong" },
+        { "label": "Safe AI", "type": "safeai" },
+        { "label": "IEEE ITSC", "type": "plain" }
+      ],
+      "title": "C-DFF: Concept-Level Diagnostics for Mechanism Parity in Simulation-Based Validation of Autonomous Driving Perception",
+      "authors": "D. Safaei, S. Khastgir, M. Higgins, J. Ploeg, M. Alirezaei, S. Tong, L. Gielen",
+      "venue": "<em>2026 IEEE 29th International Conference on Intelligent Transportation Systems (ITSC)</em>, Naples, Italy, September 2026. In press.",
+      "links": [
+        { "label": "arXiv", "href": "https://arxiv.org/abs/2610.33760" }
+      ],
+      "cites": null
+    },
+    {
       "id": "dff-iv2026",
       "group": "peer",
       "year": "2026",
@@ -12,7 +29,7 @@
       ],
       "title": "Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery",
       "authors": "D. Safaei, S. Khastgir, M. Alirezaei, J. Ploeg, C.-H. Cheng, S. Tong, X. Zhao",
-      "venue": "<em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Detroit, MI, USA, June 2026.",
+      "venue": "<em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Plymouth, MI, USA, June 2026.",
       "links": [
         { "label": "DOI", "href": "https://doi.org/10.1109/IV66570.2026.11624013" },
         { "label": "arXiv", "href": "https://arxiv.org/abs/2512.16468" },
@@ -38,6 +55,24 @@
         { "label": "arXiv", "href": "https://arxiv.org/abs/2304.08027" }
       ],
       "cites": 15
+    },
+    {
+      "id": "handheld-forecasts",
+      "group": "preprint",
+      "year": "2026",
+      "tags": [
+        { "label": "Sole author", "type": "strong" },
+        { "label": "Probabilistic forecasting", "type": "ml" },
+        { "label": "Computer vision", "type": "ml" }
+      ],
+      "title": "Probabilistic Pedestrian Forecasts from a Handheld Phone: World-Frame Heat Maps, Visual-Inertial Height Drift, and Evaluation without Ground Truth",
+      "authors": "D. Safaei",
+      "venue": "<em>arXiv</em> preprint arXiv:2610.04736, October 2026.",
+      "links": [
+        { "label": "arXiv", "href": "https://arxiv.org/abs/2610.04736" },
+        { "label": "Code", "href": "https://github.com/Danial-Safaei/handheld-pedestrian-forecasts" }
+      ],
+      "cites": null
     },
     {
       "id": "graphsage-rain",

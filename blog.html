@@ -6,9 +6,8 @@
     <meta name="description" content="Writing by Danial Safaei — short technical notes on Safe AI, evaluation methodology, synthetic-data fidelity, and the research process.">
     <meta name="author" content="Danial Safaei">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#fafbfe" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0b111f" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#07090c">
     <meta property="og:title" content="Writing | Danial Safaei">
     <meta property="og:description" content="Short technical notes on Safe AI, evaluation methodology, and the research process.">
     <meta property="og:type" content="website">
@@ -18,29 +17,27 @@
     <meta property="og:image" content="https://danial-safaei.github.io/images/og-card.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Danial Safaei, PhD Researcher, Safe Autonomy Research Group, WMG, University of Warwick">
+    <meta property="og:image:alt" content="Danial Safaei, PhD researcher, WMG, University of Warwick: a test can pass for the wrong reason.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://danial-safaei.github.io/images/og-card.jpg">
     <meta name="twitter:title" content="Writing | Danial Safaei">
     <meta name="twitter:description" content="Short technical notes on Safe AI and evaluation methodology.">
     <link rel="canonical" href="https://danial-safaei.github.io/blog.html">
-    <link rel="icon" type="image/jpeg" href="images/profile.jpg">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="images/profile.jpg">
     <title>Writing | Danial Safaei</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <script>
         (function () {
             try {
-                var saved = localStorage.getItem("theme");
-                var dark = saved === "dark"; // light is the default; dark is an explicit visitor choice
-                if (dark) { document.body.classList.add("dark"); }
-            } catch (e) { /* keep the light default */ }
+                // Dark is the default; light is an explicit visitor choice.
+                if (localStorage.getItem("theme") === "light") { document.body.classList.add("light"); }
+            } catch (e) { /* keep the dark default */ }
         })();
     </script>
 
@@ -48,7 +45,11 @@
 
     <header class="site-header" id="top">
         <div class="wrap masthead">
-            <a class="brand" href="index.html">Danial Safaei</a>
+            <a class="brand" href="index.html">
+                <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect class="frame" x="1" y="1" width="22" height="22" rx="6"/><path class="t1" d="M4 14.6c2.3 0 2.7-6.1 5-6.1s2.6 8.1 5 8.1 2.9-6.1 6-6.1"/><path class="t2" d="M4 12.4c2.3 0 2.7-3.9 5-3.9s2.6 5.6 5 5.6 2.9-6.6 6-6.6"/></svg>
+                <span>Danial Safaei</span>
+                <span class="brand-tag">PhD · WMG</span>
+            </a>
             <nav class="nav" aria-label="Primary">
                 <a href="index.html#research">Research</a>
                 <a href="index.html#publications">Publications</a>
@@ -58,14 +59,14 @@
                 <a href="cv.html">CV</a>
                 <a href="index.html#contact">Contact</a>
             </nav>
-            <button class="theme-toggle" id="toggle-dark" type="button" aria-label="Switch to dark theme">
+            <button class="theme-toggle" id="toggle-dark" type="button" aria-label="Switch to light theme">
                 <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 1.8v2.4M12 19.8v2.4M4.22 4.22l1.7 1.7M18.08 18.08l1.7 1.7M1.8 12h2.4M19.8 12h2.4M4.22 19.78l1.7-1.7M18.08 5.92l1.7-1.7"/></svg>
             </button>
         </div>
     </header>
 
-    <main>
+    <main class="page" id="main">
         <div class="wrap narrow">
             <header class="page-head">
                 <a class="breadcrumb" href="index.html">&larr; Home</a>
@@ -86,11 +87,11 @@
                 <p>WMG, University of Warwick · Coventry, UK</p>
             </div>
         </div>
-    </footer>
-
-    <a class="back-to-top" href="#top" id="back-to-top" aria-label="Back to top" hidden>
+        <a class="back-to-top" href="#top" id="back-to-top" aria-label="Back to top" hidden>
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </a>
+    </footer>
+
 
     <script src="interact.js"></script>
     <script src="blog.js"></script>

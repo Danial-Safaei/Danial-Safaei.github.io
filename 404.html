@@ -5,32 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, follow">
     <meta name="description" content="The page you were looking for could not be found.">
-    <meta name="color-scheme" content="light dark">
-    <meta name="theme-color" content="#fafbfe" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#0b111f" media="(prefers-color-scheme: dark)">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#07090c">
     <title>Page not found | Danial Safaei</title>
-    <link rel="icon" type="image/jpeg" href="/images/profile.jpg">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/images/profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
     <script>
         (function () {
             try {
-                var saved = localStorage.getItem("theme");
-                var dark = saved === "dark"; // light is the default; dark is an explicit visitor choice
-                if (dark) { document.body.classList.add("dark"); }
-            } catch (e) { /* keep the light default */ }
+                // Dark is the default; light is an explicit visitor choice.
+                if (localStorage.getItem("theme") === "light") { document.body.classList.add("light"); }
+            } catch (e) { /* keep the dark default */ }
         })();
     </script>
 
     <header class="site-header">
         <div class="wrap masthead">
-            <a class="brand" href="/">Danial Safaei</a>
+            <a class="brand" href="/">
+                <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><rect class="frame" x="1" y="1" width="22" height="22" rx="6"/><path class="t1" d="M4 14.6c2.3 0 2.7-6.1 5-6.1s2.6 8.1 5 8.1 2.9-6.1 6-6.1"/><path class="t2" d="M4 12.4c2.3 0 2.7-3.9 5-3.9s2.6 5.6 5 5.6 2.9-6.6 6-6.6"/></svg>
+                <span>Danial Safaei</span>
+                <span class="brand-tag">PhD · WMG</span>
+            </a>
             <nav class="nav" aria-label="Primary">
                 <a href="/#research">Research</a>
                 <a href="/#publications">Publications</a>

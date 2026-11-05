@@ -6,8 +6,10 @@ PhD researcher in the Safe Autonomy Research Group at WMG, University of Warwick
 
 ## Selected work
 
+- **C-DFF: Concept-Level Diagnostics for Mechanism Parity in Simulation-Based Validation of Autonomous Driving Perception** — *2026 IEEE 29th International Conference on Intelligent Transportation Systems (ITSC)*, in press. [arXiv](https://arxiv.org/abs/2610.33760)
 - **Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery** — *2026 IEEE Intelligent Vehicles Symposium (IV)*, pp. 847–854. [DOI](https://doi.org/10.1109/IV66570.2026.11624013) · [arXiv](https://arxiv.org/abs/2512.16468) · [Code](https://github.com/Danial-Safaei/DFF)
 - **DeePLT: Personalized Lighting Facilitates by Trajectory Prediction of Recognized Residents in the Smart Home** — *International Journal of Information Technology*, vol. 16, no. 5, pp. 2987–2999. [DOI](https://doi.org/10.1007/s41870-023-01665-1)
+- **Probabilistic Pedestrian Forecasts from a Handheld Phone: World-Frame Heat Maps, Visual-Inertial Height Drift, and Evaluation without Ground Truth** — arXiv preprint, October 2026. [arXiv](https://arxiv.org/abs/2610.04736) · [Code](https://github.com/Danial-Safaei/handheld-pedestrian-forecasts)
 
 ## Profiles
 
@@ -29,8 +31,8 @@ posts/                   Markdown posts + posts.json manifest
 data/publications.json   Single source of truth for the publication list
 data/scholar.json        Citation metrics (written by the Scholar Action)
 scripts/update_scholar.py  Standard-library Scholar refresher (see below)
-style.css                Design tokens, light (default) and dark themes, print styles
-interact.js              Theme toggle, navigation, reveal, counters, live-data loaders
+style.css                "Instrument" design tokens, dark (default) and light themes, print styles
+interact.js              Theme toggle, hero test-bench demo, navigation, reveal, counters, live-data loaders
 favicon.svg              Site mark
 ```
 
