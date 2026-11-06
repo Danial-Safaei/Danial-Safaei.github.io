@@ -16,7 +16,7 @@
       "links": [
         { "label": "arXiv", "href": "https://arxiv.org/abs/2610.33760" }
       ],
-      "cites": null
+      "cites": 0
     },
     {
       "id": "dff-iv2026",
@@ -72,7 +72,7 @@
         { "label": "arXiv", "href": "https://arxiv.org/abs/2610.04736" },
         { "label": "Code", "href": "https://github.com/Danial-Safaei/handheld-pedestrian-forecasts" }
       ],
-      "cites": null
+      "cites": 0
     },
     {
       "id": "graphsage-rain",
