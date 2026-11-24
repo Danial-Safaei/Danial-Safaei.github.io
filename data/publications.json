@@ -29,7 +29,7 @@
       ],
       "title": "Quantifying Fidelity: A Decisive Feature Approach to Comparing Synthetic and Real Imagery",
       "authors": "D. Safaei, S. Khastgir, M. Alirezaei, J. Ploeg, C.-H. Cheng, S. Tong, X. Zhao",
-      "venue": "<em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Plymouth, MI, USA, June 2026.",
+      "venue": "<em>2026 IEEE Intelligent Vehicles Symposium (IV)</em>, pp. 847–854. Detroit, MI, USA, June 2026.",
       "links": [
         { "label": "DOI", "href": "https://doi.org/10.1109/IV66570.2026.11624013" },
         { "label": "arXiv", "href": "https://arxiv.org/abs/2512.16468" },
@@ -55,6 +55,23 @@
         { "label": "arXiv", "href": "https://arxiv.org/abs/2304.08027" }
       ],
       "cites": 15
+    },
+    {
+      "id": "mechanism-parity-2026",
+      "group": "preprint",
+      "year": "2026",
+      "tags": [
+        { "label": "First author", "type": "strong" },
+        { "label": "Safe AI", "type": "safeai" },
+        { "label": "Full study", "type": "plain" }
+      ],
+      "title": "Mechanism Parity for Simulation-Based Validation of Autonomous-Driving Perception",
+      "authors": "D. Safaei, S. Khastgir, M. D. Higgins, J. Ploeg, M. Alirezaei, S. Tong, P. A. Jennings, X. Zhao",
+      "venue": "<em>arXiv</em> preprint arXiv:2611.27447, November 2026.",
+      "links": [
+        { "label": "arXiv", "href": "https://arxiv.org/abs/2611.27447" }
+      ],
+      "cites": null
     },
     {
       "id": "handheld-forecasts",
