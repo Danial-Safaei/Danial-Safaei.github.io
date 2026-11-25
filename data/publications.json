@@ -1,5 +1,5 @@
 {
-  "note": "Single source of truth for the publication list. The homepage renders this file at runtime; edit here and the site updates.",
+  "note": "Machine-readable list of papers. scripts/update_scholar.py refreshes the per-paper cites from Google Scholar. The pages are plain HTML: when you add a paper, add it to index.html, cv.html and this file.",
   "publications": [
     {
       "id": "cdff-itsc2026",
@@ -34,7 +34,7 @@
         { "label": "DOI", "href": "https://doi.org/10.1109/IV66570.2026.11624013" },
         { "label": "arXiv", "href": "https://arxiv.org/abs/2512.16468" },
         { "label": "Code", "href": "https://github.com/Danial-Safaei/DFF" },
-        { "label": "Explainer", "href": "blog.html?post=what-is-decisive-feature-fidelity" }
+        { "label": "Explainer", "href": "posts/what-is-decisive-feature-fidelity.html" }
       ],
       "cites": 3
     },

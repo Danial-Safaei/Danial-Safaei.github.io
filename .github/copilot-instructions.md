@@ -1,23 +1,20 @@
 # Copilot instructions for this repository
 
 ## Build, test, and deploy
-- Static site served by GitHub Pages from `main`; there is no build step, package manager, or test framework.
-- Preview locally with `python3 -m http.server 8000` from the repo root.
-- Workflows:
-  - `.github/workflows/update-scholar.yml` runs `scripts/update_scholar.py` daily (standard library only). It refreshes `data/scholar.json`, the per-paper `cites` in `data/publications.json`, and the static fallback numbers in `index.html` and `cv.html`, then commits only if something changed.
-  - `.github/workflows/snake.yml` is unrelated to the site (contribution-graph SVG).
+- Static site served by GitHub Pages from `main`. No build step, package manager, framework or test suite.
+- Preview locally with `python -m http.server 8000` from the repo root.
+- `.github/workflows/update-scholar.yml` runs `scripts/update_scholar.py` daily (standard library only). It refreshes `data/scholar.json`, the per-paper `cites` in `data/publications.json`, and the Scholar line in `cv.html`, then commits only if something changed. When Google Scholar blocks GitHub's runners, the committed data is kept.
 
 ## Architecture
-- `index.html`, `cv.html`, `blog.html`, `404.html`: complete static pages. Content must stay meaningful with JavaScript disabled.
-- `interact.js`: behaviour plus live-data loaders (`loadScholar`, `loadPublications`, `loadRepos`, `loadHomePosts`, `loadSiteUpdated`). Every loader fails silently back to the committed HTML.
-- `data/publications.json`: single source of truth for the publication list; the homepage renders it at runtime and the "Works" count is its length.
-- `blog.js` + `posts/`: Markdown posts rendered client-side; `blog.html?post=<slug>` shows one post.
-- `style.css`: one stylesheet with design tokens; light theme by default, dark only via `body.dark`.
+- `index.html`, `cv.html`, `blog.html`, `posts/*.html`, `404.html`: complete static pages written by hand. Every page must work with JavaScript disabled. The only script is the small redirect in `blog.html` that sends old `blog.html?post=<slug>` links to `posts/<slug>.html`.
+- `assets/css/site.css`: the one stylesheet. Colour tokens at the top (`:root` light; dark under `prefers-color-scheme` and `[data-theme="dark"]`), then layout.
+- `assets/fonts/`: self-hosted Source Serif 4 (SIL OFL). No requests to Google Fonts or other third parties.
+- `data/publications.json`: machine-readable paper list used by the Scholar script. The pages do not read it; when a paper is added, update `index.html`, `cv.html` and this file.
+- `404.html` uses root-relative paths (`/assets/...`) because GitHub Pages serves it at any missing address.
 
 ## Conventions
-- Keep these hooks in sync across HTML, CSS and JS: `#toggle-dark`, `#year`, `#site-updated`, `#cite-chart`, `#m-citations`, `#m-h`, `#m-i10`, `#m-works`, `#scholar-updated`, `#pub-root`, `#repo-root`, `#home-posts`, `#cv-citations`, `#cv-h`, `#cv-i10`, `#cv-works`, `#cv-scholar-date`, `#print-cv`.
-- `scripts/update_scholar.py` rewrites the block between `<!-- cite-chart:start -->` and `<!-- cite-chart:end -->` in `index.html`; do not remove the markers.
-- Scroll-reveal is opt-in: the inline script in `index.html` adds `html.js`, and `.reveal` is only hidden under `.js`. `setupRevealAnimations` sets `window.__revealReady`; without it the page reveals everything after 2.5 s.
-- Theme: `localStorage.theme === "dark"` is the only way to get dark mode; there is no system-preference listener.
-- External links use `target="_blank"`; `hardenExternalLinks()` enforces `rel="noopener noreferrer"`.
+- Design: one reading column, serif type, white page with blue links, no animation, no colour badges. Keep the home page short: bio, links, a few news items, research paragraph, publications, writing.
+- Publication entries: title, authors (own name as `<span class="me">D. Safaei</span>`), venue and year, a row of links (`paper`, `arXiv`, `code`, `talk`, `explainer`), and one plain sentence.
+- Keep `<span id="cv-citations">`, `<span id="cv-h">`, `<span id="cv-i10">` and `<span id="cv-scholar-date">` in `cv.html` with no other attributes; the Scholar script rewrites them.
+- Writing: plain British English, no em dashes.
 - Privacy: only published work belongs on the site. Do not describe unpublished or under-review research.

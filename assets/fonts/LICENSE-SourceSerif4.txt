@@ -1,4 +1,7 @@
-Copyright 2021 The Overpass Project Authors (https://github.com/RedHatOfficial/Overpass) Overpass-Italic[wght].ttf: Copyright 2021 The Overpass Project Authors (https://github.com/RedHatOfficial/Overpass)
+Source Serif 4, version 4.004 (Latin subset, variable weight), from the Fontsource package
+@fontsource-variable/source-serif-4 5.2.9.
+
+Copyright 2014-2021 Adobe Systems Incorporated (http://www.adobe.com/), with Reserved Font Name 'Source'.
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

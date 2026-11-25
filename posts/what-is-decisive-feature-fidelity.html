@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What is Decisive Feature Fidelity? · Danial Safaei</title>
+<meta name="description" content="Why pixel-level realism is not enough for trustworthy simulation, and how DFF measures whether synthetic data preserves the features a model actually decides on.">
+<meta name="author" content="Danial Safaei">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://danial-safaei.github.io/posts/what-is-decisive-feature-fidelity.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Danial Safaei">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://danial-safaei.github.io/posts/what-is-decisive-feature-fidelity.html">
+<meta property="og:title" content="What is Decisive Feature Fidelity? · Danial Safaei">
+<meta property="og:description" content="Why pixel-level realism is not enough for trustworthy simulation, and how DFF measures whether synthetic data preserves the features a model actually decides on.">
+<meta property="og:image" content="https://danial-safaei.github.io/images/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Danial Safaei, PhD researcher at WMG, University of Warwick">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <a class="home" href="../index.html">Danial Safaei</a>
+    <nav aria-label="Site">
+      <ul class="site-nav plain-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../cv.html">CV</a></li>
+      <li><a href="../blog.html" aria-current="page">Writing</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <article class="post">
+      <h1>What is Decisive Feature Fidelity?</h1>
+      <p class="post-date"><time datetime="2026-07-09">9 July 2026</time> · Danial Safaei</p>
+<p>Modern simulators and generative models can produce images that look strikingly real. So a natural assumption follows: if synthetic data looks real enough, a model trained or tested on it should behave as if it were real. That assumption is where a lot of safety arguments quietly break.</p>
+<h2>Pixel realism is not the same as decision realism</h2>
+<p>Recent work keeps finding the same thing: <strong>pixel-level fidelity alone does not guarantee reliable transfer from simulation to the real world.</strong> Two images can be nearly indistinguishable to us, and to standard similarity metrics, while a downstream model reacts to them very differently.</p>
+<p>The reason is that a model does not &ldquo;see&rdquo; the whole image equally. It leans on a subset of features to make each decision. If synthetic data reproduces the overall look but distorts <em>those</em> features, your evaluation is measuring the wrong thing.</p>
+<h2>Decisive Feature Fidelity (DFF)</h2>
+<p><strong>DFF</strong> is the metric we introduced to close that gap. Instead of comparing images in the abstract, it compares them <em>through the eyes of the system under test (SUT)</em>:</p>
+<ol>
+<li>Take matched real and synthetic pairs.</li>
+<li>Use explainable-AI methods to identify the <strong>decisive features</strong> driving the SUT&rsquo;s output on each.</li>
+<li>Measure whether those features, the actual evidence behind the decision, agree.</li>
+</ol>
+<p>We call that agreement <strong>mechanism parity</strong>: not &ldquo;do these look alike?&rdquo; but &ldquo;does the model decide for the same reasons?&rdquo;</p>
+<h2>How it was validated</h2>
+<p>We evaluated DFF on <strong>2,126 matched real–synthetic frame pairs</strong> from KITTI and Virtual KITTI 2, across two very different automotive tasks and three frozen systems under test:</p>
+<ul>
+<li>a <strong>PilotNet-style steering regressor</strong>, and</li>
+<li><strong>YOLOP&rsquo;s two segmentation heads</strong>, drivable area and lane lines.</li>
+</ul>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Pixel metrics</th>
+<th>DFF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Does it look real?</td>
+<td>Yes</td>
+<td>Not the point</td>
+</tr>
+<tr>
+<td>Does the model decide for the same reasons?</td>
+<td>Unknown</td>
+<td>Measured</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2>Why it matters for Safe AI</h2>
+<p>If we want to justify using simulation to test an autonomous system, we need evidence that the simulation exercises the same decision mechanisms the real world would. DFF is a step toward making that argument <em>measurable</em> rather than assumed.</p>
+<p>The paper is published in the proceedings of the 2026 IEEE Intelligent Vehicles Symposium (<a href="https://doi.org/10.1109/IV66570.2026.11624013">IEEE Xplore</a>). An open-access version is on <a href="https://arxiv.org/abs/2512.16468">arXiv</a>, and the reference implementation is <a href="https://github.com/Danial-Safaei/DFF">on GitHub</a>.</p>
+<p><strong>Follow-up:</strong> <a href="what-is-c-dff.html">C-DFF</a> (IEEE ITSC 2026) expresses decisive evidence in terms of scene concepts, so a mismatch comes with a ranked list of the concepts that changed.</p>
+      <p class="post-footer">Also: <a href="what-is-c-dff.html">C-DFF: from ‘the evidence changed’ to ‘which evidence changed’</a> · <a href="../blog.html">All writing</a></p>
+    </article>
+  </main>
+</div>
+</body>
+</html>

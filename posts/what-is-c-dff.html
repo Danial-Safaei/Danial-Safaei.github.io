@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>C-DFF: from ‘the evidence changed’ to ‘which evidence changed’ · Danial Safaei</title>
+<meta name="description" content="DFF shows when a model relies on different evidence in simulation. C-DFF shows which scene concepts, such as road, buildings or sky, gained or lost importance.">
+<meta name="author" content="Danial Safaei">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161a" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://danial-safaei.github.io/posts/what-is-c-dff.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Danial Safaei">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://danial-safaei.github.io/posts/what-is-c-dff.html">
+<meta property="og:title" content="C-DFF: from ‘the evidence changed’ to ‘which evidence changed’ · Danial Safaei">
+<meta property="og:description" content="DFF shows when a model relies on different evidence in simulation. C-DFF shows which scene concepts, such as road, buildings or sky, gained or lost importance.">
+<meta property="og:image" content="https://danial-safaei.github.io/images/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Danial Safaei, PhD researcher at WMG, University of Warwick">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<div class="wrap">
+  <header class="site-header">
+    <a class="home" href="../index.html">Danial Safaei</a>
+    <nav aria-label="Site">
+      <ul class="site-nav plain-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../cv.html">CV</a></li>
+      <li><a href="../blog.html" aria-current="page">Writing</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <article class="post">
+      <h1>C-DFF: from ‘the evidence changed’ to ‘which evidence changed’</h1>
+      <p class="post-date"><time datetime="2026-10-27">27 October 2026</time> · Danial Safaei</p>
+<p><a href="what-is-decisive-feature-fidelity.html">Decisive Feature Fidelity</a> (DFF) asks whether a frozen model relies on the same visual evidence in a real image and in its synthetic twin. When the answer is no, DFF tells you <em>that</em> the evidence changed. It does not tell you <em>what</em> changed, and a mismatch between two heatmaps is hard to turn into an engineering action.</p>
+<p><strong>C-DFF</strong> (Concept-Decisive Feature Fidelity), our follow-up paper at IEEE ITSC 2026, addresses that gap by expressing the evidence in terms of scene concepts.</p>
+<h2>From pixels to concepts</h2>
+<p>For each matched pair of a real and a synthetic image, C-DFF:</p>
+<ol>
+<li>extracts the decisive evidence behind the model&rsquo;s output, using a perturbation-based counterfactual explanation;</li>
+<li>segments the scene with an off-the-shelf model (Mask2Former, with the 19 Cityscapes classes such as road, sidewalk, building, car and sky);</li>
+<li>averages the decisive evidence over the area of each concept, giving each image a concept-importance profile;</li>
+<li>compares the real and the synthetic profile.</li>
+</ol>
+<p>The result is one mechanism-parity score per pair, plus a <strong>concept shift</strong>: which concepts became more decisive in simulation, and which became less.</p>
+<h2>What it found</h2>
+<p>We evaluated C-DFF on 2,126 matched KITTI / Virtual KITTI 2 pairs with three frozen systems under test: a steering regressor and YOLOP&rsquo;s drivable-area and lane-line heads.</p>
+<ul>
+<li>C-DFF separated the three systems on the same held-out image pairs, consistent with the view that fidelity depends on the model under test, not on the images alone.</li>
+<li>Reported next to output-agreement metrics, C-DFF shows that output agreement does not by itself establish that the model relies on the same evidence.</li>
+<li>The concept shifts were specific. <strong>Buildings became less decisive</strong> in simulation for all three systems, though only slightly for the lane-line head.</li>
+</ul>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>System under test</th>
+<th>More decisive in simulation</th>
+<th>Less decisive in simulation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Steering regressor</td>
+<td>terrain, wall, sky</td>
+<td>traffic sign, truck, building</td>
+</tr>
+<tr>
+<td>YOLOP drivable area</td>
+<td>car, pole, wall</td>
+<td>building, fence, truck</td>
+</tr>
+<tr>
+<td>YOLOP lane lines</td>
+<td>wall, sky, pole</td>
+<td>terrain, fence, traffic sign</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Each row lists the three largest average increases and decreases on the held-out split. They are dataset-level averages: they tell an engineer where to look first, not what caused the difference.</p>
+<h2>How it is meant to be used</h2>
+<p>C-DFF works in two layers:</p>
+<ul>
+<li>a <strong>scalar gate</strong>: a thresholded score for screening, or for regression tests when the simulator changes;</li>
+<li><strong>concept-level checks</strong>: a ranked list of shifted concepts for debugging, and monitoring of critical concepts such as road, lane and sidewalk.</li>
+</ul>
+<p>DFF and C-DFF complement each other: DFF is the fine-grained mechanism signal, and C-DFF is the semantic layer that shows which scene concepts are involved when a synthetic sample fails.</p>
+<h2>Limits</h2>
+<p>The concept scores are only as good as the tools underneath them. Decisive maps vary with the explanation method&rsquo;s settings. Segmentation errors can bias concept scores; we partly bounded this on the synthetic side, using Virtual KITTI 2&rsquo;s ground-truth labels for a held-out subset, but the real images have no equivalent labels. Poorly matched pairs inflate the score, counterfactual explanations are expensive to compute, and the thresholds are calibrated for one benchmark, not universal safety bounds.</p>
+<h2>Read more</h2>
+<p>The paper will appear in the proceedings of the 2026 IEEE 29th International Conference on Intelligent Transportation Systems (ITSC), Naples, Italy. The accepted version is on <a href="https://arxiv.org/abs/2610.33760">arXiv</a>.</p>
+      <p class="post-footer">Also: <a href="what-is-decisive-feature-fidelity.html">What is Decisive Feature Fidelity?</a> · <a href="../blog.html">All writing</a></p>
+    </article>
+  </main>
+</div>
+</body>
+</html>
